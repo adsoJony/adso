@@ -5,6 +5,10 @@
 package adso;
 
 import conexion.Conexion;
+import controller.Usuario;
+import java.util.List;
+import model.UsuarioModel;
+import controller.Cliente;
 
 /**
  *
@@ -18,8 +22,17 @@ public class Adso {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        var con = Conexion.conectar();
-
+        Usuario usuario = new Usuario();
+        usuario.setPrimerNombre_usuario("jonathan");
+        usuario.setPrimerApellido_usuario("Gomez");
+        usuario.setNickName_usuario("usuario");
+        usuario.setEmail_usuario("email.com");
+        usuario.setPsw_usuario("password");
+        usuario.setId_tipoUsuario_usuario(1);
+        usuario.setId_rol_usuario(1);
+        
+        usuario.inputUsuario(usuario);
+        
     }
 
 }
