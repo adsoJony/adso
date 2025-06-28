@@ -6,6 +6,7 @@ package controller;
 
 import java.util.Date;
 import model.ClienteModel;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,6 +22,10 @@ public class Cliente extends Usuario {
     int id_tipoDocumento_cliente;
     int documento_cliente;
     String razonSocial_cliente;
+
+    public Cliente() {
+
+    }
 
     public int getId_cliente() {
         return id_cliente;
@@ -91,6 +96,7 @@ public class Cliente extends Usuario {
         return id_usuario;
     }
 
+    @Override
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
@@ -176,7 +182,7 @@ public class Cliente extends Usuario {
     }
 
     @Override
-     public Date getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
@@ -186,7 +192,7 @@ public class Cliente extends Usuario {
     }
 
     @Override
-     public Date getFechaActualizacion() {
+    public Date getFechaActualizacion() {
         return fechaActualizacion;
     }
 
@@ -285,13 +291,11 @@ public class Cliente extends Usuario {
         this.deleted = deleted;
     }
 
-
-    public int inputCliente(Cliente cliente){
+    public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {
         int id_cliente = 0;
         ClienteModel clienteModel = new ClienteModel();
-        id_cliente = clienteModel.InputCliente(cliente);
-        
+        id_cliente = clienteModel.InputCliente(cliente, usuario);
         return id_cliente;
     }
-    
+
 }

@@ -6,9 +6,11 @@ package adso;
 
 import conexion.Conexion;
 import controller.Usuario;
+import controller.Cliente;
 import java.util.List;
 import model.UsuarioModel;
 import controller.Cliente;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,18 +23,30 @@ public class Adso {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        try {
+            Usuario usuario = new Usuario();
+            Cliente cliente = new Cliente();
+            usuario.setPrimerNombre_usuario("jonathan");
+            usuario.setPrimerApellido_usuario("Gomez");
+            usuario.setNickName_usuario("usuario");
+            usuario.setEmail_usuario("email.com");
+            usuario.setPsw_usuario("password");
+            usuario.setId_tipoUsuario_usuario(1);
+            usuario.setId_rol_usuario(1);
 
-        Usuario usuario = new Usuario();
-        usuario.setPrimerNombre_usuario("jonathan");
-        usuario.setPrimerApellido_usuario("Gomez");
-        usuario.setNickName_usuario("usuario");
-        usuario.setEmail_usuario("email.com");
-        usuario.setPsw_usuario("password");
-        usuario.setId_tipoUsuario_usuario(1);
-        usuario.setId_rol_usuario(1);
-        
-        usuario.inputUsuario(usuario);
-        
+            cliente.setRazonSocial_cliente("Razon social");
+            cliente.setId_cargo_cliente(1);
+            cliente.setDireccion_cliente("Cra 50 72 72");
+            cliente.setId_tipoDocumento_cliente(1);
+            cliente.setDocumento_cliente(1045666207);
+            cliente.setRazonSocial_cliente("Razon social");
+           // usuario.inputUsuario(usuario);
+
+           cliente.inputCliente(cliente, usuario);
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+
     }
 
 }

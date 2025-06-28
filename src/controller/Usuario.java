@@ -37,6 +37,29 @@ public class Usuario {
 
     public Usuario() {
     }
+
+    public Usuario(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
+        this.id_usuario = id_usuario;
+        this.nickName_usuario = nickName_usuario;
+        this.primerNombre_usuario = primerNombre_usuario;
+        this.segundoNombre_usuario = segundoNombre_usuario;
+        this.primerApellido_usuario = primerApellido_usuario;
+        this.segundoApellido_usuario = segundoApellido_usuario;
+        this.email_usuario = email_usuario;
+        this.psw_usuario = psw_usuario;
+        this.id_rol_usuario = id_rol_usuario;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
+        this.fechaEliminado = fechaEliminado;
+        this.activation_token = activation_token;
+        this.reset_token = reset_token;
+        this.reset_token_expires_at = reset_token_expires_at;
+        this.active = active;
+        this.avatar_usuario = avatar_usuario;
+        this.fecha_registroUsuario = fecha_registroUsuario;
+        this.id_tipoUsuario_usuario = id_tipoUsuario_usuario;
+        this.deleted = deleted;
+    }
     
     
 
@@ -48,11 +71,11 @@ public class Usuario {
         return id_usuario;
     }
 
-    /*
+    
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
-     */
+     
     public String getNickName_usuario() {
         return nickName_usuario;
     }
@@ -205,7 +228,7 @@ public class Usuario {
         this.deleted = deleted;
     }
 
-    public int inputUsuario(Usuario usuario) {
+    public int inputUsuario(Usuario usuario) throws SQLException {
         UsuarioModel usuarioModel = new UsuarioModel(con);
         id_usuario = usuarioModel.inputUsuario(usuario);
 

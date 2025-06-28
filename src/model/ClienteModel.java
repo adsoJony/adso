@@ -4,10 +4,13 @@
  */
 package model;
 
-
 import conexion.Conexion;
 import controller.Cliente;
-import java.S
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import controller.Usuario;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -16,29 +19,64 @@ import java.S
 public class ClienteModel {
 
     Conexion con;
-    
-    
-    public void ClienteModel(Conexion con){
-    this.con = con;    
+
+    public void ClienteModel(Conexion con) {
+        this.con = con;
     }
-    
-    public int InputCliente(Cliente cliente) {
-        int id_cliente = 0;
-        String sqlUsuario = "insert into usuarios (primerNombre_usuario, primerApellido_usuario, nickname_usuario, ) values ();";
-        String sqlCliente = "insert into cliente() values()";
-        
-        
-        
+
+    public int InputCliente(Cliente cliente, Usuario usuario) throws SQLException {
+        var id_cliente = 0;
+        // String sqlUsuario = "insert into usuarios (nickname_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segunsApellido_usuario, ) values ();";
+        String sqlCliente = "insert into cliente(id_usuario_cliente, id_cargo_cliente, direccion_cliente, telefono_cliente, id_tipoDocumento_cliente, documento_cliente, razonSocial_cliente)"
+                + " values(?,?,?,?,?,?,?)";
+
+        PreparedStatement ps;
+        ps = Conexion.prepararConsulta(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+        int id_usuario;
+
         try {
-            PreparedStatement ps;
-            ps.Conexion.
+            Conexion.conexionSetAutoCommit(false);
+            id_usuario = usuario.inputUsuario(usuario);
+
+            if (id_usuario != 0) {
+
+                System.out.println("Usuario registrado desde cliente!");
+
+                try {
+                    ps.setInt(1, id_usuario);
+                    ps.setInt(2, cliente.getId_cargo_cliente());
+                    ps.setString(3, cliente.getDireccion_cliente());
+                    ps.setInt(4, cliente.getTelefono_cliente());
+                    ps.setInt(5, cliente.getId_tipoDocumento_cliente());
+                    ps.setInt(6, cliente.getDocumento_cliente());
+                    ps.setString(7, cliente.getRazonSocial_cliente());
+
+                    if (ps.executeUpdate() != 0) {
+                        System.out.println("Cliente Ingresado.");
+                        ResultSet rs = ps.getGeneratedKeys();
+                        if (rs.next()) {
+                            id_cliente = rs.getInt(1);
+                            System.out.println("EL id del cliente registrado es: " + id_cliente);
+                        }
+
+                        rs.close();
+                    }
                     
+                    Conexion.commit();
+                } catch (SQLException e) {
+                    System.err.println("Error: " + e);
+                }
+            } else {
+                Conexion.rollBack();
+            }
+            Conexion.commit();
+            ps.close();
         } catch (SQLException e) {
-            System.err.println("Error: "+e)
+            System.err.println("Error: " + e);
+
         }
-        
+        Conexion.close();
         return id_cliente;
-        
-        
+
     }
 }
