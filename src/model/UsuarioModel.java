@@ -21,7 +21,7 @@ import java.sql.Statement;
  */
 public class UsuarioModel {
 
-     Conexion con;
+    Conexion con;
 
     public void UsuarioModel(Conexion con) {
         this.con = con;
@@ -36,11 +36,12 @@ public class UsuarioModel {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 usuarios.add(new Usuario(rs.getInt("id_usuario"), rs.getString("primerNombre_usuario"), rs.getString("segundoNombre_usuario"), rs.getString("primerApellido_usuario")));
-              /** Usuario usuario = new Usuario();
-               usuario.setId_usuario(rs.getInt("id_usuario"));
-               usuario.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
-               usuarios.add(usuario);
-               */
+                /**
+                 * Usuario usuario = new Usuario();
+                 * usuario.setId_usuario(rs.getInt("id_usuario"));
+                 * usuario.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                 * usuarios.add(usuario);
+                 */
             }
             /*
             for (Usuario usr : usuarios) {
@@ -107,6 +108,51 @@ public class UsuarioModel {
         return id_usuario;
     }
 
+    public boolean updateUsuario(Usuario usuario, int idUsuario) throws SQLException {
+        var update = false;
+        //var idUsuario = usuario.getId_usuario();
+        String sql = "update usuarios set nickName_usuario=?, primerNombre_usuario=?, segundoNombre_usuario=?, primerApellido_usuario=?, segundoApellido_usuario=?,"
+                + " email_usuario=?, psw_usuario=?, id_rol_usuario=?, fechaCreacion=?, fechaActualizacion=?, fechaEliminado=?, activation_token=?, reset_token=?,"
+                + "reset_token_expires_at=?, active=?, avatar_usuario=?, fecha_registrousuario=?, id_tipoUsuario_usuario=?, deleted=? where id_usuario=?";
+        PreparedStatement ps;
+        try {
+            ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, usuario.getNickName_usuario());
+            ps.setString(2, usuario.getPrimerNombre_usuario());
+            ps.setString(3, usuario.getSegundoNombre_usuario());
+            ps.setString(4, usuario.getPrimerApellido_usuario());
+            ps.setString(5, usuario.getSegundoApellido_usuario());
+            ps.setString(6, usuario.getEmail_usuario());
+            ps.setString(7, usuario.getPsw_usuario());
+            ps.setInt(8, usuario.getId_rol_usuario());
+            ps.setDate(9, (Date) usuario.getFechaCreacion());
+            ps.setDate(10, (Date) usuario.getFechaActualizacion());
+            ps.setDate(11, (Date) usuario.getFechaEliminado());
+            ps.setString(12, usuario.getActivation_token());
+            ps.setString(13, usuario.getReset_token());
+            ps.setDate(14, (Date) usuario.getReset_token_expires_at());
+            ps.setBoolean(15, usuario.isActive());
+            ps.setString(16, usuario.getAvatar_usuario());
+            ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
+            ps.setInt(18, usuario.getId_tipoUsuario_usuario());
+            ps.setBoolean(19, usuario.isDeleted());
+            ps.setInt(20, idUsuario);
+
+            if (ps.executeUpdate() != 0) {
+                System.out.println("El usuario ha sido Actualizaco");
+                update = true;
+            } else {
+                System.err.println("El Usuario no pudo ser Actualizado");
+            }
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        Conexion.close();
+        return update;
+    }
+
     //Validación si el Usuario existe
     public boolean checkNickname(String nickName) throws SQLException {
         var check = true;
@@ -132,22 +178,22 @@ public class UsuarioModel {
         Conexion.close();
         return check;
     }
-    
+
     //Validación si el Email existe
-    public boolean checkEmail(String email) throws SQLException{
+    public boolean checkEmail(String email) throws SQLException {
         var check = true;
         String sql = "select email_usuario from usuarios where email_usuario=?";
-        
+
         try {
             PreparedStatement ps;
             ps = Conexion.prepararConsulta(sql);
-            ps.setString(1,email);
+            ps.setString(1, email);
             ResultSet rs;
             rs = ps.executeQuery();
-            
-            if (rs.next() !=true){
-                check=false;
-            }else {
+
+            if (rs.next() != true) {
+                check = false;
+            } else {
                 check = true;
             }
             ps.close();

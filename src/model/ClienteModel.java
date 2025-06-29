@@ -101,4 +101,11 @@ public class ClienteModel {
         return id_cliente;
 
     }
+    
+    //Update de cliente recibiendo el id dentro del objeto usuario
+    public boolean updateCliente(Cliente cliente, Usuario usuario){
+        var update = false;
+        
+        return update;
+    }
 }

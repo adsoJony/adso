@@ -4,10 +4,10 @@
  */
 package adso;
 
-
 import controller.Usuario;
 import java.util.List;
 import controller.Cliente;
+//import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.UsuarioModel;
@@ -20,21 +20,25 @@ public class Adso {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) throws SQLException{
-        // TODO code application logic here
+    public static void main(String[] args) throws Exception {
+        
+        System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consila!!
+
         try {
             
             Usuario usuario = new Usuario();
             //Cliente cliente = new Cliente();
-            usuario.setPrimerNombre_usuario("jonathan");
+            usuario.setPrimerNombre_usuario("Jonathan");          
             usuario.setPrimerApellido_usuario("Gomez");
+            usuario.setSegundoApellido_usuario("Franco");
             usuario.setNickName_usuario("usuario");
-            usuario.setEmail_usuario("jogofra_satelite@hotmail.com");
+            usuario.setEmail_usuario("correo@mail.com");
             usuario.setPsw_usuario("password");
             usuario.setId_tipoUsuario_usuario(1);
             usuario.setId_rol_usuario(1);
-/*
+            /*
             cliente.setRazonSocial_cliente("Razon social");
             cliente.setId_cargo_cliente(1);
             cliente.setDireccion_cliente("Cra 50 72 72");
@@ -46,31 +50,26 @@ public class Adso {
            cliente.inputCliente(cliente, usuario);
 
              */
+            var update = usuario.updateUsuario(usuario, 113);
+            var clientes = Cliente.listarClientes();
+            var usuarios = Usuario.listarUsuarios();
+            System.out.println("imprimiendo Clientes");
+            for (Cliente usr : clientes) {
+                System.out.println(usr.getId_cliente() + "  " + usr.getNickName_usuario());
+            }
+            System.out.println("\r");
+            
+            System.out.println("Imprimiendo Usuarios");
+            for (Usuario usr : usuarios) {
+                System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
+            }
 
-         var clientes = Cliente.listarClientes();
-         var usuarios = Usuario.listarUsuarios();
-         System.out.println("imprimiendo Clientes");
-          for (Cliente usr : clientes) {
-                System.out.println(usr.getId_cliente()+"  "+usr.getNickName_usuario());
-          }
-          System.out.println("\r");
-          
-          System.out.println("Imprimiendo Usuarios");
-          for (Usuario usr : usuarios){
-              System.out.println(usr.getId_usuario()+"  "+usr.getPrimerNombre_usuario()+"   "+usr.getPrimerApellido_usuario());
-          }
-          
-          
-          //Usuario validacion = new Usuario();
-          //var val = "jony@gmail.com";
-         var val= usuario.checkEmail(usuario);
-          System.out.println("la validación: "+usuario.getEmail_usuario()+" es "+val);
-          
+             System.out.println("El update ha sido: "+update);
             
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
-
+        
     }
-
+    
 }

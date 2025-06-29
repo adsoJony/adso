@@ -243,9 +243,14 @@ public class Usuario {
 
     public int inputUsuario(Usuario usuario) throws SQLException {
         //UsuarioModel usuarioModel = new UsuarioModel();
-        id_usuario = usuarioModel.inputUsuario(usuario);
+        return usuarioModel.inputUsuario(usuario);
 
-        return id_usuario;
+        //return id_usuario;
+    }
+    
+    public boolean updateUsuario(Usuario usuario, int idUsuario) throws SQLException {
+
+        return usuarioModel.updateUsuario(usuario, idUsuario);
     }
     
     public boolean checkEmail(Usuario usuario) throws SQLException{

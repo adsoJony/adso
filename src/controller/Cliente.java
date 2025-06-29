@@ -301,6 +301,11 @@ public class Cliente extends Usuario {
         idCliente = clienteModel.InputCliente(cliente, usuario);
         return idCliente;
     }
+    
+    public boolean updateCliente(Cliente cliente, Usuario usuario){
+         
+        return clienteModel.updateCliente(cliente, usuario);
+    }
 
     public static List<Cliente> listarClientes() throws SQLException {  //Manejar las excepciones desde un paquete de excepciones
 
