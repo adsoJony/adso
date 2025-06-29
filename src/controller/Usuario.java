@@ -4,6 +4,7 @@ import conexion.Conexion;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.*;
+import java.util.List;
 import model.UsuarioModel;
 
 /**
@@ -34,7 +35,7 @@ public class Usuario {
     protected boolean deleted;
 
     private Conexion con;
-
+    private static final UsuarioModel usuarioModel = new UsuarioModel();
     public Usuario() {
     }
 
@@ -63,8 +64,12 @@ public class Usuario {
     
     
 
-    public Usuario(int id_usuario, String pirmerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario) {
+    public Usuario(int id_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario) {
         this.id_usuario = id_usuario;
+        this.primerNombre_usuario = primerNombre_usuario;
+        this.segundoNombre_usuario = segundoNombre_usuario;
+        this.primerApellido_usuario = primerApellido_usuario;
+        
     }
 
     public int getId_usuario() {
@@ -227,12 +232,32 @@ public class Usuario {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+    
+    public static List<Usuario> listarUsuarios() throws SQLException{
+        //UsuarioModel usuarioModel = new UsuarioModel();
+        
+        List<Usuario> usuarios = usuarioModel.obtenerUsuarios();
+        
+        return usuarios;
+    }
 
     public int inputUsuario(Usuario usuario) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(con);
+        //UsuarioModel usuarioModel = new UsuarioModel();
         id_usuario = usuarioModel.inputUsuario(usuario);
 
         return id_usuario;
     }
+    
+    public boolean checkEmail(Usuario usuario) throws SQLException{
+       // UsuarioModel usuarioModel = new UsuarioModel();
+        return usuarioModel.checkEmail(usuario.getEmail_usuario());
+    }
+    
+    public boolean checkNickname(Usuario usuario) throws SQLException{
+       // UsuarioModel usuarioModel = new UsuarioModel();
+        return usuarioModel.checkNickname(usuario.getNickName_usuario());
+    }
+    
+   
 
 }

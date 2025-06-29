@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import controller.Usuario;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,6 +24,26 @@ public class ClienteModel {
 
     public void ClienteModel(Conexion con) {
         this.con = con;
+    }
+
+    public List<Cliente> listarClientes() throws SQLException {
+        List<Cliente> clientes = new ArrayList();
+        String sql = "Select * from cliente join usuarios on id_usuario_cliente = id_usuario where deleted=0";
+        PreparedStatement ps = Conexion.prepararConsulta(sql);
+
+        try {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId_cliente(rs.getInt("id_cliente"));
+                cliente.setNickName_usuario(rs.getString("nickName_usuario"));
+                clientes.add(cliente);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        return clientes;
     }
 
     public int InputCliente(Cliente cliente, Usuario usuario) throws SQLException {
@@ -61,7 +83,7 @@ public class ClienteModel {
 
                         rs.close();
                     }
-                    
+
                     Conexion.commit();
                 } catch (SQLException e) {
                     System.err.println("Error: " + e);

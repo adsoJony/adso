@@ -7,6 +7,8 @@ package controller;
 import java.util.Date;
 import model.ClienteModel;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,6 +24,8 @@ public class Cliente extends Usuario {
     int id_tipoDocumento_cliente;
     int documento_cliente;
     String razonSocial_cliente;
+
+    private static final ClienteModel clienteModel = new ClienteModel();
 
     public Cliente() {
 
@@ -292,10 +296,17 @@ public class Cliente extends Usuario {
     }
 
     public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {
-        int id_cliente = 0;
-        ClienteModel clienteModel = new ClienteModel();
-        id_cliente = clienteModel.InputCliente(cliente, usuario);
-        return id_cliente;
+        var idCliente = 0;
+        //ClienteModel clienteModel = new ClienteModel();
+        idCliente = clienteModel.InputCliente(cliente, usuario);
+        return idCliente;
+    }
+
+    public static List<Cliente> listarClientes() throws SQLException {  //Manejar las excepciones desde un paquete de excepciones
+
+        List<Cliente> clientes = clienteModel.listarClientes();
+
+        return clientes;
     }
 
 }

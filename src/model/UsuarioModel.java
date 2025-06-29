@@ -21,29 +21,36 @@ import java.sql.Statement;
  */
 public class UsuarioModel {
 
-    private final Conexion con;
+     Conexion con;
 
-    public UsuarioModel(Conexion con) {
+    public void UsuarioModel(Conexion con) {
         this.con = con;
     }
 
     public List<Usuario> obtenerUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
-        String query = "SELECT * FROM usuarios";
+        String query = "SELECT * FROM usuarios where deleted=0";
         try {
             PreparedStatement stmt = Conexion.prepararConsulta(query);
             //ResultSet rs = con.prepareStatement();
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 usuarios.add(new Usuario(rs.getInt("id_usuario"), rs.getString("primerNombre_usuario"), rs.getString("segundoNombre_usuario"), rs.getString("primerApellido_usuario")));
+              /** Usuario usuario = new Usuario();
+               usuario.setId_usuario(rs.getInt("id_usuario"));
+               usuario.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+               usuarios.add(usuario);
+               */
             }
+            /*
             for (Usuario usr : usuarios) {
                 System.out.println(usr.getId_rol_usuario());
-            }
+            }*/
+            rs.close();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
         }
-
+        Conexion.close();
         return usuarios;
     }
 
@@ -100,8 +107,9 @@ public class UsuarioModel {
         return id_usuario;
     }
 
-    public boolean checkNickname(String nickName) {
-        boolean check = true;
+    //Validación si el Usuario existe
+    public boolean checkNickname(String nickName) throws SQLException {
+        var check = true;
         String sql = "select nickName_usuario from usuarios where nickName_usuario =?";
 
         try {
@@ -120,6 +128,31 @@ public class UsuarioModel {
             rs.close();
         } catch (SQLException e) {
             System.err.println("Error: " + e);
+        }
+        Conexion.close();
+        return check;
+    }
+    
+    //Validación si el Email existe
+    public boolean checkEmail(String email) throws SQLException{
+        var check = true;
+        String sql = "select email_usuario from usuarios where email_usuario=?";
+        
+        try {
+            PreparedStatement ps;
+            ps = Conexion.prepararConsulta(sql);
+            ps.setString(1,email);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            
+            if (rs.next() !=true){
+                check=false;
+            }else {
+                check = true;
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
         }
         Conexion.close();
         return check;
