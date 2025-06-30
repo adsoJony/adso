@@ -4,6 +4,7 @@
  */
 package adso;
 
+import conexion.Conexion;
 import controller.Usuario;
 import java.util.List;
 import controller.Cliente;
@@ -27,9 +28,9 @@ public class Adso {
         System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consila!!
 
         try {
-            
+            /*
             Usuario usuario = new Usuario();
-            //Cliente cliente = new Cliente();
+            Cliente cliente = new Cliente();
             usuario.setPrimerNombre_usuario("Jonathan");          
             usuario.setPrimerApellido_usuario("Gomez");
             usuario.setSegundoApellido_usuario("Franco");
@@ -38,7 +39,7 @@ public class Adso {
             usuario.setPsw_usuario("password");
             usuario.setId_tipoUsuario_usuario(1);
             usuario.setId_rol_usuario(1);
-            /*
+            
             cliente.setRazonSocial_cliente("Razon social");
             cliente.setId_cargo_cliente(1);
             cliente.setDireccion_cliente("Cra 50 72 72");
@@ -47,10 +48,15 @@ public class Adso {
             cliente.setRazonSocial_cliente("Razon social");
            // usuario.inputUsuario(usuario);
 
-           cliente.inputCliente(cliente, usuario);
+           //cliente.inputCliente(cliente, usuario);
 
-             */
-            var update = usuario.updateUsuario(usuario, 113);
+             
+            //var update = usuario.updateUsuario(usuario, 113);
+            */
+            Cliente cliente = new Cliente();
+            cliente = Cliente.findCliente(5);
+            System.out.println("Imprimiendo el dato del cliente que se está buscando: "+cliente.getRazonSocial_cliente());
+            
             var clientes = Cliente.listarClientes();
             var usuarios = Usuario.listarUsuarios();
             System.out.println("imprimiendo Clientes");
@@ -64,11 +70,12 @@ public class Adso {
                 System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
             }
 
-             System.out.println("El update ha sido: "+update);
+             //System.out.println("El update ha sido: "+update);
             
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
+       
         
     }
     

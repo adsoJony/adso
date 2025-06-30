@@ -302,7 +302,7 @@ public class Cliente extends Usuario {
         return idCliente;
     }
     
-    public boolean updateCliente(Cliente cliente, Usuario usuario){
+    public boolean updateCliente(Cliente cliente, Usuario usuario)throws SQLException{
          
         return clienteModel.updateCliente(cliente, usuario);
     }
@@ -312,6 +312,10 @@ public class Cliente extends Usuario {
         List<Cliente> clientes = clienteModel.listarClientes();
 
         return clientes;
+    }
+    
+    public static Cliente findCliente(int idCliente) throws SQLException{
+        return clienteModel.findCliente(idCliente);
     }
 
 }

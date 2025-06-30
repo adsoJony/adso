@@ -26,12 +26,36 @@ public class ClienteModel {
         this.con = con;
     }
 
+    public Cliente findCliente(int idCliente) throws SQLException {
+        Cliente cliente = new Cliente();
+        String sql = "select * from cliente where id_cliente=?";
+        
+        //ResultSet rs;
+        try {
+            PreparedStatement ps;
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1, idCliente);
+            ResultSet rs;
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
+                System.out.println("se encontró cliente");
+            } else {
+                System.err.println("No se encontró cliente");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        return cliente;
+    }
+
     public List<Cliente> listarClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList();
         String sql = "Select * from cliente join usuarios on id_usuario_cliente = id_usuario where deleted=0";
-        PreparedStatement ps = Conexion.prepararConsulta(sql);
 
         try {
+            PreparedStatement ps = Conexion.prepararConsulta(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
@@ -101,11 +125,27 @@ public class ClienteModel {
         return id_cliente;
 
     }
-    
+
     //Update de cliente recibiendo el id dentro del objeto usuario
-    public boolean updateCliente(Cliente cliente, Usuario usuario){
+    public boolean updateCliente(Cliente cliente, Usuario usuario) throws SQLException {
         var update = false;
-        
+        String sql = "update cliente set id_cargo_cliente=?, direccion_cliente=?, telefono_cliente=?, id_documento_cliente=?,"
+                + "documento_cliente=?, razonSocial_cliente=? where id_cliente=?";
+        PreparedStatement ps;
+        try {
+            ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, cliente.getId_cargo_cliente());
+            ps.setString(2, cliente.getDireccion_cliente());
+            ps.setInt(3, cliente.getTelefono_cliente());
+            ps.setInt(4, cliente.getId_tipoDocumento_cliente());
+            ps.setInt(5, cliente.getDocumento_cliente());
+            ps.setString(6, cliente.getRazonSocial_cliente());
+            ps.setInt(7, cliente.getId_cliente());
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+
         return update;
     }
 }
