@@ -327,11 +327,11 @@ public class Cliente extends Usuario {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
-/*
+
     @Override
     public String toString() {
         return "Cliente{" + "id_cliente=" + id_cliente + ", id_usuario_cliente=" + id_usuario_cliente + ", id_cargo_cliente=" + id_cargo_cliente + ", direccion_cliente=" + direccion_cliente + ", telefono_cliente=" + telefono_cliente + ", id_tipoDocumento_cliente=" + id_tipoDocumento_cliente + ", documento_cliente=" + documento_cliente + ", razonSocial_cliente=" + razonSocial_cliente + '}';
-    }*/
+    }
 
     public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {     //Manejar las excepciones desde un paquete de excepciones
 

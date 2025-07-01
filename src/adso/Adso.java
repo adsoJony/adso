@@ -61,29 +61,33 @@ public class Adso {
             //System.out.println("Imprimiendo el dato del cliente que se está buscando: "+cliente.getRazonSocial_cliente());
             
             //Cliente cliente = new Cliente();
-            //var clientes = cliente.listarClientes();
+            Cliente client = new Cliente();
+            var clientes = client.listarClientes();
 
             //var usuario = new Usuario();
-            var usuarios = usuario.listarUsuarios();
-/*
+            Usuario user = new Usuario();
+            var usuarios = user.listarUsuarios();
+
             System.out.println("imprimiendo Clientes");
-            for (Cliente usr : clientes) {
-                System.out.println(usr);
+            for (Cliente cli : clientes) {
+                System.out.println(cli);
             }
+            /*
             System.out.println("\r");
 
             System.out.println("Imprimiendo Usuarios");
             for (Usuario usr : usuarios) {
-                System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
+                //System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
                 System.out.println(usr);
             }
 */
-            var deleted = usuario.deleteUsuario(74);
-            System.out.println("Deleted: "+deleted);
+
+            //var deleted = usuario.deleteUsuario(74);
+           // System.out.println("Deleted: "+deleted);
             
              System.out.println("Imprimiendo Usuarios");
             for (Usuario usr : usuarios) {
-                System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
+                //System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
                 System.out.println(usr);
             }
             //System.out.println("El update ha sido: "+update);
