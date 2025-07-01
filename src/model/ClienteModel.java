@@ -27,9 +27,9 @@ public class ClienteModel {
     }
 
     public Cliente findCliente(int idCliente) throws SQLException {
-        Cliente cliente = new Cliente();
+        var cliente = new Cliente();
         String sql = "select * from cliente where id_cliente=?";
-        
+
         //ResultSet rs;
         try {
             PreparedStatement ps;
@@ -52,7 +52,10 @@ public class ClienteModel {
 
     public List<Cliente> listarClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList();
-        String sql = "Select * from cliente join usuarios on id_usuario_cliente = id_usuario where deleted=0";
+        String sql = "Select * "
+                + " from cliente "
+                + "join usuarios on id_usuario_cliente = id_usuario "
+                + "where deleted=0";
 
         try {
             PreparedStatement ps = Conexion.prepararConsulta(sql);
@@ -72,7 +75,7 @@ public class ClienteModel {
 
     public int InputCliente(Cliente cliente, Usuario usuario) throws SQLException {
         var id_cliente = 0;
-        // String sqlUsuario = "insert into usuarios (nickname_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segunsApellido_usuario, ) values ();";
+        // String sqlUsuario = "insert into usuarios (nickname_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, ) values ();";
         String sqlCliente = "insert into cliente(id_usuario_cliente, id_cargo_cliente, direccion_cliente, telefono_cliente, id_tipoDocumento_cliente, documento_cliente, razonSocial_cliente)"
                 + " values(?,?,?,?,?,?,?)";
 
@@ -148,4 +151,10 @@ public class ClienteModel {
 
         return update;
     }
+    /*
+    public boolean deleteCliente(int id_usuario){
+        var deleted = false;
+        
+        return deleted;
+    }*/
 }

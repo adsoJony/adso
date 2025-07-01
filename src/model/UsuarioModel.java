@@ -27,6 +27,49 @@ public class UsuarioModel {
         this.con = con;
     }
 
+    public Usuario findUsuario(int idUsuario) throws SQLException {
+        var usuario = new Usuario();
+        String sql = "select * from usuarios where id_usuario=?";
+        PreparedStatement ps;
+
+        try {
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1, idUsuario);
+
+            ResultSet rs;
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setNickName_usuario(rs.getString("nickName_usuario"));
+                usuario.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                usuario.setSegundoNombre_usuario(rs.getString("segundoNombre_usuario"));
+                usuario.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
+                usuario.setSegundoApellido_usuario(rs.getString("segundoApellido_usuario"));
+                usuario.setEmail_usuario(rs.getString("email_usuario"));
+                usuario.setId_rol_usuario(rs.getInt("id_rol_usuario"));
+                usuario.setFechaCreacion(rs.getDate("fechaCreacion"));
+                usuario.setFechaActualizacion(rs.getDate("fechaActualizacion"));
+                usuario.setFechaEliminado(rs.getDate("fechaEliminado"));
+                usuario.setActivation_token(rs.getString("activation_token"));
+                usuario.setReset_token(rs.getString("reset_token"));
+                usuario.setReset_token_expires_at(rs.getDate("reset_token_expires_at"));
+                usuario.setActive(rs.getBoolean("active"));
+                usuario.setAvatar_usuario(rs.getString("avatar_usuario"));
+                usuario.setFecha_registroUsuario(rs.getDate("fecha_registroUsuario"));
+                usuario.setId_tipoUsuario_usuario(rs.getInt("id_tipoUsuario_usuario"));
+                usuario.setDeleted(rs.getBoolean("deleted"));
+                System.out.println("Se encontro la búsqueda de Usuario");
+            } else {
+                System.err.println("Error: No se pudo encontrar la Búsqueda de Usuario");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+
+        return usuario;
+    }
+
     public List<Usuario> obtenerUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         String query = "SELECT * FROM usuarios where deleted=0";
@@ -36,17 +79,8 @@ public class UsuarioModel {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 usuarios.add(new Usuario(rs.getInt("id_usuario"), rs.getString("primerNombre_usuario"), rs.getString("segundoNombre_usuario"), rs.getString("primerApellido_usuario")));
-                /**
-                 * Usuario usuario = new Usuario();
-                 * usuario.setId_usuario(rs.getInt("id_usuario"));
-                 * usuario.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
-                 * usuarios.add(usuario);
-                 */
+
             }
-            /*
-            for (Usuario usr : usuarios) {
-                System.out.println(usr.getId_rol_usuario());
-            }*/
             rs.close();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -151,6 +185,34 @@ public class UsuarioModel {
         }
         Conexion.close();
         return update;
+    }
+    
+    public boolean deleteUsuario(int idUsuario) throws SQLException{
+        var deleted =false;
+        String sql = "update usuarios "
+                + "set deleted=1 "
+                + "where id_usuario=?";
+        
+        try {
+            PreparedStatement ps;
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1,idUsuario);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            
+            if (rs.next()){
+                deleted = true;
+                System.out.println("El usuario ha sido borrado exitosamente");
+                
+            }else{
+                System.err.println("El usuario no se pudo borrar");
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.err.println("Error: "+e);
+        }
+        return deleted;
     }
 
     //Validación si el Usuario existe

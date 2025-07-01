@@ -31,6 +31,39 @@ public class Cliente extends Usuario {
 
     }
 
+    public Cliente(int id_usuario_cliente, int id_cargo_cliente, String direccion_cliente, int telefono_cliente, int id_tipoDocumento_cliente, int documento_cliente, String razonSocial_cliente) {
+        this.id_usuario_cliente = id_usuario_cliente;
+        this.id_cargo_cliente = id_cargo_cliente;
+        this.direccion_cliente = direccion_cliente;
+        this.telefono_cliente = telefono_cliente;
+        this.id_tipoDocumento_cliente = id_tipoDocumento_cliente;
+        this.documento_cliente = documento_cliente;
+        this.razonSocial_cliente = razonSocial_cliente;
+    }
+
+    public Cliente(int id_cliente, int id_usuario_cliente, int id_cargo_cliente, String direccion_cliente, int telefono_cliente, int id_tipoDocumento_cliente, int documento_cliente, String razonSocial_cliente) {
+        this.id_cliente = id_cliente;
+        this.id_usuario_cliente = id_usuario_cliente;
+        this.id_cargo_cliente = id_cargo_cliente;
+        this.direccion_cliente = direccion_cliente;
+        this.telefono_cliente = telefono_cliente;
+        this.id_tipoDocumento_cliente = id_tipoDocumento_cliente;
+        this.documento_cliente = documento_cliente;
+        this.razonSocial_cliente = razonSocial_cliente;
+    }
+
+    public Cliente(int id_cliente, int id_usuario_cliente, int id_cargo_cliente, String direccion_cliente, int telefono_cliente, int id_tipoDocumento_cliente, int documento_cliente, String razonSocial_cliente, int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
+        super(id_usuario, nickName_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, email_usuario, psw_usuario, id_rol_usuario, fechaCreacion, fechaActualizacion, fechaEliminado, activation_token, reset_token, reset_token_expires_at, active, avatar_usuario, fecha_registroUsuario, id_tipoUsuario_usuario, deleted);
+        this.id_cliente = id_cliente;
+        this.id_usuario_cliente = id_usuario_cliente;
+        this.id_cargo_cliente = id_cargo_cliente;
+        this.direccion_cliente = direccion_cliente;
+        this.telefono_cliente = telefono_cliente;
+        this.id_tipoDocumento_cliente = id_tipoDocumento_cliente;
+        this.documento_cliente = documento_cliente;
+        this.razonSocial_cliente = razonSocial_cliente;
+    }
+
     public int getId_cliente() {
         return id_cliente;
     }
@@ -294,27 +327,30 @@ public class Cliente extends Usuario {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+/*
+    @Override
+    public String toString() {
+        return "Cliente{" + "id_cliente=" + id_cliente + ", id_usuario_cliente=" + id_usuario_cliente + ", id_cargo_cliente=" + id_cargo_cliente + ", direccion_cliente=" + direccion_cliente + ", telefono_cliente=" + telefono_cliente + ", id_tipoDocumento_cliente=" + id_tipoDocumento_cliente + ", documento_cliente=" + documento_cliente + ", razonSocial_cliente=" + razonSocial_cliente + '}';
+    }*/
 
-    public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {
-        var idCliente = 0;
-        //ClienteModel clienteModel = new ClienteModel();
-        idCliente = clienteModel.InputCliente(cliente, usuario);
-        return idCliente;
+    public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {     //Manejar las excepciones desde un paquete de excepciones
+
+        return clienteModel.InputCliente(cliente, usuario);
+
     }
-    
-    public boolean updateCliente(Cliente cliente, Usuario usuario)throws SQLException{
-         
+
+    public boolean updateCliente(Cliente cliente, Usuario usuario) throws SQLException {
+
         return clienteModel.updateCliente(cliente, usuario);
     }
 
-    public static List<Cliente> listarClientes() throws SQLException {  //Manejar las excepciones desde un paquete de excepciones
+    public List<Cliente> listarClientes() throws SQLException {  
 
-        List<Cliente> clientes = clienteModel.listarClientes();
+        return clienteModel.listarClientes();
 
-        return clientes;
     }
-    
-    public static Cliente findCliente(int idCliente) throws SQLException{
+
+    public Cliente findCliente(int idCliente) throws SQLException {
         return clienteModel.findCliente(idCliente);
     }
 

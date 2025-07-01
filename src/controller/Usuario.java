@@ -35,8 +35,31 @@ public class Usuario {
     protected boolean deleted;
 
     private Conexion con;
-    private static final UsuarioModel usuarioModel = new UsuarioModel();
+    private UsuarioModel usuarioModel = new UsuarioModel();
+
     public Usuario() {
+    }
+
+    public Usuario(String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
+        this.nickName_usuario = nickName_usuario;
+        this.primerNombre_usuario = primerNombre_usuario;
+        this.segundoNombre_usuario = segundoNombre_usuario;
+        this.primerApellido_usuario = primerApellido_usuario;
+        this.segundoApellido_usuario = segundoApellido_usuario;
+        this.email_usuario = email_usuario;
+        this.psw_usuario = psw_usuario;
+        this.id_rol_usuario = id_rol_usuario;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
+        this.fechaEliminado = fechaEliminado;
+        this.activation_token = activation_token;
+        this.reset_token = reset_token;
+        this.reset_token_expires_at = reset_token_expires_at;
+        this.active = active;
+        this.avatar_usuario = avatar_usuario;
+        this.fecha_registroUsuario = fecha_registroUsuario;
+        this.id_tipoUsuario_usuario = id_tipoUsuario_usuario;
+        this.deleted = deleted;
     }
 
     public Usuario(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
@@ -61,26 +84,23 @@ public class Usuario {
         this.id_tipoUsuario_usuario = id_tipoUsuario_usuario;
         this.deleted = deleted;
     }
-    
-    
 
     public Usuario(int id_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario) {
         this.id_usuario = id_usuario;
         this.primerNombre_usuario = primerNombre_usuario;
         this.segundoNombre_usuario = segundoNombre_usuario;
         this.primerApellido_usuario = primerApellido_usuario;
-        
+
     }
 
     public int getId_usuario() {
         return id_usuario;
     }
 
-    
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
-     
+
     public String getNickName_usuario() {
         return nickName_usuario;
     }
@@ -232,13 +252,19 @@ public class Usuario {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
-    
-    public static List<Usuario> listarUsuarios() throws SQLException{
-        //UsuarioModel usuarioModel = new UsuarioModel();
-        
-        List<Usuario> usuarios = usuarioModel.obtenerUsuarios();
-        
-        return usuarios;
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id_usuario=" + id_usuario + ", nickName_usuario=" + nickName_usuario + ", primerNombre_usuario=" + primerNombre_usuario + ", segundoNombre_usuario=" + segundoNombre_usuario + ", primerApellido_usuario=" + primerApellido_usuario + ", segundoApellido_usuario=" + segundoApellido_usuario + ", email_usuario=" + email_usuario + ", id_rol_usuario=" + id_rol_usuario + ", fechaCreacion=" + fechaCreacion + ", fechaActualizacion=" + fechaActualizacion + ", fechaEliminado=" + fechaEliminado + ", activation_token=" + activation_token + ", reset_token=" + reset_token + ", reset_token_expires_at=" + reset_token_expires_at + ", active=" + active + ", avatar_usuario=" + avatar_usuario + ", fecha_registroUsuario=" + fecha_registroUsuario + ", id_tipoUsuario_usuario=" + id_tipoUsuario_usuario + ", deleted=" + deleted + '}';
+    }
+
+    public Usuario findUsuario(int idUsuario) throws SQLException {
+        return usuarioModel.findUsuario(idUsuario);
+    }
+
+    public List<Usuario> listarUsuarios() throws SQLException {
+
+        return usuarioModel.obtenerUsuarios();
     }
 
     public int inputUsuario(Usuario usuario) throws SQLException {
@@ -247,22 +273,25 @@ public class Usuario {
 
         //return id_usuario;
     }
-    
+
     public boolean updateUsuario(Usuario usuario, int idUsuario) throws SQLException {
 
         return usuarioModel.updateUsuario(usuario, idUsuario);
     }
-    
-    public boolean checkEmail(Usuario usuario) throws SQLException{
-       // UsuarioModel usuarioModel = new UsuarioModel();
+
+    public boolean deleteUsuario(int idUsuario) throws SQLException {
+
+        return usuarioModel.deleteUsuario(idUsuario);
+    }
+
+    public boolean checkEmail(Usuario usuario) throws SQLException {
+        // UsuarioModel usuarioModel = new UsuarioModel();
         return usuarioModel.checkEmail(usuario.getEmail_usuario());
     }
-    
-    public boolean checkNickname(Usuario usuario) throws SQLException{
-       // UsuarioModel usuarioModel = new UsuarioModel();
+
+    public boolean checkNickname(Usuario usuario) throws SQLException {
+        // UsuarioModel usuarioModel = new UsuarioModel();
         return usuarioModel.checkNickname(usuario.getNickName_usuario());
     }
-    
-   
 
 }
