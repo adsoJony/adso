@@ -191,16 +191,17 @@ public class UsuarioModel {
         var deleted =false;
         String sql = "update usuarios "
                 + "set deleted=1 "
-                + "where id_usuario=?";
+                + "where id_usuario =?";
         
         try {
             PreparedStatement ps;
             ps = Conexion.prepararConsulta(sql);
             ps.setInt(1,idUsuario);
             ResultSet rs;
-            rs = ps.executeQuery();
+             //rs = ps.executeQuery();
             
-            if (rs.next()){
+            if (ps.executeUpdate() !=0){
+                                
                 deleted = true;
                 System.out.println("El usuario ha sido borrado exitosamente");
                 
@@ -208,10 +209,11 @@ public class UsuarioModel {
                 System.err.println("El usuario no se pudo borrar");
             }
             ps.close();
-            rs.close();
+            
         } catch (SQLException e) {
             System.err.println("Error: "+e);
         }
+        Conexion.close();
         return deleted;
     }
 

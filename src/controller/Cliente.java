@@ -16,14 +16,14 @@ import java.util.List;
  */
 public class Cliente extends Usuario {
 
-    int id_cliente;
-    int id_usuario_cliente;
-    int id_cargo_cliente;
-    String direccion_cliente;
-    int telefono_cliente;
-    int id_tipoDocumento_cliente;
-    int documento_cliente;
-    String razonSocial_cliente;
+    protected int id_cliente;
+    protected int id_usuario_cliente;
+    protected int id_cargo_cliente;
+    protected String direccion_cliente;
+    protected int telefono_cliente;
+    protected int id_tipoDocumento_cliente;
+    protected int documento_cliente;
+    protected String razonSocial_cliente;
 
     private static final ClienteModel clienteModel = new ClienteModel();
 

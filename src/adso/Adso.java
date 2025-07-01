@@ -28,7 +28,7 @@ public class Adso {
         System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consila!!
 
         try {
-            /*
+            
             Usuario usuario = new Usuario();
             Cliente cliente = new Cliente();
             usuario.setPrimerNombre_usuario("Jonathan");          
@@ -48,21 +48,22 @@ public class Adso {
             cliente.setRazonSocial_cliente("Razon social");
            // usuario.inputUsuario(usuario);
 
-           //cliente.inputCliente(cliente, usuario);
+          // cliente.inputCliente(cliente, usuario);
 
              
             //var update = usuario.updateUsuario(usuario, 113);
-             */
+            
 
             //var usuario = usuario.findUsuario(71);
             //System.out.println("Nombre: "+usuario.getPrimerNombre_usuario()+" "+"Apellido: "+usuario.getPrimerApellido_usuario());
             //System.out.println(usuario.toString());
             //var cliente = Cliente.findCliente(3);
             //System.out.println("Imprimiendo el dato del cliente que se está buscando: "+cliente.getRazonSocial_cliente());
-            Cliente cliente = new Cliente();
-            var clientes = cliente.listarClientes();
+            
+            //Cliente cliente = new Cliente();
+            //var clientes = cliente.listarClientes();
 
-            var usuario = new Usuario();
+            //var usuario = new Usuario();
             var usuarios = usuario.listarUsuarios();
 /*
             System.out.println("imprimiendo Clientes");
@@ -77,7 +78,7 @@ public class Adso {
                 System.out.println(usr);
             }
 */
-            var deleted = usuario.deleteUsuario(113);
+            var deleted = usuario.deleteUsuario(74);
             System.out.println("Deleted: "+deleted);
             
              System.out.println("Imprimiendo Usuarios");
