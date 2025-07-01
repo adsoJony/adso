@@ -12,6 +12,8 @@ import controller.Cliente;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.UsuarioModel;
+import controller.Stakeholder;
+import model.StakeholderModel;
 
 /**
  *
@@ -28,69 +30,14 @@ public class Adso {
         System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consila!!
 
         try {
-            
-            Usuario usuario = new Usuario();
-            Cliente cliente = new Cliente();
-            usuario.setPrimerNombre_usuario("Jonathan");          
-            usuario.setPrimerApellido_usuario("Gomez");
-            usuario.setSegundoApellido_usuario("Franco");
-            usuario.setNickName_usuario("usuario");
-            usuario.setEmail_usuario("correo@mail.com");
-            usuario.setPsw_usuario("password");
-            usuario.setId_tipoUsuario_usuario(1);
-            usuario.setId_rol_usuario(1);
-            
-            cliente.setRazonSocial_cliente("Razon social");
-            cliente.setId_cargo_cliente(1);
-            cliente.setDireccion_cliente("Cra 50 72 72");
-            cliente.setId_tipoDocumento_cliente(1);
-            cliente.setDocumento_cliente(1045666207);
-            cliente.setRazonSocial_cliente("Razon social");
-           // usuario.inputUsuario(usuario);
-
-          // cliente.inputCliente(cliente, usuario);
-
-             
-            //var update = usuario.updateUsuario(usuario, 113);
-            
-
-            //var usuario = usuario.findUsuario(71);
-            //System.out.println("Nombre: "+usuario.getPrimerNombre_usuario()+" "+"Apellido: "+usuario.getPrimerApellido_usuario());
-            //System.out.println(usuario.toString());
-            //var cliente = Cliente.findCliente(3);
-            //System.out.println("Imprimiendo el dato del cliente que se está buscando: "+cliente.getRazonSocial_cliente());
-            
-            //Cliente cliente = new Cliente();
-            Cliente client = new Cliente();
-            var clientes = client.listarClientes();
-
-            //var usuario = new Usuario();
-            Usuario user = new Usuario();
-            var usuarios = user.listarUsuarios();
-
-            System.out.println("imprimiendo Clientes");
-            for (Cliente cli : clientes) {
-                System.out.println(cli);
+            var stakeholder = new Stakeholder();
+            System.out.println("Imprimiendo Stakehholder find.");
+            System.out.println(stakeholder.findStakeholder(6));
+            System.out.println("imprimiendo lista Stakeholder");
+            var stakeholders = stakeholder.listarStakeholder();
+            for (Stakeholder stk : stakeholders){
+                System.out.println(stk);
             }
-            /*
-            System.out.println("\r");
-
-            System.out.println("Imprimiendo Usuarios");
-            for (Usuario usr : usuarios) {
-                //System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
-                System.out.println(usr);
-            }
-*/
-
-            //var deleted = usuario.deleteUsuario(74);
-           // System.out.println("Deleted: "+deleted);
-            
-             System.out.println("Imprimiendo Usuarios");
-            for (Usuario usr : usuarios) {
-                //System.out.println(usr.getId_usuario() + "  " + usr.getPrimerNombre_usuario() + "   " + usr.getPrimerApellido_usuario());
-                System.out.println(usr);
-            }
-            //System.out.println("El update ha sido: "+update);
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }

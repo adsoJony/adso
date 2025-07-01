@@ -7,6 +7,8 @@ package controller;
 //import java.sql.Date;
 import java.util.Date;
 import model.StakeholderModel;
+import java.sql.SQLException;
+import java.util.List;
 /**
  *
  * @author JOES
@@ -277,9 +279,20 @@ public class Stakeholder extends Usuario{
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Stakeholder{" + "id_stakeholder=" + id_stakeholder + ", documento_stakeholder=" + documento_stakeholder + ", id_cargo_stakeholder=" + id_cargo_stakeholder + ", id_tipoDocumento_stakeholder=" + id_tipoDocumento_stakeholder + ", id_usuario_stakeholder=" + id_usuario_stakeholder + ", fechaCreacion=" + fechaCreacion + ", fechaActualizacion=" + fechaActualizacion + ", fechaEliminado=" + fechaEliminado + '}';
+    }
     
-    public Stakeholder findStakeholder(int idStakeholder){
+    
+    
+    public Stakeholder findStakeholder(int idStakeholder) throws SQLException{
         return stakeholderModel.findStakeholder(idStakeholder);
+    }
+    
+    public List<Stakeholder> listarStakeholder(){
+      return   stakeholderModel.listarStakeholder();
     }
     
     
