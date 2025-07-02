@@ -125,7 +125,7 @@ public class UsuarioModel {
                 if (rs.next()) {
                     //int idusuario;
                     id_usuario = rs.getInt(1);
-                    System.out.print("id de usuario es: " + id_usuario);
+                    System.out.println("id de usuario es: " + id_usuario);
                     return id_usuario;
                 }
                 rs.close();

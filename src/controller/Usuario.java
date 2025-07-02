@@ -2,7 +2,6 @@ package controller;
 
 import conexion.Conexion;
 import java.util.Date;
-import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.List;
 import model.UsuarioModel;

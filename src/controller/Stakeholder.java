@@ -291,8 +291,12 @@ public class Stakeholder extends Usuario{
         return stakeholderModel.findStakeholder(idStakeholder);
     }
     
-    public List<Stakeholder> listarStakeholder(){
+    public List<Stakeholder> listarStakeholder() throws SQLException{
       return   stakeholderModel.listarStakeholder();
+    }
+    
+    public int inputStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException{
+        return stakeholderModel.inputStakeholder(stakeholder, usuario);
     }
     
     
