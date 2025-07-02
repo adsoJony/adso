@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import model.UsuarioModel;
 import controller.Stakeholder;
 import model.StakeholderModel;
+import controller.Marca;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -24,15 +26,16 @@ public class Adso {
     /**
      * @param args the command line arguments
      * @throws java.sql.SQLException
+     * @throws java.io.UnsupportedEncodingException
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException, UnsupportedEncodingException {
 
         System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consola!!
 
         try {
-            
+
             var usuario = new Usuario();
-            
+
             usuario.setPsw_usuario("PassworStakeholder");
             usuario.setEmail_usuario("email@mail.com");
             usuario.setPrimerNombre_usuario("StakeholderName");
@@ -40,25 +43,23 @@ public class Adso {
             usuario.setNickName_usuario("nicknameStakeholder");
             usuario.setId_tipoUsuario_usuario(1);
             usuario.setId_rol_usuario(4);
-            
-            
+
             var stakeholder = new Stakeholder();
-            
+
             stakeholder.setDocumento_stakeholder(1045666207);
             stakeholder.setId_cargo_stakeholder(1);
             stakeholder.setId_tipoDocumento_stakeholder(1);
-            
-           // stakeholder.inputStakeholder(stakeholder, usuario);
-            
-            
+
+            // stakeholder.inputStakeholder(stakeholder, usuario);
             System.out.println("Imprimiendo Stakehholder con función find.");
-            System.out.println(stakeholder.findStakeholder(10));
-            
+            System.out.println(stakeholder.findStakeholder(3));
+
             System.out.println("imprimiendo lista Stakeholder");
             var stakeholders = stakeholder.listarStakeholder();
-            for (Stakeholder stk : stakeholders){
+            for (Stakeholder stk : stakeholders) {
                 System.out.println(stk);
             }
+
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
