@@ -5,7 +5,7 @@
 package controller;
 
 //import java.sql.Date;
-import java.util.Date;
+import java.util.Date;      //Utilizar mejor el "import java.time.LocalDate" o "import java.time.LocalDateTime"
 import model.StakeholderModel;
 import java.sql.SQLException;
 import java.util.List;

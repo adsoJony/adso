@@ -27,7 +27,7 @@ public class Adso {
      */
     public static void main(String[] args) throws Exception {
 
-        System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consila!!
+        System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));      //Línea para que aparescan las tildes en la consola!!
 
         try {
             
@@ -48,11 +48,11 @@ public class Adso {
             stakeholder.setId_cargo_stakeholder(1);
             stakeholder.setId_tipoDocumento_stakeholder(1);
             
-            stakeholder.inputStakeholder(stakeholder, usuario);
+           // stakeholder.inputStakeholder(stakeholder, usuario);
             
             
             System.out.println("Imprimiendo Stakehholder con función find.");
-            System.out.println(stakeholder.findStakeholder(6));
+            System.out.println(stakeholder.findStakeholder(10));
             
             System.out.println("imprimiendo lista Stakeholder");
             var stakeholders = stakeholder.listarStakeholder();
