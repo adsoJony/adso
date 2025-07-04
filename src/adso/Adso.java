@@ -15,7 +15,9 @@ import model.UsuarioModel;
 import controller.Stakeholder;
 import model.StakeholderModel;
 import controller.Marca;
+import controller.Ups;
 import java.io.UnsupportedEncodingException;
+import view.ConsoleView;
 
 /**
  *
@@ -34,33 +36,9 @@ public class Adso {
 
         try {
 
-            var usuario = new Usuario();
-
-            usuario.setPsw_usuario("PassworStakeholder");
-            usuario.setEmail_usuario("email@mail.com");
-            usuario.setPrimerNombre_usuario("StakeholderName");
-            usuario.setPrimerApellido_usuario("stakeholderApellido");
-            usuario.setNickName_usuario("nicknameStakeholder");
-            usuario.setId_tipoUsuario_usuario(1);
-            usuario.setId_rol_usuario(4);
-
-            var stakeholder = new Stakeholder();
-
-            stakeholder.setDocumento_stakeholder(1045666207);
-            stakeholder.setId_cargo_stakeholder(1);
-            stakeholder.setId_tipoDocumento_stakeholder(1);
-
-            // stakeholder.inputStakeholder(stakeholder, usuario);
-            System.out.println("Imprimiendo Stakehholder con función find.");
-            System.out.println(stakeholder.findStakeholder(3));
-
-            System.out.println("imprimiendo lista Stakeholder");
-            var stakeholders = stakeholder.listarStakeholder();
-            for (Stakeholder stk : stakeholders) {
-                System.out.println(stk);
-            }
-
-        } catch (SQLException e) {
+            ConsoleView.menu();
+            
+        } catch (Exception e) {
             System.err.println("Error: " + e);
         }
 
