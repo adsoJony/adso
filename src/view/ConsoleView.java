@@ -11,6 +11,7 @@ import java.util.Scanner;
 import controller.Equipo;
 import java.time.LocalDate;
 import java.sql.SQLException;
+import java.time.Month;
 
 /**
  *
@@ -31,8 +32,10 @@ public class ConsoleView {
                 + " 4. Listar Equipos. \n"
                 + " 5. Insertar Equipo.\n"
                 + " 6. Funcion Prueba. \n"
-                + " 7. Listar Equipos."
-                + " 9. Exit.\n");
+                + " 7. Listar Equipos. \n"
+                + " 8. Udate Equipo. \n"
+                + " 9. Find Equipo \n"
+                + " 10. Exit.\n");
 
         System.out.print("Ingrese la poción:");
         var input = scanner.nextInt();
@@ -61,8 +64,15 @@ public class ConsoleView {
             case 7:
                 listarEquipos();
                 break;
+            case 8:
+                updateEquipo();
 //break;
             case 9:
+                System.out.print("Ingrese el id del Equipo a buscar: ");
+                input = scanner.nextInt();
+
+                findEquipo(input);
+            case 10:
                 break;
             default:
                 System.out.println("Default");
@@ -111,6 +121,12 @@ public class ConsoleView {
 
     }
 
+    public static void findEquipo(int id_equipo) {
+        Equipo equipo = new Equipo();
+         equipo = equipo.findEquipo(id_equipo);
+        System.out.println(equipo.toString());
+    }
+
     public static void insertarEquipo() throws SQLException {
         Equipo equipo = new Equipo();
         int id_equipo;
@@ -131,6 +147,16 @@ public class ConsoleView {
         }
     }
 
+    public static void updateEquipo() throws SQLException {
+        Equipo equipo = new Equipo();
+        equipo.setId_equipo(19);
+        equipo.setSerie_equipo("Serial del equipo modificado");
+        equipo.setFechaInstalacion_equipo(LocalDate.of(2025, 06, 06));
+        equipo.setUltimoMantenimiento_equipo(LocalDate.of(2025, 06, 10));
+        equipo.updateEquipo(equipo);
+
+    }
+
     public static void imprimirEquipo() {
         Equipo equipo = new Equipo();
         int id_equipo;
@@ -145,15 +171,15 @@ public class ConsoleView {
 
         System.out.println(equipo.toString());
     }
-    
-    public static void listarEquipos()  throws SQLException{
-        System.out.println("\r Listando Ups del Equipos.");
-            Equipo equipo = new Equipo();
-            var listadoUps = equipo.listarEquipos();
 
-            for (Equipo equipos : listadoUps) {
-                System.out.println(equipos);
-            }
+    public static void listarEquipos() throws SQLException {
+        System.out.println("\r Listando Ups del Equipos.");
+        Equipo equipo = new Equipo();
+        var listadoUps = equipo.listarEquipos();
+
+        for (Equipo equipos : listadoUps) {
+            System.out.println(equipos);
+        }
     }
 
 }

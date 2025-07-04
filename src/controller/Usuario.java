@@ -10,6 +10,8 @@ import model.UsuarioModel;
  *
  * @author jogof
  */
+
+//Se debe investigar el método corecto para poder actualizar de manera correcta las entidades, debido a que si solo queremos actualizar una sola variable, Como hacemos con las demás?
 public class Usuario {
 
     protected int id_usuario;

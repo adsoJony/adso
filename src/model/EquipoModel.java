@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 import controller.Equipo;
+import java.time.LocalDate;
 
 /**
  *
@@ -30,25 +31,59 @@ public class EquipoModel {
 
     }
 
+    public Equipo findEquipo(int id_Equipo) {
+        var equipo = new Equipo();
+
+        String sql = "SELECT * FROM equipo "
+                + "WHERE id_equipo=?";
+        try {
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1, id_Equipo);
+            rs = ps.executeQuery();
+            
+            if (rs.next()){
+                equipo.setId_equipo(rs.getInt("id_equipo"));
+                equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
+                equipo.setSerie_equipo(rs.getString("serie_equipo"));
+                equipo.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
+                equipo.setId_marca_equipo(rs.getInt("id_marca_equipo"));
+                equipo.setId_modelo_equipo(rs.getInt("id_modelo_equipo"));
+                Date fechaSql = (rs.getDate("fechaInstalacion_equipo"));                //capturamos la fecha de tipo SQL en la variable
+                LocalDate fecha = (fechaSql != null) ? fechaSql.toLocalDate() :null;    //Convertimos la fecha tipo SQL a LocalDate
+                equipo.setFechaInstalacion_equipo(fecha);                               //Instanciamos el valor de la fecha en objeto "equipo"
+                
+                
+                return equipo;
+            }else{
+                System.err.println("No se pudo encontrar el Equipo con ID: "+id_Equipo);
+            }
+
+        } catch (Exception e) {
+            System.err.println("error :"+e.getMessage());
+        }
+
+        return equipo;
+    }
+
     public List<Equipo> listarEquipos() throws SQLException {
         List<Equipo> equipos = new ArrayList();
         String sql = "SELECT * FROM equipo";
-        
+
         try {
-           ps = Conexion.prepararConsulta(sql);
-           rs = ps.executeQuery();
-           while (rs.next()){
-               Equipo equipo = new Equipo();
-               equipo.setId_equipo(rs.getInt("id_equipo"));
-               equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
-               equipos.add(equipo);
-           }
-           rs.close();
-           rs.close();
+            ps = Conexion.prepararConsulta(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                equipo.setId_equipo(rs.getInt("id_equipo"));
+                equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
+                equipos.add(equipo);
+            }
+            rs.close();
+            rs.close();
         } catch (SQLException e) {
-            System.err.println("Error: "+e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
-        
+
         return equipos;
     }
 
@@ -90,6 +125,38 @@ public class EquipoModel {
             System.err.println("Error: " + e.getMessage());
         }
         return id_equipo;
+    }
+
+    public boolean updateEquipo(Equipo equipo) throws SQLException {
+        boolean update = false;
+        String sql = "UPDATE equipo "
+                + "SET serie_equipo=?, ubicacion_equipo=?, id_marca_equipo=?, id_modelo_equipo=?, fechaInstalacion_equipo=?, ultimoMantenimiento_equipo=?, id_tipoEquipo_equipo=? "
+                + "WHERE id_equipo=?";
+        ps = Conexion.prepararConsulta(sql);
+        try {
+            ps.setString(1, equipo.getSerie_equipo());
+            ps.setString(2, equipo.getUbicacion_equipo());
+            ps.setInt(3, equipo.getId_marca_equipo());
+            ps.setInt(4, equipo.getId_modelo_equipo());
+            ps.setDate(5, Date.valueOf(equipo.getFechaInstalacion_equipo()));
+            ps.setDate(6, Date.valueOf(equipo.getUltimoMantenimiento_equipo()));
+            ps.setInt(7, equipo.getId_tipoEquipo_equipo());
+            ps.setInt(8, equipo.getId_equipo());
+
+            if (ps.executeUpdate() != 0) {
+                update = true;
+                System.out.println("Equipo actualizado correctamente.");
+            } else {
+                System.err.println("El Equipo no se pudo actualizar");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            Conexion.close();
+        }
+
+        return update;
     }
 
 }

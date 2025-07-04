@@ -4,6 +4,7 @@
  */
 package controller;
 
+import conexion.Conexion;
 import java.time.LocalDate;
 import model.EquipoModel;
 import java.sql.SQLException;
@@ -118,11 +119,18 @@ public class Equipo {
     public String toString() {
         return "Equipo{" + "id_equipo=" + id_equipo + ", id_cliente_equipo=" + id_cliente_equipo + ", serie_equipo=" + serie_equipo + ", ubicacion_equipo=" + ubicacion_equipo + ", id_marca_equipo=" + id_marca_equipo + ", id_modelo_equipo=" + id_modelo_equipo + ", fechaInstalacion_equipo=" + fechaInstalacion_equipo + ", ultimoMantenimiento_equipo=" + ultimoMantenimiento_equipo + ", id_tipoEquipo_equipo=" + id_tipoEquipo_equipo + '}';
     }
-
+    
+    public Equipo findEquipo(int id_equipo){
+     return equipoModel.findEquipo(id_equipo);
+    }
     
     public int inputEquipo(Equipo equipo) throws SQLException {
 
         return equipoModel.inputEquipo(equipo);
+    }
+    
+    public boolean updateEquipo(Equipo equipo) throws SQLException{
+        return equipoModel.updateEquipo(equipo);
     }
     
     public List<Equipo> listarEquipos() throws SQLException{
