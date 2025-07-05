@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.ArrayList;
 import controller.Usuario;
 import java.sql.Statement;
-//import java.util.Date;
 import java.sql.Date;
 
 /**
@@ -21,10 +20,10 @@ import java.sql.Date;
  * @author JOES
  */
 public class StakeholderModel {
-    
+
     public StakeholderModel() {
     }
-    
+
     public Stakeholder findStakeholder(int idStakeholder) throws SQLException {
         var stakeholder = new Stakeholder();
         String sql = "select * from Stakeholder where id_stakeholder=?";
@@ -34,7 +33,7 @@ public class StakeholderModel {
             ps.setInt(1, idStakeholder);
             ResultSet rs;
             rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
@@ -48,10 +47,10 @@ public class StakeholderModel {
         } finally {
             Conexion.close();
         }
-        
+
         return stakeholder;
     }
-    
+
     public List<Stakeholder> listarStakeholder() throws SQLException {
         List<Stakeholder> stakeholders = new ArrayList();
         String slq = "SELECT * "
@@ -59,7 +58,7 @@ public class StakeholderModel {
                 + "JOIN usuarios ON id_usuario_stakeholder=id_usuario "
                 + "WHERE deleted=0";
         PreparedStatement ps;
-        
+
         try {
             ps = Conexion.prepararConsulta(slq);
             ResultSet rs = ps.executeQuery();
@@ -69,7 +68,7 @@ public class StakeholderModel {
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
                 stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
                 stakeholders.add(stakeholder);
-                
+
             }
             rs.close();
             ps.close();
@@ -78,19 +77,18 @@ public class StakeholderModel {
         } finally {
             Conexion.close();
         }
-        
+
         return stakeholders;
     }
-    
+
     public int inputStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException {
         var idStakeholder = 0;
         var idUsuario = 0;
-        
-        
+
         String sql = "INSERT INTO stakeholder ( documento_stakeholder, id_cargo_stakeholder,  id_tipoDocumento_stakeholder, id_usuario_stakeholder, fechaCreacion, fechaActualizacion, fechaEliminado)"
                 + "VALUES(?,?,?,?,?,?,?)";
         PreparedStatement ps;
-        
+
         try {
             //Conexion.conexionSetAutoCommit(false);
             idUsuario = usuario.inputUsuario(usuario);
@@ -102,17 +100,20 @@ public class StakeholderModel {
                     ps.setInt(2, stakeholder.getId_cargo_stakeholder());
                     ps.setInt(3, stakeholder.getId_tipoDocumento_stakeholder());
                     ps.setInt(4, idUsuario);
-                    ps.setDate(5, (Date) stakeholder.getFechaCreacion());
-                    ps.setDate(6, (Date) stakeholder.getFechaActualizacion());
-                    ps.setDate(7, (Date) stakeholder.getFechaEliminado());
-                    
+                    ps.setDate(5, (stakeholder.getFechaCreacion() != null) ? Date.valueOf(stakeholder.getFechaCreacion()) : null);
+                    //ps.setDate(5, (Date) stakeholder.getFechaCreacion());
+                    ps.setDate(6, (stakeholder.getFechaActualizacion() != null) ? Date.valueOf(stakeholder.getFechaActualizacion()) : null);
+                    //ps.setDate(6, (Date) stakeholder.getFechaActualizacion());
+                    ps.setDate(7, (stakeholder.getFechaEliminado() != null) ? Date.valueOf(stakeholder.getFechaEliminado()) : null);
+                    //ps.setDate(7, (Date) stakeholder.getFechaEliminado());
+
                     if (ps.executeUpdate() != 0) {
                         System.out.println("Stakeholder ingresado");
                         ResultSet rs;
                         rs = ps.getGeneratedKeys();
                         if (rs.next()) {
                             idStakeholder = rs.getInt(1);
-                            System.out.println("El id del Stakeholder es:"+idStakeholder);
+                            System.out.println("El id del Stakeholder es:" + idStakeholder);
                         }
                         rs.close();
                     } else {
@@ -120,17 +121,17 @@ public class StakeholderModel {
                     }
                     Conexion.commit();
                 } catch (SQLException e) {
-                    System.err.println("Error: "+e);
+                    System.err.println("Error: " + e);
                     Conexion.rollBack();
                 }
             } else {
                 Conexion.rollBack();
             }
         } catch (SQLException e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
             Conexion.rollBack();
         }
         return idStakeholder;
     }
-    
+
 }

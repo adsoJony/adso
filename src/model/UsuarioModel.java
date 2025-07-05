@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 /**
  *
@@ -47,15 +48,28 @@ public class UsuarioModel {
                 usuario.setSegundoApellido_usuario(rs.getString("segundoApellido_usuario"));
                 usuario.setEmail_usuario(rs.getString("email_usuario"));
                 usuario.setId_rol_usuario(rs.getInt("id_rol_usuario"));
-                usuario.setFechaCreacion(rs.getDate("fechaCreacion"));
-                usuario.setFechaActualizacion(rs.getDate("fechaActualizacion"));
-                usuario.setFechaEliminado(rs.getDate("fechaEliminado"));
+                Date fechaCreacion_u = rs.getDate("fechaCreacion");                                             //Tomamos la fecha de tipo SqlDate
+                LocalDate fechaCreacion = (fechaCreacion_u != null) ? fechaCreacion_u.toLocalDate() : null;    //Convertimos a LocalDate
+                usuario.setFechaCreacion(fechaCreacion);                                                        //Instanciamos la propiedad con LocalDate
+                Date fechaActualizacion_u = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion = (fechaActualizacion_u != null) ? fechaActualizacion_u.toLocalDate() : null;
+                usuario.setFechaActualizacion(fechaActualizacion);
+                Date fechaEliminado_u = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado = (fechaEliminado_u != null) ? fechaEliminado_u.toLocalDate() : null;
+                usuario.setFechaEliminado(fechaEliminado);
+                //usuario.setFechaEliminado(rs.getDate("fechaEliminado"));
                 usuario.setActivation_token(rs.getString("activation_token"));
                 usuario.setReset_token(rs.getString("reset_token"));
-                usuario.setReset_token_expires_at(rs.getDate("reset_token_expires_at"));
+                Date reset_token_expires = rs.getDate("reset_token_expires_at");
+                LocalDate reset_token_expires_at = (reset_token_expires != null) ? reset_token_expires.toLocalDate() : null;
+                usuario.setReset_token_expires_at(reset_token_expires_at);
+                //usuario.setReset_token_expires_at(rs.getDate("reset_token_expires_at"));
                 usuario.setActive(rs.getBoolean("active"));
                 usuario.setAvatar_usuario(rs.getString("avatar_usuario"));
-                usuario.setFecha_registroUsuario(rs.getDate("fecha_registroUsuario"));
+                Date fechaRegistro = rs.getDate("fecha_registrousuario");
+                LocalDate fecha_regsitroUsuario = (fechaRegistro != null) ? fechaRegistro.toLocalDate() : null;
+                usuario.setFecha_registroUsuario(fecha_regsitroUsuario);
+                //usuario.setFecha_registroUsuario(rs.getDate("fecha_registroUsuario"));
                 usuario.setId_tipoUsuario_usuario(rs.getInt("id_tipoUsuario_usuario"));
                 usuario.setDeleted(rs.getBoolean("deleted"));
                 System.out.println("Se encontro la búsqueda de Usuario");
@@ -106,15 +120,20 @@ public class UsuarioModel {
             ps.setString(6, usuario.getEmail_usuario());
             ps.setString(7, usuario.getPsw_usuario());
             ps.setInt(8, usuario.getId_rol_usuario());
-            ps.setDate(9, (Date) usuario.getFechaCreacion());
-            ps.setDate(10, (Date) usuario.getFechaActualizacion());
-            ps.setDate(11, (Date) usuario.getFechaEliminado());
+            ps.setDate(8, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
+            //ps.setDate(9, (Date) usuario.getFechaCreacion());
+            ps.setDate(10, (usuario.getFechaActualizacion() != null) ? Date.valueOf(usuario.getFechaActualizacion()) : null);
+            //ps.setDate(10, (Date) usuario.getFechaActualizacion());
+            ps.setDate(11, (usuario.getFechaEliminado() != null) ? Date.valueOf(usuario.getFechaEliminado()) : null);
+            //ps.setDate(11, (Date) usuario.getFechaEliminado());
             ps.setString(12, usuario.getActivation_token());
             ps.setString(13, usuario.getReset_token());
-            ps.setDate(14, (Date) usuario.getReset_token_expires_at());
+            ps.setDate(14, (usuario.getReset_token_expires_at() != null) ? Date.valueOf(usuario.getReset_token_expires_at()) : null);
+            //ps.setDate(14, (Date) usuario.getReset_token_expires_at());
             ps.setBoolean(15, usuario.isActive());
             ps.setString(16, usuario.getAvatar_usuario());
-            ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
+            ps.setDate(17, (usuario.getFecha_registroUsuario() != null) ? Date.valueOf(usuario.getFecha_registroUsuario()) : null);
+            //ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
             ps.setInt(18, usuario.getId_tipoUsuario_usuario());
             ps.setBoolean(19, usuario.isDeleted());
 
@@ -159,15 +178,20 @@ public class UsuarioModel {
             ps.setString(6, usuario.getEmail_usuario());
             ps.setString(7, usuario.getPsw_usuario());
             ps.setInt(8, usuario.getId_rol_usuario());
-            ps.setDate(9, (Date) usuario.getFechaCreacion());
-            ps.setDate(10, (Date) usuario.getFechaActualizacion());
-            ps.setDate(11, (Date) usuario.getFechaEliminado());
+            ps.setDate(8, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
+            //ps.setDate(9, (Date) usuario.getFechaCreacion());
+            ps.setDate(10, (usuario.getFechaActualizacion() != null) ? Date.valueOf(usuario.getFechaActualizacion()) : null);
+            //ps.setDate(10, (Date) usuario.getFechaActualizacion());
+            ps.setDate(11, (usuario.getFechaEliminado() != null) ? Date.valueOf(usuario.getFechaEliminado()) : null);
+            //ps.setDate(11, (Date) usuario.getFechaEliminado());
             ps.setString(12, usuario.getActivation_token());
             ps.setString(13, usuario.getReset_token());
-            ps.setDate(14, (Date) usuario.getReset_token_expires_at());
+            ps.setDate(14, (usuario.getReset_token_expires_at() != null) ? Date.valueOf(usuario.getReset_token_expires_at()) : null);
+            //ps.setDate(14, (Date) usuario.getReset_token_expires_at());
             ps.setBoolean(15, usuario.isActive());
             ps.setString(16, usuario.getAvatar_usuario());
-            ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
+            ps.setDate(17, (usuario.getFecha_registroUsuario() != null) ? Date.valueOf(usuario.getFecha_registroUsuario()) : null);
+            //ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
             ps.setInt(18, usuario.getId_tipoUsuario_usuario());
             ps.setBoolean(19, usuario.isDeleted());
             ps.setInt(20, idUsuario);
@@ -186,32 +210,32 @@ public class UsuarioModel {
         Conexion.close();
         return update;
     }
-    
-    public boolean deleteUsuario(int idUsuario) throws SQLException{
-        var deleted =false;
+
+    public boolean deleteUsuario(int idUsuario) throws SQLException {
+        var deleted = false;
         String sql = "update usuarios "
                 + "set deleted=1 "
                 + "where id_usuario =?";
-        
+
         try {
             PreparedStatement ps;
             ps = Conexion.prepararConsulta(sql);
-            ps.setInt(1,idUsuario);
+            ps.setInt(1, idUsuario);
             ResultSet rs;
-             //rs = ps.executeQuery();
-            
-            if (ps.executeUpdate() !=0){
-                                
+            //rs = ps.executeQuery();
+
+            if (ps.executeUpdate() != 0) {
+
                 deleted = true;
                 System.out.println("El usuario ha sido borrado exitosamente");
-                
-            }else{
+
+            } else {
                 System.err.println("El usuario no se pudo borrar");
             }
             ps.close();
-            
+
         } catch (SQLException e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
         }
         Conexion.close();
         return deleted;

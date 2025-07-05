@@ -11,7 +11,6 @@ import java.util.Scanner;
 import controller.Equipo;
 import java.time.LocalDate;
 import java.sql.SQLException;
-import java.time.Month;
 
 /**
  *
@@ -26,16 +25,18 @@ public class ConsoleView {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\r Menú Principal");
-        System.out.print(" 1. Ejecutar funciones por defecto. \n"
-                + " 2. Listar Usuarios. \n"
-                + " 3. Listar Clientes.\n"
-                + " 4. Listar Equipos. \n"
-                + " 5. Insertar Equipo.\n"
-                + " 6. Funcion Prueba. \n"
-                + " 7. Listar Equipos. \n"
-                + " 8. Udate Equipo. \n"
-                + " 9. Find Equipo \n"
-                + " 10. Exit.\n");
+        System.out.print("""
+                          1. Ejecutar funciones por defecto. 
+                          2. Listar Usuarios. 
+                          3. Find Usuario.
+                          4. Listar Equipos. 
+                          5. Insertar Equipo.
+                          6. Funcion Prueba. 
+                          7. Listar Equipos. 
+                          8. Udate Equipo. 
+                          9. Find Equipo 
+                          10. Exit.
+                         """);
 
         System.out.print("Ingrese la poción:");
         var input = scanner.nextInt();
@@ -50,7 +51,9 @@ public class ConsoleView {
                 System.out.println("Imprimiendo Usuarios");
                 break;
             case 3:
-                System.out.println("opcion3");
+                System.out.println("Find Usuario");
+                findusuario(71);
+                break;
 
             case 4:
                 System.out.println("Opción 4");
@@ -66,7 +69,7 @@ public class ConsoleView {
                 break;
             case 8:
                 updateEquipo();
-//break;
+                break;
             case 9:
                 System.out.print("Ingrese el id del Equipo a buscar: ");
                 input = scanner.nextInt();
@@ -79,6 +82,14 @@ public class ConsoleView {
                 menu();
         }
 
+    }
+
+    public static void findusuario(int idUsuario) throws SQLException {
+        Usuario usuario = new Usuario();
+
+        usuario = usuario.findUsuario(idUsuario);
+        System.out.println(usuario.toString());
+        //return usuario;
     }
 
     public static void funciones() {
@@ -123,7 +134,7 @@ public class ConsoleView {
 
     public static void findEquipo(int id_equipo) {
         Equipo equipo = new Equipo();
-         equipo = equipo.findEquipo(id_equipo);
+        equipo = equipo.findEquipo(id_equipo);
         System.out.println(equipo.toString());
     }
 
@@ -136,7 +147,7 @@ public class ConsoleView {
         equipo.setId_marca_equipo(1);
         equipo.setId_modelo_equipo(1);
         equipo.setFechaInstalacion_equipo(LocalDate.of(2025, 05, 01));
-        equipo.setUltimoMantenimiento_equipo(LocalDate.of(2025, 06, 10));
+        //equipo.setUltimoMantenimiento_equipo(LocalDate.of(2025, 06, 10));
         equipo.setId_tipoEquipo_equipo(1);
         try {
             id_equipo = equipo.inputEquipo(equipo);
@@ -148,11 +159,18 @@ public class ConsoleView {
     }
 
     public static void updateEquipo() throws SQLException {
+
+        /*
         Equipo equipo = new Equipo();
         equipo.setId_equipo(19);
         equipo.setSerie_equipo("Serial del equipo modificado");
         equipo.setFechaInstalacion_equipo(LocalDate.of(2025, 06, 06));
         equipo.setUltimoMantenimiento_equipo(LocalDate.of(2025, 06, 10));
+        equipo.updateEquipo(equipo);
+         */
+        Equipo equipo = new Equipo();
+        equipo = equipo.findEquipo(20);
+        equipo.setSerie_equipo("nueva serie");
         equipo.updateEquipo(equipo);
 
     }
@@ -173,7 +191,7 @@ public class ConsoleView {
     }
 
     public static void listarEquipos() throws SQLException {
-        System.out.println("\r Listando Ups del Equipos.");
+        System.out.println("\r Listando Equipos.");
         Equipo equipo = new Equipo();
         var listadoUps = equipo.listarEquipos();
 

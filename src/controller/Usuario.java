@@ -1,10 +1,11 @@
 package controller;
 
 import conexion.Conexion;
-import java.util.Date;
+//import java.util.Date;
 import java.sql.*;
 import java.util.List;
 import model.UsuarioModel;
+import java.time.LocalDate;
 
 /**
  *
@@ -23,15 +24,15 @@ public class Usuario {
     protected String email_usuario;
     protected String psw_usuario;
     protected int id_rol_usuario;
-    protected Date fechaCreacion;
-    protected Date fechaActualizacion;
-    protected Date fechaEliminado;
+    protected LocalDate fechaCreacion;
+    protected LocalDate fechaActualizacion;
+    protected LocalDate fechaEliminado;
     protected String activation_token;
     protected String reset_token;
-    protected Date reset_token_expires_at;
+    protected LocalDate reset_token_expires_at;
     protected boolean active;
     protected String avatar_usuario;
-    protected Date fecha_registroUsuario;
+    protected LocalDate fecha_registroUsuario;
     protected int id_tipoUsuario_usuario;
     protected boolean deleted;
 
@@ -41,7 +42,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
+    public Usuario(String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
         this.nickName_usuario = nickName_usuario;
         this.primerNombre_usuario = primerNombre_usuario;
         this.segundoNombre_usuario = segundoNombre_usuario;
@@ -63,7 +64,7 @@ public class Usuario {
         this.deleted = deleted;
     }
 
-    public Usuario(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado, String activation_token, String reset_token, Date reset_token_expires_at, boolean active, String avatar_usuario, Date fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
+    public Usuario(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
         this.id_usuario = id_usuario;
         this.nickName_usuario = nickName_usuario;
         this.primerNombre_usuario = primerNombre_usuario;
@@ -166,27 +167,27 @@ public class Usuario {
         this.id_rol_usuario = id_rol_usuario;
     }
 
-    public Date getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFechaActualizacion() {
+    public LocalDate getFechaActualizacion() {
         return fechaActualizacion;
     }
 
-    public void setFechaActualizacion(Date fechaActualizacion) {
+    public void setFechaActualizacion(LocalDate fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Date getFechaEliminado() {
+    public LocalDate getFechaEliminado() {
         return fechaEliminado;
     }
 
-    public void setFechaEliminado(Date fechaEliminado) {
+    public void setFechaEliminado(LocalDate fechaEliminado) {
         this.fechaEliminado = fechaEliminado;
     }
 
@@ -206,11 +207,11 @@ public class Usuario {
         this.reset_token = reset_token;
     }
 
-    public Date getReset_token_expires_at() {
+    public LocalDate getReset_token_expires_at() {
         return reset_token_expires_at;
     }
 
-    public void setReset_token_expires_at(Date reset_token_expires_at) {
+    public void setReset_token_expires_at(LocalDate reset_token_expires_at) {
         this.reset_token_expires_at = reset_token_expires_at;
     }
 
@@ -230,11 +231,11 @@ public class Usuario {
         this.avatar_usuario = avatar_usuario;
     }
 
-    public Date getFecha_registroUsuario() {
+    public LocalDate getFecha_registroUsuario() {
         return fecha_registroUsuario;
     }
 
-    public void setFecha_registroUsuario(Date fecha_registroUsuario) {
+    public void setFecha_registroUsuario(LocalDate fecha_registroUsuario) {
         this.fecha_registroUsuario = fecha_registroUsuario;
     }
 

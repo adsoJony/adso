@@ -48,10 +48,13 @@ public class EquipoModel {
                 equipo.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
                 equipo.setId_marca_equipo(rs.getInt("id_marca_equipo"));
                 equipo.setId_modelo_equipo(rs.getInt("id_modelo_equipo"));
-                Date fechaSql = (rs.getDate("fechaInstalacion_equipo"));                //capturamos la fecha de tipo SQL en la variable
-                LocalDate fecha = (fechaSql != null) ? fechaSql.toLocalDate() :null;    //Convertimos la fecha tipo SQL a LocalDate
-                equipo.setFechaInstalacion_equipo(fecha);                               //Instanciamos el valor de la fecha en objeto "equipo"
-                
+                Date fechaInstalacion = rs.getDate("fechaInstalacion_equipo");                //Capturamos la fecha de tipo SQL en la variable
+                LocalDate fechaInstalacion_equipo = (fechaInstalacion != null) ? fechaInstalacion.toLocalDate() :null;    //Convertimos la fecha tipo SQL a LocalDate
+                equipo.setFechaInstalacion_equipo(fechaInstalacion_equipo);                               //Instanciamos el valor de la fecha en objeto "equipo"
+                Date ultimoMantenimiento = rs.getDate("ultimoMantenimiento_equipo");
+                LocalDate ultimoMantenimiento_equipo = (ultimoMantenimiento != null) ? ultimoMantenimiento.toLocalDate() : null;
+                equipo.setUltimoMantenimiento_equipo(ultimoMantenimiento_equipo);
+                equipo.setId_tipoEquipo_equipo(rs.getInt("id_tipoEquipo_equipo"));
                 
                 return equipo;
             }else{
@@ -76,12 +79,23 @@ public class EquipoModel {
                 Equipo equipo = new Equipo();
                 equipo.setId_equipo(rs.getInt("id_equipo"));
                 equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
+                equipo.setSerie_equipo(rs.getString("serie_equipo"));
+                equipo.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
+                equipo.setId_marca_equipo(rs.getInt("id_marca_equipo"));
+                equipo.setId_modelo_equipo(rs.getInt("id_modelo_equipo"));
+                Date fechaInstalacion = rs.getDate("fechaInstalacion_equipo");
+                LocalDate fechaInstalacion_equipo = (fechaInstalacion != null) ? fechaInstalacion.toLocalDate() : null;
+                equipo.setFechaInstalacion_equipo(fechaInstalacion_equipo);
+                Date ultimoMantenimiento = rs.getDate("ultimoMantenimiento_equipo");
+                LocalDate ultimoMantenimiento_equipo = (ultimoMantenimiento != null) ? ultimoMantenimiento.toLocalDate() : null;
+                equipo.setUltimoMantenimiento_equipo(ultimoMantenimiento_equipo);
+                equipo.setId_tipoEquipo_equipo(rs.getInt("id_tipoEquipo_equipo"));
                 equipos.add(equipo);
             }
             rs.close();
             rs.close();
         } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e);
         }
 
         return equipos;
@@ -102,8 +116,8 @@ public class EquipoModel {
             ps.setString(3, equipo.getUbicacion_equipo());
             ps.setInt(4, equipo.getId_marca_equipo());
             ps.setInt(5, equipo.getId_modelo_equipo());
-            ps.setDate(6, Date.valueOf(equipo.getFechaInstalacion_equipo()));
-            ps.setDate(7, Date.valueOf(equipo.getUltimoMantenimiento_equipo()));
+            ps.setDate(6, (equipo.getFechaInstalacion_equipo() != null) ? Date.valueOf(equipo.getFechaInstalacion_equipo()) : null);
+            ps.setDate(7, (equipo.getUltimoMantenimiento_equipo() != null) ? Date.valueOf(equipo.getUltimoMantenimiento_equipo()) : null);
             ps.setInt(8, equipo.getId_tipoEquipo_equipo());
 
             if (ps.executeUpdate() != 0) {
@@ -138,8 +152,8 @@ public class EquipoModel {
             ps.setString(2, equipo.getUbicacion_equipo());
             ps.setInt(3, equipo.getId_marca_equipo());
             ps.setInt(4, equipo.getId_modelo_equipo());
-            ps.setDate(5, Date.valueOf(equipo.getFechaInstalacion_equipo()));
-            ps.setDate(6, Date.valueOf(equipo.getUltimoMantenimiento_equipo()));
+            ps.setDate(5, (equipo.getFechaInstalacion_equipo() != null) ? Date.valueOf(equipo.getFechaInstalacion_equipo()) : null);
+            ps.setDate(6, (equipo.getUltimoMantenimiento_equipo() != null) ? Date.valueOf(equipo.getUltimoMantenimiento_equipo()) : null);
             ps.setInt(7, equipo.getId_tipoEquipo_equipo());
             ps.setInt(8, equipo.getId_equipo());
 

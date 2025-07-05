@@ -5,9 +5,10 @@
 package controller;
 
 //import java.sql.Date;
-import java.util.Date;      //Utilizar mejor el "import java.time.LocalDate" o "import java.time.LocalDateTime"
+//import java.util.Date;      //Utilizar mejor el "import java.time.LocalDate" o "import java.time.LocalDateTime"
 import model.StakeholderModel;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 /**
  *
@@ -20,16 +21,16 @@ public class Stakeholder extends Usuario{
     protected int id_cargo_stakeholder;
     protected int id_tipoDocumento_stakeholder;
     protected int id_usuario_stakeholder;
-    protected Date fechaCreacion;
-    protected Date fechaActualizacion;
-    protected Date fechaEliminado;
+    protected LocalDate fechaCreacion;
+    protected LocalDate fechaActualizacion;
+    protected LocalDate fechaEliminado;
     
     private StakeholderModel stakeholderModel = new StakeholderModel();
 
     public Stakeholder() {
     }
 
-    public Stakeholder(int id_stakeholder, int documento_stakeholder, int id_cargo_stakeholder, int id_tipoDocumento_stakeholder, int id_usuario_stakeholder, Date fechaCreacion, Date fechaActualizacion, Date fechaEliminado) {
+    public Stakeholder(int id_stakeholder, int documento_stakeholder, int id_cargo_stakeholder, int id_tipoDocumento_stakeholder, int id_usuario_stakeholder, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado) {
         this.id_stakeholder = id_stakeholder;
         this.documento_stakeholder = documento_stakeholder;
         this.id_cargo_stakeholder = id_cargo_stakeholder;
@@ -39,6 +40,18 @@ public class Stakeholder extends Usuario{
         this.fechaActualizacion = fechaActualizacion;
         this.fechaEliminado = fechaEliminado;
     }
+
+    public Stakeholder(int documento_stakeholder, int id_cargo_stakeholder, int id_tipoDocumento_stakeholder, int id_usuario_stakeholder, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado) {
+        this.documento_stakeholder = documento_stakeholder;
+        this.id_cargo_stakeholder = id_cargo_stakeholder;
+        this.id_tipoDocumento_stakeholder = id_tipoDocumento_stakeholder;
+        this.id_usuario_stakeholder = id_usuario_stakeholder;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
+        this.fechaEliminado = fechaEliminado;
+    }
+
+   
 
     public int getId_stakeholder() {
         return id_stakeholder;
@@ -81,32 +94,32 @@ public class Stakeholder extends Usuario{
     }
 
     @Override
-    public Date getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
     @Override
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
     @Override
-    public Date getFechaActualizacion() {
+    public LocalDate getFechaActualizacion() {
         return fechaActualizacion;
     }
 
     @Override
-    public void setFechaActualizacion(Date fechaActualizacion) {
+    public void setFechaActualizacion(LocalDate fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 
     @Override
-    public Date getFechaEliminado() {
+    public LocalDate getFechaEliminado() {
         return fechaEliminado;
     }
 
     @Override
-    public void setFechaEliminado(Date fechaEliminado) {
+    public void setFechaEliminado(LocalDate fechaEliminado) {
         this.fechaEliminado = fechaEliminado;
     }
 
@@ -221,12 +234,12 @@ public class Stakeholder extends Usuario{
     }
 
     @Override
-    public Date getReset_token_expires_at() {
+    public LocalDate getReset_token_expires_at() {
         return reset_token_expires_at;
     }
 
     @Override
-    public void setReset_token_expires_at(Date reset_token_expires_at) {
+    public void setReset_token_expires_at(LocalDate reset_token_expires_at) {
         this.reset_token_expires_at = reset_token_expires_at;
     }
 
@@ -251,12 +264,12 @@ public class Stakeholder extends Usuario{
     }
 
     @Override
-    public Date getFecha_registroUsuario() {
+    public LocalDate getFecha_registroUsuario() {
         return fecha_registroUsuario;
     }
 
     @Override
-    public void setFecha_registroUsuario(Date fecha_registroUsuario) {
+    public void setFecha_registroUsuario(LocalDate fecha_registroUsuario) {
         this.fecha_registroUsuario = fecha_registroUsuario;
     }
 
