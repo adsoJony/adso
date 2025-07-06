@@ -31,7 +31,8 @@ public class Adso {
 
             // ConsoleView.menu();
             Cliente cliente = new Cliente();
-            cliente = cliente.findClienteById(11);
+            cliente = cliente.findClienteById(5);
+                    
             System.out.println(" Cliente: "+cliente.getRazonSocial_cliente()+
                     "\n Id: " + cliente.getId_cliente() +
                     "\n Contacto: "+cliente.getPrimerNombre_usuario()+" "+cliente.getPrimerApellido_usuario()+
@@ -39,7 +40,8 @@ public class Adso {
                     "\n Rol: " + cliente.rol.getDescripcion_rol()+         //Prueba de como se llama los datos de un objeto desde al model
                     "\n Teléfono: "+cliente.getTelefono_cliente());
 
-        } catch (Exception e) {
+            
+        } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         }
 

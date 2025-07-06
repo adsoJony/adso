@@ -4,7 +4,6 @@
  */
 package controller;
 
-import controller.Cargo;
 import model.ClienteModel;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -56,6 +55,41 @@ public class Cliente extends Usuario {
         this.razonSocial_cliente = razonSocial_cliente;
     }
 
+    /**
+     * Contructor para instanciar Cliente completo, heredando propiedades de
+     * Usuario
+     *
+     * @param id_cliente
+     * @param id_usuario_cliente
+     * @param id_cargo_cliente
+     * @param direccion_cliente
+     * @param telefono_cliente
+     * @param id_tipoDocumento_cliente
+     * @param documento_cliente
+     * @param razonSocial_cliente
+     * @param cargo
+     * @param tipoDocumento
+     * @param id_usuario
+     * @param nickName_usuario
+     * @param primerNombre_usuario
+     * @param segundoNombre_usuario
+     * @param primerApellido_usuario
+     * @param segundoApellido_usuario
+     * @param email_usuario
+     * @param psw_usuario
+     * @param id_rol_usuario
+     * @param fechaCreacion
+     * @param fechaActualizacion
+     * @param fechaEliminado
+     * @param activation_token
+     * @param reset_token
+     * @param reset_token_expires_at
+     * @param active
+     * @param avatar_usuario
+     * @param fecha_registroUsuario
+     * @param id_tipoUsuario_usuario
+     * @param deleted
+     */
     public Cliente(int id_cliente, int id_usuario_cliente, int id_cargo_cliente, String direccion_cliente, int telefono_cliente, int id_tipoDocumento_cliente, int documento_cliente, String razonSocial_cliente, Cargo cargo, TipoDocumento tipoDocumento, int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
         super(id_usuario, nickName_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, email_usuario, psw_usuario, id_rol_usuario, fechaCreacion, fechaActualizacion, fechaEliminado, activation_token, reset_token, reset_token_expires_at, active, avatar_usuario, fecha_registroUsuario, id_tipoUsuario_usuario, deleted);
         this.id_cliente = id_cliente;
