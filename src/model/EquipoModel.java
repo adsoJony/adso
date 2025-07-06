@@ -40,8 +40,8 @@ public class EquipoModel {
             ps = Conexion.prepararConsulta(sql);
             ps.setInt(1, id_Equipo);
             rs = ps.executeQuery();
-            
-            if (rs.next()){
+
+            if (rs.next()) {
                 equipo.setId_equipo(rs.getInt("id_equipo"));
                 equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
                 equipo.setSerie_equipo(rs.getString("serie_equipo"));
@@ -49,20 +49,20 @@ public class EquipoModel {
                 equipo.setId_marca_equipo(rs.getInt("id_marca_equipo"));
                 equipo.setId_modelo_equipo(rs.getInt("id_modelo_equipo"));
                 Date fechaInstalacion = rs.getDate("fechaInstalacion_equipo");                //Capturamos la fecha de tipo SQL en la variable
-                LocalDate fechaInstalacion_equipo = (fechaInstalacion != null) ? fechaInstalacion.toLocalDate() :null;    //Convertimos la fecha tipo SQL a LocalDate
+                LocalDate fechaInstalacion_equipo = (fechaInstalacion != null) ? fechaInstalacion.toLocalDate() : null;    //Convertimos la fecha tipo SQL a LocalDate
                 equipo.setFechaInstalacion_equipo(fechaInstalacion_equipo);                               //Instanciamos el valor de la fecha en objeto "equipo"
                 Date ultimoMantenimiento = rs.getDate("ultimoMantenimiento_equipo");
                 LocalDate ultimoMantenimiento_equipo = (ultimoMantenimiento != null) ? ultimoMantenimiento.toLocalDate() : null;
                 equipo.setUltimoMantenimiento_equipo(ultimoMantenimiento_equipo);
                 equipo.setId_tipoEquipo_equipo(rs.getInt("id_tipoEquipo_equipo"));
-                
+
                 return equipo;
-            }else{
-                System.err.println("No se pudo encontrar el Equipo con ID: "+id_Equipo);
+            } else {
+                System.err.println("No se pudo encontrar el Equipo con ID: " + id_Equipo);
             }
 
         } catch (Exception e) {
-            System.err.println("error :"+e.getMessage());
+            System.err.println("error :" + e.getMessage());
         }
 
         return equipo;

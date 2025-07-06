@@ -5,7 +5,11 @@
 package model;
 
 import conexion.Conexion;
+import controller.Cargo;
 import controller.Cliente;
+import controller.Rol;
+import controller.TipoDocumento;
+import controller.TipoUsuario;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import controller.Usuario;
@@ -16,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * @author jogof
+ * @author Jonathan Gómez
  */
 public class ClienteModel {
 
@@ -24,6 +28,44 @@ public class ClienteModel {
 
     public void ClienteModel(Conexion con) {
         this.con = con;
+    }
+
+    public Cliente findClienteById(int idCliente) {
+        Cliente cliente = new Cliente();
+        Cargo cargo = new Cargo();
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        Rol rol = new Rol();
+        TipoUsuario tipoUsuario = new TipoUsuario();            //Puede estars obrando este dato, se puede presindir desde la BD
+
+        PreparedStatement ps;
+        String Sql = "Select * from cliente "
+                + "join usuarios on id_usuario=id_usuario_cliente "
+                + "join cargo on id_cargo_cliente=id_cargo "
+                + "join tipodocumento on id_tipoDocumento_cliente=id_tipoDocumento "
+                + "join rol on id_rol=id_rol_usuario "
+                + "join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
+                + "where id_cliente=?";
+        try {
+            ps = Conexion.prepararConsulta(Sql);
+            ps.setInt(1,idCliente);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                cliente.setId_cliente(rs.getInt("id_usuario"));
+                cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
+                cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
+                rol.setId_rol(rs.getInt("id_rol"));
+                rol.setDescripcion_rol(rs.getString("descripcion_rol"));
+                cliente.setRol(rol);
+                
+            }
+            rs.close();
+            ps.close();
+            
+        } catch (Exception e) {
+            System.err.println("error: "+e);
+        }
+        return cliente;
     }
 
     public Cliente findCliente(int idCliente) throws SQLException {
@@ -58,10 +100,17 @@ public class ClienteModel {
         return cliente;
     }
 
+    /**
+     * Función para listar clientes. Se obtiene una lista de usuarios de tipo
+     * cliente.
+     *
+     * @return Lista de Usuarios de tipo Cliente.
+     * @throws SQLException
+     */
     public List<Cliente> listarClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList();
         String sql = "Select * "
-                + " from cliente "
+                + "from cliente "
                 + "join usuarios on id_usuario_cliente = id_usuario "
                 + "where deleted=0";
 
@@ -88,6 +137,14 @@ public class ClienteModel {
         return clientes;
     }
 
+    /**
+     * insertar cliente, y debe ingresar usuario
+     *
+     * @param cliente
+     * @param usuario
+     * @return Id del usuario de tipo int.
+     * @throws SQLException
+     */
     public int InputCliente(Cliente cliente, Usuario usuario) throws SQLException {
         var id_cliente = 0;
         // String sqlUsuario = "insert into usuarios (nickname_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, ) values ();";

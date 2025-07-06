@@ -11,7 +11,6 @@ import java.time.LocalDate;
  *
  * @author jogof
  */
-
 //Se debe investigar el método corecto para poder actualizar de manera correcta las entidades, debido a que si solo queremos actualizar una sola variable, Como hacemos con las demás?
 public class Usuario {
 
@@ -23,7 +22,7 @@ public class Usuario {
     protected String segundoApellido_usuario;
     protected String email_usuario;
     protected String psw_usuario;
-    protected int id_rol_usuario;
+    protected int id_rol_usuario;                   //Obtenemos esta información en el onjeto rol
     protected LocalDate fechaCreacion;
     protected LocalDate fechaActualizacion;
     protected LocalDate fechaEliminado;
@@ -33,8 +32,12 @@ public class Usuario {
     protected boolean active;
     protected String avatar_usuario;
     protected LocalDate fecha_registroUsuario;
-    protected int id_tipoUsuario_usuario;
+    protected int id_tipoUsuario_usuario;           //Obtenemos esta información en el objeto tipoUsuario
     protected boolean deleted;
+
+    //Objetos para GUI
+    public Rol rol;
+    public TipoUsuario tipoUsuario;
 
     private Conexion con;
     private UsuarioModel usuarioModel = new UsuarioModel();
@@ -253,6 +256,22 @@ public class Usuario {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     @Override

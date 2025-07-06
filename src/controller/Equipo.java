@@ -20,11 +20,14 @@ public class Equipo {
     protected int id_cliente_equipo;
     protected String serie_equipo;
     protected String ubicacion_equipo;
-    protected int id_marca_equipo;
+    protected int id_marca_equipo;                  //Tenemos esta información en el objeto modelo
     protected int id_modelo_equipo;
     protected LocalDate fechaInstalacion_equipo;
     protected LocalDate ultimoMantenimiento_equipo;
-    protected int id_tipoEquipo_equipo;
+    protected int id_tipoEquipo_equipo;             //Tenemos esta información en el iobjeto modelo
+    //Objetos para GUI
+    protected Cliente cliente;
+    protected Modelo modelo;
 
     EquipoModel equipoModel = new EquipoModel();
 
@@ -115,25 +118,41 @@ public class Equipo {
         this.id_tipoEquipo_equipo = id_tipoEquipo_equipo;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+
     @Override
     public String toString() {
         return "Equipo{" + "id_equipo=" + id_equipo + ", id_cliente_equipo=" + id_cliente_equipo + ", serie_equipo=" + serie_equipo + ", ubicacion_equipo=" + ubicacion_equipo + ", id_marca_equipo=" + id_marca_equipo + ", id_modelo_equipo=" + id_modelo_equipo + ", fechaInstalacion_equipo=" + fechaInstalacion_equipo + ", ultimoMantenimiento_equipo=" + ultimoMantenimiento_equipo + ", id_tipoEquipo_equipo=" + id_tipoEquipo_equipo + '}';
     }
-    
-    public Equipo findEquipo(int id_equipo){
-     return equipoModel.findEquipo(id_equipo);
+
+    public Equipo findEquipo(int id_equipo) {
+        return equipoModel.findEquipo(id_equipo);
     }
-    
+
     public int inputEquipo(Equipo equipo) throws SQLException {
 
         return equipoModel.inputEquipo(equipo);
     }
-    
-    public boolean updateEquipo(Equipo equipo) throws SQLException{
+
+    public boolean updateEquipo(Equipo equipo) throws SQLException {
         return equipoModel.updateEquipo(equipo);
     }
-    
-    public List<Equipo> listarEquipos() throws SQLException{
+
+    public List<Equipo> listarEquipos() throws SQLException {
         return equipoModel.listarEquipos();
     }
 

@@ -31,3 +31,6 @@ Conexion.*
 /private/*
 private.*
 private/*
+/dist/
+
+#!javadoc

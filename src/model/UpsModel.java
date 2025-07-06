@@ -8,6 +8,9 @@ import conexion.Conexion;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.SQLException;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 import controller.Ups;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +31,7 @@ public class UpsModel {
     public List<Ups> listarUpsCliente(int id_cliente) throws SQLException {
         List<Ups> upsClienteList = new ArrayList();
 
-        String sql = "select * from ups join equipo on id_equipo=id_equipo_ups join cliente on id_cliente_equipo=id_cliente where id_cliente=?";
+        String sql = "SELECT * from ups join equipo on id_equipo=id_equipo_ups join cliente on id_cliente_equipo=id_cliente where id_cliente=?";
 
         //PreparedStatement ps;
         ResultSet rs;
@@ -44,6 +47,8 @@ public class UpsModel {
                 ups.setId_equipo(rs.getInt("id_equipo_ups"));
                 ups.setPotencia_va(rs.getInt("potencia_va"));
                 ups.setSerie_equipo(rs.getString("serie_equipo"));
+                ups.setTiempoAutonomia_ups(rs.getInt("tiempoAutonomia_ups"));
+
                 upsClienteList.add(ups);
             }
             rs.close();

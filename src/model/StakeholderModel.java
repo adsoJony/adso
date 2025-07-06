@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import controller.Usuario;
 import java.sql.Statement;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -37,8 +38,18 @@ public class StakeholderModel {
             if (rs.next()) {
                 stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
-                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
                 stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipodocumento_stakeholder"));
+                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
+                Date fechaCreacion_s = rs.getDate("fechaCreacion");
+                LocalDate fechaCreacion = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
+                stakeholder.setFechaCreacion(fechaCreacion);
+                Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
+                stakeholder.setFechaActualizacion(fechaActualizacion);
+                Date fechaEliminado_s = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+
             } else {
                 System.err.println("No se pudo encontrar el Stakeholder");
             }
@@ -67,6 +78,16 @@ public class StakeholderModel {
                 stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
                 stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipoDocumento_stakeholder"));
+                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
+                Date fechaCreacion_s = rs.getDate("fechaCreacion");
+                LocalDate fechaCreacion = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
+                stakeholder.setFechaCreacion(fechaCreacion);
+                Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
+                Date fechaEliminado_s = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
                 stakeholders.add(stakeholder);
 
             }
@@ -130,6 +151,8 @@ public class StakeholderModel {
         } catch (SQLException e) {
             System.err.println("Error: " + e);
             Conexion.rollBack();
+        }finally{
+            Conexion.close();
         }
         return idStakeholder;
     }

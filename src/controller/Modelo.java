@@ -20,6 +20,8 @@ public class Modelo {
     protected int peso;
     protected int id_tipoEquipo_modelo;
     protected String detalleEquipo_modelo;
+    //Objetos para GUI
+    
 
     public Modelo() {
     }

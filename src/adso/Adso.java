@@ -4,19 +4,13 @@
  */
 package adso;
 
-import conexion.Conexion;
-import controller.Usuario;
-import java.util.List;
-import controller.Cliente;
+
 //import java.io.UnsupportedEncodingException;
+import controller.Cargo;
+import controller.Cliente;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import model.UsuarioModel;
-import controller.Stakeholder;
-import model.StakeholderModel;
-import controller.Marca;
-import controller.Ups;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
 import view.ConsoleView;
 
 /**
@@ -36,12 +30,20 @@ public class Adso {
 
         try {
 
-            ConsoleView.menu();
+           // ConsoleView.menu();
+           
+           Cliente cliente = new Cliente();
+           cliente = cliente.findClienteById(11);
+           //Cargo cargo = new Cargo(cliente.cargo.getCargo(), cliente.getCargo().getId_cargo()); 
+           
+           System.out.println("Id: "+cliente.getId_cliente() + " Dirección: "+cliente.getDireccion_cliente() +" Cargo: "+cliente.rol.getDescripcion_rol());         //Prueba de como se llama los datos de un objeto desde al model
             
         } catch (Exception e) {
-            System.err.println("Error: " + e);
+            System.err.println("Error: " + e.getMessage());
         }
-
+        
+              
+        
     }
 
 }

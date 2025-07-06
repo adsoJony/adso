@@ -91,7 +91,7 @@ public class UsuarioModel {
             PreparedStatement stmt = Conexion.prepararConsulta(query);
             //ResultSet rs = con.prepareStatement();
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
+            while (rs.next()) {         //Mejorar este algritmo para colocar todas las propiedades..
                 usuarios.add(new Usuario(rs.getInt("id_usuario"), rs.getString("primerNombre_usuario"), rs.getString("segundoNombre_usuario"), rs.getString("primerApellido_usuario")));
 
             }
