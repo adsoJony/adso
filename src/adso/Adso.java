@@ -4,7 +4,6 @@
  */
 package adso;
 
-
 //import java.io.UnsupportedEncodingException;
 import controller.Cargo;
 import controller.Cliente;
@@ -30,20 +29,20 @@ public class Adso {
 
         try {
 
-           // ConsoleView.menu();
-           
-           Cliente cliente = new Cliente();
-           cliente = cliente.findClienteById(11);
-           //Cargo cargo = new Cargo(cliente.cargo.getCargo(), cliente.getCargo().getId_cargo()); 
-           
-           System.out.println("Id: "+cliente.getId_cliente() + " Dirección: "+cliente.getDireccion_cliente() +" Cargo: "+cliente.rol.getDescripcion_rol());         //Prueba de como se llama los datos de un objeto desde al model
-            
+            // ConsoleView.menu();
+            Cliente cliente = new Cliente();
+            cliente = cliente.findClienteById(11);
+            System.out.println(" Cliente: "+cliente.getRazonSocial_cliente()+
+                    "\n Id: " + cliente.getId_cliente() +
+                    "\n Contacto: "+cliente.getPrimerNombre_usuario()+" "+cliente.getPrimerApellido_usuario()+
+                    "\n Dirección: " + cliente.getDireccion_cliente() + 
+                    "\n Rol: " + cliente.rol.getDescripcion_rol()+         //Prueba de como se llama los datos de un objeto desde al model
+                    "\n Teléfono: "+cliente.getTelefono_cliente());
+
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
-        
-              
-        
+
     }
 
 }

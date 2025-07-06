@@ -25,20 +25,21 @@ import java.util.List;
 public class ClienteModel {
 
     Conexion con;
+    PreparedStatement ps;
+    ResultSet rs;
+    Cliente cliente = new Cliente();
 
     public void ClienteModel(Conexion con) {
         this.con = con;
     }
 
     public Cliente findClienteById(int idCliente) {
-        Cliente cliente = new Cliente();
-        Cargo cargo = new Cargo();
-        TipoDocumento tipoDocumento = new TipoDocumento();
-        Rol rol = new Rol();
-        TipoUsuario tipoUsuario = new TipoUsuario();            //Puede estars obrando este dato, se puede presindir desde la BD
 
-        PreparedStatement ps;
-        String Sql = "Select * from cliente "
+        cliente.setTipoDocumento(new TipoDocumento());
+        //cliente.setRol(new Rol());
+        cliente.setTipoUsuario(new TipoUsuario());
+
+        String sql = "Select * from cliente "
                 + "join usuarios on id_usuario=id_usuario_cliente "
                 + "join cargo on id_cargo_cliente=id_cargo "
                 + "join tipodocumento on id_tipoDocumento_cliente=id_tipoDocumento "
@@ -46,31 +47,44 @@ public class ClienteModel {
                 + "join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
                 + "where id_cliente=?";
         try {
-            ps = Conexion.prepararConsulta(Sql);
-            ps.setInt(1,idCliente);
-            ResultSet rs;
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1, idCliente);
             rs = ps.executeQuery();
             if (rs.next()) {
                 cliente.setId_cliente(rs.getInt("id_usuario"));
+                cliente.setId_cliente(rs.getInt("id_cliente"));
+                cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
                 cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
                 cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
-                rol.setId_rol(rs.getInt("id_rol"));
-                rol.setDescripcion_rol(rs.getString("descripcion_rol"));
-                cliente.setRol(rol);
+                cliente.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                cliente.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
+                cliente.setEmail_usuario(rs.getString("email_usuario"));
+                cliente.getRol().setDescripcion_rol(rs.getString("descripcion_rol"));
+                //rol.setId_rol(rs.getInt("id_rol"));
                 
+                //cliente.setRol(rol);
+
             }
             rs.close();
             ps.close();
-            
+
         } catch (Exception e) {
-            System.err.println("error: "+e);
+            System.err.println("error: " + e);
         }
         return cliente;
     }
 
+    /*
     public Cliente findCliente(int idCliente) throws SQLException {
         var cliente = new Cliente();
-        String sql = "select * from cliente where id_cliente=?";
+        //String sql = "select * from cliente where id_cliente=?";
+        String sql = "Select * from cliente "
+                + "join usuarios on id_usuario=id_usuario_cliente "
+                + "join cargo on id_cargo_cliente=id_cargo "
+                + "join tipodocumento on id_tipoDocumento_cliente=id_tipoDocumento "
+                + "join rol on id_rol=id_rol_usuario "
+                + "join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
+                + "where id_cliente=?";
 
         //ResultSet rs;
         try {
@@ -90,6 +104,8 @@ public class ClienteModel {
                 cliente.setId_tipoDocumento_cliente(rs.getInt("id_tipoDocumento_cliente"));
                 cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
                 cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
+                //cliente.setRol.setId_rol(rs.getInt("id_rol"));
+                cliente.rol.setDescripcion_rol(rs.getString("descripcion_rol"));
 
             } else {
                 System.err.println("No se encontró cliente");
@@ -99,7 +115,7 @@ public class ClienteModel {
         }
         return cliente;
     }
-
+     */
     /**
      * Función para listar clientes. Se obtiene una lista de usuarios de tipo
      * cliente.
@@ -115,10 +131,10 @@ public class ClienteModel {
                 + "where deleted=0";
 
         try {
-            PreparedStatement ps = Conexion.prepararConsulta(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = Conexion.prepararConsulta(sql);
+            rs = ps.executeQuery();
             while (rs.next()) {
-                Cliente cliente = new Cliente();
+                //Cliente cliente = new Cliente();
                 cliente.setId_cliente(rs.getInt("id_cliente"));
                 cliente.setId_usuario_cliente(rs.getInt("id_usuario_cliente"));
                 cliente.setId_cargo_cliente(rs.getInt("id_cargo_cliente"));
@@ -151,7 +167,6 @@ public class ClienteModel {
         String sqlCliente = "insert into cliente(id_usuario_cliente, id_cargo_cliente, direccion_cliente, telefono_cliente, id_tipoDocumento_cliente, documento_cliente, razonSocial_cliente)"
                 + " values(?,?,?,?,?,?,?)";
 
-        PreparedStatement ps;
         ps = Conexion.prepararConsulta(sqlCliente, Statement.RETURN_GENERATED_KEYS);
         int id_usuario;
 
@@ -174,7 +189,7 @@ public class ClienteModel {
 
                     if (ps.executeUpdate() != 0) {
                         System.out.println("Cliente Ingresado.");
-                        ResultSet rs = ps.getGeneratedKeys();
+                        rs = ps.getGeneratedKeys();
                         if (rs.next()) {
                             id_cliente = rs.getInt(1);
                             System.out.println("EL id del cliente registrado es: " + id_cliente);
@@ -206,7 +221,7 @@ public class ClienteModel {
         var update = false;
         String sql = "update cliente set id_cargo_cliente=?, direccion_cliente=?, telefono_cliente=?, id_documento_cliente=?,"
                 + "documento_cliente=?, razonSocial_cliente=? where id_cliente=?";
-        PreparedStatement ps;
+        
         try {
             ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, cliente.getId_cargo_cliente());

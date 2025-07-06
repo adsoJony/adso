@@ -43,7 +43,57 @@ public class Usuario {
     private UsuarioModel usuarioModel = new UsuarioModel();
 
     public Usuario() {
+        this.rol = new Rol();
+        this.tipoUsuario = new TipoUsuario();
     }
+
+    /**
+     * 
+     * @param id_usuario
+     * @param nickName_usuario
+     * @param primerNombre_usuario
+     * @param segundoNombre_usuario
+     * @param primerApellido_usuario
+     * @param segundoApellido_usuario
+     * @param email_usuario
+     * @param psw_usuario
+     * @param fechaCreacion
+     * @param fechaActualizacion
+     * @param fechaEliminado
+     * @param activation_token
+     * @param reset_token
+     * @param reset_token_expires_at
+     * @param active
+     * @param avatar_usuario
+     * @param fecha_registroUsuario
+     * @param deleted
+     * @param rol
+     * @param tipoUsuario 
+     */
+    public Usuario(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, boolean deleted, Rol rol, TipoUsuario tipoUsuario) {
+        this.id_usuario = id_usuario;
+        this.nickName_usuario = nickName_usuario;
+        this.primerNombre_usuario = primerNombre_usuario;
+        this.segundoNombre_usuario = segundoNombre_usuario;
+        this.primerApellido_usuario = primerApellido_usuario;
+        this.segundoApellido_usuario = segundoApellido_usuario;
+        this.email_usuario = email_usuario;
+        this.psw_usuario = psw_usuario;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
+        this.fechaEliminado = fechaEliminado;
+        this.activation_token = activation_token;
+        this.reset_token = reset_token;
+        this.reset_token_expires_at = reset_token_expires_at;
+        this.active = active;
+        this.avatar_usuario = avatar_usuario;
+        this.fecha_registroUsuario = fecha_registroUsuario;
+        this.deleted = deleted;
+        this.rol = rol;
+        this.tipoUsuario = tipoUsuario;
+    }
+    
+    
 
     public Usuario(String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
         this.nickName_usuario = nickName_usuario;

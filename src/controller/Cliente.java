@@ -4,6 +4,7 @@
  */
 package controller;
 
+import controller.Cargo;
 import model.ClienteModel;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,9 +29,10 @@ public class Cliente extends Usuario {
     public TipoDocumento tipoDocumento;
 
     private static final ClienteModel clienteModel = new ClienteModel();
-
+    
     public Cliente() {
-
+        this.cargo = new Cargo();
+        this.tipoDocumento = new TipoDocumento();
     }
 
     public Cliente(int id_usuario_cliente, int id_cargo_cliente, String direccion_cliente, int telefono_cliente, int id_tipoDocumento_cliente, int documento_cliente, String razonSocial_cliente) {
@@ -67,15 +69,10 @@ public class Cliente extends Usuario {
         this.cargo = cargo;
         this.tipoDocumento = tipoDocumento;
     }
-    
-    
 
     public Cliente(int id_usuario, String nickName_usuario, String primerNombre_usuario, String segundoNombre_usuario, String primerApellido_usuario, String segundoApellido_usuario, String email_usuario, String psw_usuario, int id_rol_usuario, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado, String activation_token, String reset_token, LocalDate reset_token_expires_at, boolean active, String avatar_usuario, LocalDate fecha_registroUsuario, int id_tipoUsuario_usuario, boolean deleted) {
         super(id_usuario, nickName_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, email_usuario, psw_usuario, id_rol_usuario, fechaCreacion, fechaActualizacion, fechaEliminado, activation_token, reset_token, reset_token_expires_at, active, avatar_usuario, fecha_registroUsuario, id_tipoUsuario_usuario, deleted);
     }
-    
-       
-    
 
     public int getId_cliente() {
         return id_cliente;
@@ -358,13 +355,29 @@ public class Cliente extends Usuario {
     }
 
     @Override
+    public Rol getRol() {
+        return rol;
+    }
+
+    @Override
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    @Override
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    @Override
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    @Override
     public String toString() {
         return "Cliente{" + "id_cliente=" + id_cliente + ", id_usuario_cliente=" + id_usuario_cliente + ", id_cargo_cliente=" + id_cargo_cliente + ", direccion_cliente=" + direccion_cliente + ", telefono_cliente=" + telefono_cliente + ", id_tipoDocumento_cliente=" + id_tipoDocumento_cliente + ", documento_cliente=" + documento_cliente + ", razonSocial_cliente=" + razonSocial_cliente + ", cargo=" + cargo + ", tipoDocumento=" + tipoDocumento + '}';
     }
-
-    
-
-    
 
     public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {     //Manejar las excepciones desde un paquete de excepciones
 
@@ -383,15 +396,9 @@ public class Cliente extends Usuario {
 
     }
 
-    public Cliente findCliente(int idCliente) throws SQLException {
-        return clienteModel.findCliente(idCliente);
-        
+    public Cliente findClienteById(int idCliente) throws SQLException {
+        return clienteModel.findClienteById(idCliente);
+
     }
-    
-    public Cliente findClienteById(int idcliente){
-        return clienteModel.findClienteById(idcliente);
-    }
-    
-    
 
 }

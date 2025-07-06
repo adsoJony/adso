@@ -32,6 +32,8 @@ public class Equipo {
     EquipoModel equipoModel = new EquipoModel();
 
     public Equipo() {
+        this.cliente =new Cliente();
+        this.modelo = new Modelo();
     }
 
     public Equipo(int id_equipo, int id_cliente_equipo, String serie_equipo, String ubicacion_equipo, int id_marca_equipo, int id_modelo_equipo, LocalDate fechaInstalacion_equipo, LocalDate ultimoMantenimiento_equipo, int id_tipoEquipo_equipo) {

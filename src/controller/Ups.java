@@ -33,6 +33,7 @@ public class Ups extends Equipo {
     private final UpsModel upsModel = new UpsModel();
 
     public Ups() {
+        this.topologia = new Topologia();
     }
 
     public Ups(int id_ups, int id_equipo_ups, int potencia_va, int voltajebanco_ups, int transformadorAislamiento, int tiempoAutonomia_ups, int id_topologia_ups, int cant_batNom, int cant_batTotal, int id_ultimoComprobanteServicio, int cant_bancoBat) {
