@@ -24,6 +24,10 @@ public class Stakeholder extends Usuario{
     protected LocalDate fechaCreacion;
     protected LocalDate fechaActualizacion;
     protected LocalDate fechaEliminado;
+    //Objetos para GUI
+    public Cargo cargo;
+    public TipoDocumento tipoDocumento;
+    
     
     private StakeholderModel stakeholderModel = new StakeholderModel();
 
@@ -292,6 +296,24 @@ public class Stakeholder extends Usuario{
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+    
+    
 
     @Override
     public String toString() {

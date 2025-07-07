@@ -5,6 +5,9 @@
 package adso;
 
 //import java.io.UnsupportedEncodingException;
+import com.mysql.cj.jdbc.DatabaseMetaData;
+import com.sun.jdi.connect.spi.Connection;
+import conexion.Conexion;
 import controller.Cargo;
 import controller.Cliente;
 import java.sql.SQLException;
@@ -29,18 +32,9 @@ public class Adso {
 
         try {
 
-            // ConsoleView.menu();
-            Cliente cliente = new Cliente();
-            cliente = cliente.findClienteById(5);
-                    
-            System.out.println(" Cliente: "+cliente.getRazonSocial_cliente()+
-                    "\n Id: " + cliente.getId_cliente() +
-                    "\n Contacto: "+cliente.getPrimerNombre_usuario()+" "+cliente.getPrimerApellido_usuario()+
-                    "\n Dirección: " + cliente.getDireccion_cliente() + 
-                    "\n Rol: " + cliente.rol.getDescripcion_rol()+         //Prueba de como se llama los datos de un objeto desde al model
-                    "\n Teléfono: "+cliente.getTelefono_cliente());
+            ConsoleView.menu();
+         
 
-            
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         }

@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.Cliente;
 import controller.Stakeholder;
 import controller.Ups;
 import controller.Usuario;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
 public class ConsoleView {
 
     public static void menu() throws SQLException {
-
+        Cliente cliente = new Cliente();
         System.out.println("Menu desde la consola");
 
         Scanner scanner = new Scanner(System.in);
@@ -27,8 +28,8 @@ public class ConsoleView {
         System.out.println("\r Menú Principal");
         System.out.print("""
                           1. Ejecutar funciones por defecto. 
-                          2. Listar Usuarios. 
-                          3. Find Usuario.
+                          2. Clientes. 
+                          3. Stakeholder.
                           4. Listar Equipos. 
                           5. Insertar Equipo.
                           6. Funcion Prueba. 
@@ -48,11 +49,47 @@ public class ConsoleView {
                 break;
 
             case 2:
-                System.out.println("Imprimiendo Usuarios");
+                System.out.println("Menú de Clientes");
+                System.out.print("""
+                                  1. Listar Clientes.
+                                  2. Buscar Cliente por Id.
+                                  3. Insertar Cliente.
+                                  
+                         """);
+                System.out.print("Ingrese la poción:");
+                input = scanner.nextInt();
+                switch (input) {
+                    case 1:
+                        var clientes = cliente.listarClientes();
+                        for (Cliente client : clientes) {
+                            System.out.print("Nombre Cliente" + client.getPrimerNombre_usuario());
+                        }
+                        break;
+                    case 2:
+                        System.out.print("Ingrese el id del cliente a buscar: ");
+                        input = scanner.nextInt();
+                        var clt = cliente.findClienteById(input);
+                        //System.out.println(clt.toString());
+                        System.out.println("Nombre cliente: " + clt.getRazonSocial_cliente()
+                                + "\nPersona de contacto: " + clt.getPrimerNombre_usuario() + " " + clt.getPrimerApellido_usuario()
+                                + "\nCargo: "+clt.cargo.getCargo()
+                                + "\nTipo de documento: " + clt.tipoDocumento.getTipoDocumento()
+                                + "\nDocumento: " + clt.getDocumento_cliente()
+                                + "\nDirección: " + clt.getDireccion_cliente());
+                        break;
+                    default:
+                        System.out.println("Default");
+                        menu();
+                }
+
                 break;
             case 3:
-                System.out.println("Find Usuario");
-                findusuario(71);
+                System.out.print("""
+                                  1. Listar Stakeholder.
+                                  2. Buscar Stakeholder por Id.
+                                  3. Insertar Stakeholder.
+                                  
+                         """);
                 break;
 
             case 4:

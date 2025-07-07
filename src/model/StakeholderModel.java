@@ -22,7 +22,83 @@ import java.time.LocalDate;
  */
 public class StakeholderModel {
 
+    PreparedStatement ps;
+    ResultSet rs;
+
     public StakeholderModel() {
+    }
+
+    public Stakeholder findStakeholderById(int idStakeholder) {
+
+        Stakeholder stakeholder = new Stakeholder();
+        String sql = "Select * from stakeholder "
+                + "join usuarios on id_usuario=id_usuario_stakeholder "
+                + "join cargo on id_cargo_stakeholder=id_cargo "
+                + "join tipodocumento on id_tipoDocumento_stakeholder=id_tipoDocumento "
+                + "join rol on id_rol=id_rol_usuario "
+                + "join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
+                + "where id_stakeholder=?";
+        try {
+            ps = Conexion.prepararConsulta(sql);
+            ps.setInt(1, idStakeholder);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                //Datops de Stakeholder
+                stakeholder.setId_stakeholder(rs.getInt("id_Stakleholder"));
+                stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
+                stakeholder.getCargo().setId_cargo(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.getCargo().setCargo(rs.getString("cargo"));
+                stakeholder.getTipoDocumento().setId_tipoDocumento(rs.getInt("id_tipoDocumento_stakeholder"));
+                stakeholder.getTipoDocumento().setTipoDocumento(rs.getString("tipoDocumento"));
+                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
+                Date fechaCreacion_s = rs.getDate("fechaCreación");
+                LocalDate fechaCreacion_stakeholder = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
+                stakeholder.setFechaCreacion(fechaCreacion_stakeholder);
+                Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion_stakeholder = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
+                stakeholder.setFechaActualizacion(fechaActualizacion_stakeholder);
+                Date fechaEliminado_s = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado_stakeholder = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+                stakeholder.setFechaEliminado(fechaEliminado_stakeholder);
+                
+                //Datos de usuario
+                stakeholder.setId_stakeholder(rs.getInt("id_usuario"));
+                stakeholder.setNickName_usuario(rs.getString("nickName_usuario"));
+                stakeholder.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                stakeholder.setSegundoNombre_usuario(rs.getString("segundoNombre_usuario"));
+                stakeholder.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
+                stakeholder.setSegundoApellido_usuario(rs.getString("segundoApellido_usuario"));
+                stakeholder.setEmail_usuario(rs.getString("email_usuario"));
+                stakeholder.getRol().setId_rol(rs.getInt("id_rol_usuario"));
+                stakeholder.getRol().setDescripcion_rol(rs.getString("descripcion_rol"));
+                Date fechaCreacion_u = rs.getDate("fechaCreacion");
+                LocalDate gechaCreacion = (fechaCreacion_u != null) ? fechaCreacion_u.toLocalDate() : null;
+                stakeholder.setFechaCreacion(gechaCreacion);
+                Date fechaActualizacion_u = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion = (fechaActualizacion_u != null) ? fechaActualizacion_u.toLocalDate() : null;
+                stakeholder.setFechaActualizacion(fechaActualizacion);
+                Date fechaEliminado_u = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado = (fechaEliminado_u != null) ? fechaEliminado_u.toLocalDate() : null;
+                stakeholder.setFechaEliminado(fechaEliminado);
+                stakeholder.setActivation_token(rs.getString("activation_token"));
+                stakeholder.setReset_token(rs.getString("reset_token"));
+                Date reset_token_expires_at_u = rs.getDate("reset_token_expires_at");
+                LocalDate reset_token_expires_at = (reset_token_expires_at_u != null) ? reset_token_expires_at_u.toLocalDate() : null;
+                stakeholder.setReset_token_expires_at(reset_token_expires_at);
+                stakeholder.setActive(rs.getBoolean("active"));
+                stakeholder.setAvatar_usuario(rs.getString("avatar_usuario"));
+                Date fechaRegistro = rs.getDate("fecha_registroUsuario");
+                LocalDate fecha_registroUsuario = (fechaRegistro != null) ? fechaRegistro.toLocalDate() : null;
+                stakeholder.setFecha_registroUsuario(fecha_registroUsuario);
+                stakeholder.getTipoUsuario().setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
+                stakeholder.getTipoUsuario().setTipoUsuario(rs.getString("tipoUsuario"));
+                stakeholder.setDeleted(rs.getBoolean("deleted"));
+            } else {
+                System.err.println("No se pudo encontrar al Stakeholder");
+            }
+        } catch (Exception e) {
+        }
+        return stakeholder;
     }
 
     public Stakeholder findStakeholder(int idStakeholder) throws SQLException {
@@ -135,6 +211,7 @@ public class StakeholderModel {
                         if (rs.next()) {
                             idStakeholder = rs.getInt(1);
                             System.out.println("El id del Stakeholder es:" + idStakeholder);
+                            
                         }
                         rs.close();
                     } else {
@@ -151,7 +228,7 @@ public class StakeholderModel {
         } catch (SQLException e) {
             System.err.println("Error: " + e);
             Conexion.rollBack();
-        }finally{
+        } finally {
             Conexion.close();
         }
         return idStakeholder;

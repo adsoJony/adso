@@ -28,7 +28,7 @@ public class Cliente extends Usuario {
     public TipoDocumento tipoDocumento;
 
     private static final ClienteModel clienteModel = new ClienteModel();
-    
+
     public Cliente() {
         this.cargo = new Cargo();
         this.tipoDocumento = new TipoDocumento();
