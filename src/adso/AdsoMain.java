@@ -6,10 +6,12 @@ package adso;
 
 //import java.io.UnsupportedEncodingException;
 
+import controller.Cargo;
 import java.sql.SQLException;
 import java.io.UnsupportedEncodingException;
 import view.ConsoleView;                        //Menu de consola - ConsoleView
 import view.DashBoardAdso;
+import view.combos.CargoCombo;
 
 /**
  *
@@ -30,6 +32,12 @@ public class AdsoMain {
 
             //ConsoleView.menu();
             mostarDashBoardAdso();
+           
+            CargoCombo cargoCombo = new CargoCombo();
+            for (Cargo cargo : cargoCombo.listarCargos()){
+                System.out.println(cargo.getCargo());
+            }
+           
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());

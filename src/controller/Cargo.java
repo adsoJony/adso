@@ -9,15 +9,16 @@ package controller;
  * @author jogof
  */
 public class Cargo {
+
     protected String cargo;
     protected int id_cargo;
+
+    public Cargo() {
+    }
 
     public Cargo(String cargo, int id_cargo) {
         this.cargo = cargo;
         this.id_cargo = id_cargo;
-    }
-
-    public Cargo() {
     }
 
     public String getCargo() {
@@ -35,6 +36,5 @@ public class Cargo {
     public void setId_cargo(int id_cargo) {
         this.id_cargo = id_cargo;
     }
-    
-    
+
 }

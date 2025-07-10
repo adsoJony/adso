@@ -4,7 +4,14 @@
  */
 package view.cliente;
 
+import controller.Cargo;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import controller.Cargo;
+import controller.TipoDocumento;
+import javax.swing.JComboBox;
+import view.combos.CargoCombo;
+import view.combos.TipoDocumentoCombo;
 
 /**
  *
@@ -14,11 +21,16 @@ public class InsertCliente extends javax.swing.JPanel {
 
     /**
      * Creates new form InsertCliente
+     *
+     * @throws java.sql.SQLException
      */
     public InsertCliente() {
+
         initComponents();
-        cargoJCombo.addItem("Cliente");
-        
+
+        //cargarCargos();
+        cargarTipoDocumento();
+
     }
 
     /**
@@ -80,6 +92,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel26 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         choice2 = new java.awt.Choice();
+        tipoDocumentoJComboBox = new javax.swing.JComboBox<>();
         jPanel25 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -507,6 +520,8 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tipoDocumentoJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout UsuarioFormjPanel1Layout = new javax.swing.GroupLayout(UsuarioFormjPanel1);
         UsuarioFormjPanel1.setLayout(UsuarioFormjPanel1Layout);
         UsuarioFormjPanel1Layout.setHorizontalGroup(
@@ -515,24 +530,26 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UsuarioFormjPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UsuarioFormjPanel1Layout.createSequentialGroup()
                         .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(UsuarioFormjPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jPanel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(UsuarioFormjPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(UsuarioFormjPanel1Layout.createSequentialGroup()
+                        .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tipoDocumentoJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
         );
         UsuarioFormjPanel1Layout.setVerticalGroup(
@@ -554,6 +571,8 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addGroup(UsuarioFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tipoDocumentoJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -591,9 +610,45 @@ public class InsertCliente extends javax.swing.JPanel {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Ejecutar ingresar cliente!!!");
+        CargoCombo cargoSeleccionado = new CargoCombo();
+        CargoCombo idCargo = new CargoCombo();
+
+        try {
+
+            CargoCombo cargo = new CargoCombo();
+            
+            JOptionPane.showMessageDialog(null, "mensaje cargo: "+cargoJCombo.getSelectedItem());
+            var cargoCombo =(String) cargoJCombo.getSelectedItem();
+            
+           
+            //JOptionPane.showMessageDialog(null, cargo.idCargoComboBox(cargoJCombo.getSelectedItem()));
+            //JOptionPane.showMessageDialog(null, "Ejecutar ingresar cliente!!!" + "Cargo: " + idCargo.idCargoComboBox(cargoJCombo.getSelectedItem()));
+        } catch (Exception e) {
+            System.err.println("Errot: "+e );
+        }
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    final void cargarCargos() throws SQLException {
+        //cargoModel.listarCargos();
+        //CargoModel cargoModel = new CargoModel();
+        CargoCombo cargo = new CargoCombo();
+        for (Cargo c : cargo.listarCargos()) {
+            //cargoJCombo.addItem((Integer.toString( c.getId_cargo())));        //para listar por id
+            cargoJCombo.addItem(c.getCargo());
+        }
+        
+        
+        
+    }
+
+ final void cargarTipoDocumento(){
+     TipoDocumentoCombo tipoDocumento = new TipoDocumentoCombo();
+     for (TipoDocumento type : tipoDocumento.listarTipoDocumento()){
+         tipoDocumentoJComboBox.addItem(type.getTipoDocumento());
+     }
+     
+ }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SegundoNombreClienteJTextField;
@@ -649,5 +704,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JTextField primerNombreClienteJTextField;
     private javax.swing.JTextField razonSocialJTextField;
     private javax.swing.JTextField segundoApellidoJTextField;
+    private javax.swing.JComboBox<String> tipoDocumentoJComboBox;
     // End of variables declaration//GEN-END:variables
 }
