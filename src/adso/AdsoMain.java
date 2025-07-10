@@ -5,21 +5,17 @@
 package adso;
 
 //import java.io.UnsupportedEncodingException;
-import com.mysql.cj.jdbc.DatabaseMetaData;
-import com.sun.jdi.connect.spi.Connection;
-import conexion.Conexion;
-import controller.Cargo;
-import controller.Cliente;
+
 import java.sql.SQLException;
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
-import view.ConsoleView;
+import view.ConsoleView;                        //Menu de consola - ConsoleView
+import view.DashBoardAdso;
 
 /**
  *
- * @author jogof
+ * @author Jonathan Gomez
  */
-public class Adso {
+public class AdsoMain {
 
     /**
      * @param args the command line arguments
@@ -32,12 +28,23 @@ public class Adso {
 
         try {
 
-            ConsoleView.menu();
-         
+            //ConsoleView.menu();
+            mostarDashBoardAdso();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
+
+    }
+
+    /**
+     * Método para mostrar el Frame DashBoardAdso de View
+     * 
+     * @return Mostramos el Frame DashBoardAdso de el paquete view
+     */
+    final static void mostarDashBoardAdso() {
+        DashBoardAdso dashBoardAdso = new DashBoardAdso();
+        dashBoardAdso.setVisible(true);
 
     }
 

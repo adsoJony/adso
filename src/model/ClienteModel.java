@@ -42,9 +42,9 @@ public class ClienteModel {
      */
     public Cliente findClienteById(int idCliente) throws SQLException {
         Cliente cliente = new Cliente();
-        cliente.setTipoDocumento(new TipoDocumento());
+        //cliente.setTipoDocumento(new TipoDocumento());
         //cliente.setRol(new Rol());
-        cliente.setTipoUsuario(new TipoUsuario());
+        //cliente.setTipoUsuario(new TipoUsuario());
 
         String sql = "Select * from cliente "
                 + "join usuarios on id_usuario=id_usuario_cliente "
@@ -52,7 +52,7 @@ public class ClienteModel {
                 + "join tipodocumento on id_tipoDocumento_cliente=id_tipoDocumento "
                 + "join rol on id_rol=id_rol_usuario "
                 + "join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
-                + "where id_cliente=?";
+                + "where id_cliente=? and deleted=0";
         try {
             ps = Conexion.prepararConsulta(sql);
             ps.setInt(1, idCliente);
@@ -63,12 +63,13 @@ public class ClienteModel {
                 cliente.setId_cliente(rs.getInt("id_cliente"));
                 cliente.setId_usuario_cliente(rs.getInt("id_usuario_cliente"));
                 //cliente.setId_cargo_cliente(rs.getInt("id_cargo_cliente"));
-                cliente.getCargo().setId_cargo(rs.getInt("id_cargo"));
-                cliente.getCargo().setCargo(rs.getString("cargo"));
+                cliente.cargo.setId_cargo(rs.getInt("id_cargo"));
+                cliente.cargo.setCargo(rs.getString("cargo"));
                 cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
                 cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
-                cliente.getTipoDocumento().setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
-                cliente.getTipoDocumento().setTipoDocumento(rs.getString("documento_cliente"));
+                cliente.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
+                cliente.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
+                cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
                 cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
                 //Datos de usuario
                 cliente.setId_cliente(rs.getInt("id_usuario"));
@@ -78,8 +79,9 @@ public class ClienteModel {
                 cliente.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
                 cliente.setSegundoApellido_usuario(rs.getString("segundoApellido_usuario"));
                 cliente.setEmail_usuario(rs.getString("email_usuario"));
-                cliente.getRol().setId_rol(rs.getInt("id_rol_usuario"));
-                cliente.getRol().setDescripcion_rol(rs.getString("descripcion_rol"));
+                cliente.rol.setId_rol(rs.getInt("id_rol_usuario"));
+                cliente.rol.setDescripcion_rol(rs.getString("descripcion_rol"));
+                //cliente.getRol().setDescripcion_rol(rs.getString("descripcion_rol"));
                 Date fechaCreacion_u = rs.getDate("fechaCreacion");
                 LocalDate gechaCreacion = (fechaCreacion_u != null) ? fechaCreacion_u.toLocalDate() : null;
                 cliente.setFechaCreacion(gechaCreacion);
@@ -99,8 +101,8 @@ public class ClienteModel {
                 Date fechaRegistro = rs.getDate("fecha_registroUsuario");
                 LocalDate fecha_registroUsuario = (fechaRegistro != null) ? fechaRegistro.toLocalDate() : null;
                 cliente.setFecha_registroUsuario(fecha_registroUsuario);
-                cliente.getTipoUsuario().setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
-                cliente.getTipoUsuario().setTipoUsuario(rs.getString("tipoUsuario"));
+                cliente.tipoUsuario.setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
+                cliente.tipoUsuario.setTipoUsuario(rs.getString("tipoUsuario"));
                 cliente.setDeleted(rs.getBoolean("deleted"));
             } else {
                 System.err.println("No se pudo encontrar al cliente buscado");
@@ -124,11 +126,11 @@ public class ClienteModel {
      */
     public List<Cliente> listarClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList();
-        String sql = "Select primerNombre_usuario, primerApellido_usuario, id_cliente, direccion_cliente, telefono_cliente, email_usuario, razonSocial_cliente, documento_cliente, id_tipoDocumento_cliente, tipoDocumento "
+        String sql = "Select primerNombre_usuario, primerApellido_usuario, active, id_cliente, direccion_cliente, telefono_cliente, email_usuario, razonSocial_cliente, documento_cliente, id_tipoDocumento_cliente, tipoDocumento "
                 + "from cliente "
                 + "join usuarios on id_usuario_cliente = id_usuario "
                 + "join tipoDocumento on id_tipoDocumento=id_tipoDocumento_cliente "
-                + "where deleted=0";
+                + "where usuarios.deleted=0";
 
         try {
             ps = Conexion.prepararConsulta(sql);
@@ -141,11 +143,12 @@ public class ClienteModel {
                 cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
                 cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
                 cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
-                cliente.getTipoDocumento().setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
-                cliente.getTipoDocumento().setTipoDocumento(rs.getString("tipoDocumento"));
+                cliente.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
+                cliente.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
                 cliente.setId_tipoDocumento_cliente(rs.getInt("id_tipoDocumento_cliente"));
                 cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
                 cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
+                cliente.setActive(rs.getBoolean("active"));
                 clientes.add(cliente);
             }
 
@@ -165,7 +168,7 @@ public class ClienteModel {
      * @return Id del usuario de tipo int.
      * @throws SQLException
      */
-    public int InputCliente(Cliente cliente, Usuario usuario) throws SQLException {
+    public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {
         var id_cliente = 0;
         // String sqlUsuario = "insert into usuarios (nickname_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario, ) values ();";
         String sqlCliente = "insert into cliente(id_usuario_cliente, id_cargo_cliente, direccion_cliente, telefono_cliente, id_tipoDocumento_cliente, documento_cliente, razonSocial_cliente)"
@@ -184,10 +187,11 @@ public class ClienteModel {
 
                 try {
                     ps.setInt(1, id_usuario);
-                    ps.setInt(2, cliente.getId_cargo_cliente());
+                    //ps.setInt(2, cliente.getId_cargo_cliente());
+                    ps.setInt(2, cliente.cargo.getId_cargo());
                     ps.setString(3, cliente.getDireccion_cliente());
                     ps.setInt(4, cliente.getTelefono_cliente());
-                    ps.setInt(5, cliente.getId_tipoDocumento_cliente());
+                    ps.setInt(5, cliente.tipoDocumento.getId_tipoDocumento());
                     ps.setInt(6, cliente.getDocumento_cliente());
                     ps.setString(7, cliente.getRazonSocial_cliente());
 
@@ -228,13 +232,13 @@ public class ClienteModel {
 
         try {
             ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, cliente.getId_cargo_cliente());
+            ps.setInt(1, cliente.cargo.getId_cargo());
             ps.setString(2, cliente.getDireccion_cliente());
             ps.setInt(3, cliente.getTelefono_cliente());
-            ps.setInt(4, cliente.getId_tipoDocumento_cliente());
+            ps.setInt(4, cliente.tipoDocumento.getId_tipoDocumento());
             ps.setInt(5, cliente.getDocumento_cliente());
             ps.setString(6, cliente.getRazonSocial_cliente());
-            ps.setInt(7, cliente.getId_cliente());
+            ps.setInt(7, cliente.getId_cliente());  //Where id_cliente=id_cliente
 
         } catch (SQLException e) {
             System.err.println("Error: " + e);

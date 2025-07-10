@@ -4,39 +4,35 @@
  */
 package controller;
 
+//import model.ModeloModel;
 /**
  *
  * @author JOES
  */
 public class Modelo {
-    
+
     protected int id_modelo;
     protected int id_marca_modelo;
     protected String detalle_modelo;
+    protected String detalleEquipo_modelo;
     protected int id_voltajeOperacion_modelo;
     protected int alto;
     protected int ancho;
-    protected int  profundidad;
+    protected int profundidad;
     protected int peso;
     protected int id_tipoEquipo_modelo;
-    protected String detalleEquipo_modelo;
+
     //Objetos para GUI
-    
+    public Marca marca;
+    public VoltajeOperacion voltajeOperacion;
+    public TipoEquipo tipoEquipo;
 
+    //ModeloModel modeloModel = new ModeloModel();
     public Modelo() {
-    }
+        this.marca = new Marca();
+        this.voltajeOperacion = new VoltajeOperacion();
+        this.tipoEquipo = new TipoEquipo();
 
-    public Modelo(int id_modelo, int id_marca_modelo, String detalle_modelo, int id_voltajeOperacion_modelo, int alto, int ancho, int profundidad, int peso, int id_tipoEquipo_modelo, String detalleEquipo_modelo) {
-        this.id_modelo = id_modelo;
-        this.id_marca_modelo = id_marca_modelo;
-        this.detalle_modelo = detalle_modelo;
-        this.id_voltajeOperacion_modelo = id_voltajeOperacion_modelo;
-        this.alto = alto;
-        this.ancho = ancho;
-        this.profundidad = profundidad;
-        this.peso = peso;
-        this.id_tipoEquipo_modelo = id_tipoEquipo_modelo;
-        this.detalleEquipo_modelo = detalleEquipo_modelo;
     }
 
     public int getId_modelo() {
@@ -111,6 +107,30 @@ public class Modelo {
         this.id_tipoEquipo_modelo = id_tipoEquipo_modelo;
     }
 
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public VoltajeOperacion getVoltajeOperacion() {
+        return voltajeOperacion;
+    }
+
+    public void setVoltajeOperacion(VoltajeOperacion voltajeOperacion) {
+        this.voltajeOperacion = voltajeOperacion;
+    }
+
+    public TipoEquipo getTipoEquipo() {
+        return tipoEquipo;
+    }
+
+    public void setTipoEquipo(TipoEquipo tipoEquipo) {
+        this.tipoEquipo = tipoEquipo;
+    }
+
     public String getDetalleEquipo_modelo() {
         return detalleEquipo_modelo;
     }
@@ -120,4 +140,5 @@ public class Modelo {
     }
     
     
+
 }

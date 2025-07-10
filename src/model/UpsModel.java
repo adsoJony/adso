@@ -5,6 +5,7 @@
 package model;
 
 import conexion.Conexion;
+import controller.Equipo;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.SQLException;
@@ -23,20 +24,26 @@ public class UpsModel {
 
     Conexion con;
     private PreparedStatement ps;
+    private Ups ups;
+    ResultSet rs;
 
     public void UpsModel(Conexion con) {
         this.con = con;
+        this.ups = new Ups();
     }
 
-    public List<Ups> listarUpsCliente(int id_cliente) throws SQLException {
+    public List<Ups> listarUpsByCliente(int id_cliente) throws SQLException {
         List<Ups> upsClienteList = new ArrayList();
 
-        String sql = "SELECT * from ups join equipo on id_equipo=id_equipo_ups join cliente on id_cliente_equipo=id_cliente where id_cliente=?";
+        String sql = "SELECT * from ups "
+                + "join equipo on id_equipo=id_equipo_ups "
+                + "join cliente on id_cliente=id_cliente_equipo "
+                + "where id_cliente=?";
 
         //PreparedStatement ps;
-        ResultSet rs;
-
+        //ResultSet rs;
         try {
+
             ps = Conexion.prepararConsulta(sql);
             ps.setInt(1, id_cliente);
             rs = ps.executeQuery();
@@ -47,7 +54,8 @@ public class UpsModel {
                 ups.setId_equipo(rs.getInt("id_equipo_ups"));
                 ups.setPotencia_va(rs.getInt("potencia_va"));
                 ups.setSerie_equipo(rs.getString("serie_equipo"));
-                ups.setTiempoAutonomia_ups(rs.getInt("tiempoAutonomia_ups"));
+                ups.setSerie_equipo(rs.getString("serie_equipo"));
+                ups.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
 
                 upsClienteList.add(ups);
             }
@@ -60,6 +68,43 @@ public class UpsModel {
         }
 
         return upsClienteList;
+    }
+
+    public boolean inputUps(Ups ups, Equipo equipo) throws SQLException {
+        var input = false;
+
+        String sql = "insert into ups (id_equipo_ups, potencia, voltajeBanco_ups, transformadorAislamiento, id_topologia_ups, cant_batNom, cant_batTotal, id_ultimoComprobanteServicio, cant_bancoBat, tiempoAutonomia_ups) "
+                + "values(?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            var id_equipo = equipo.inputEquipo(equipo);
+            if (id_equipo != 0) {
+                ps = Conexion.prepararConsulta(sql);
+                ps.setInt(1, id_equipo);
+                ps.setInt(2, ups.getPotencia_va());
+                ps.setInt(3, ups.getVoltajebanco_ups());
+                ps.setBoolean(4, ups.getTransformadorAislamiento());
+                ps.setInt(5, ups.topologia.getId_topologia());
+                ps.setInt(6, ups.getCant_batNom());
+                ps.setInt(7, ups.getCant_batTotal());
+                ps.setInt(8, ups.getId_ultimoComprobanteServicio());
+                ps.setInt(9, ups.getCant_bancoBat());
+                ps.setInt(10, ups.getTiempoAutonomia_ups());
+                if (ps.executeUpdate() != 0){
+                    System.out.println("Ups ingresada correctamente");
+                }else{
+                    System.out.println("No se pudo ingresar la Ups. por favor tcontactese con su administrador de sistemas");
+                   input = true;
+                }
+            }
+           
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }finally{
+            Conexion.close();
+        }
+        return input;
     }
 
 }

@@ -10,6 +10,7 @@ import controller.Ups;
 import controller.Usuario;
 import java.util.Scanner;
 import controller.Equipo;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.sql.SQLException;
 
@@ -20,7 +21,9 @@ import java.sql.SQLException;
 public class ConsoleView {
 
     public static void menu() throws SQLException {
+
         Cliente cliente = new Cliente();
+
         System.out.println("Menu desde la consola");
 
         Scanner scanner = new Scanner(System.in);
@@ -54,15 +57,18 @@ public class ConsoleView {
                                   1. Listar Clientes.
                                   2. Buscar Cliente por Id.
                                   3. Insertar Cliente.
+                                  4. Listar Ups del Cliente.
                                   
                          """);
                 System.out.print("Ingrese la poción:");
                 input = scanner.nextInt();
                 switch (input) {
                     case 1:
+                        System.out.println("Listar Clientes.");
                         var clientes = cliente.listarClientes();
                         for (Cliente client : clientes) {
-                            System.out.print("Nombre Cliente" + client.getPrimerNombre_usuario());
+                            System.out.println("Nombre Cliente: " + client.getRazonSocial_cliente() + "\t Telefono: " + client.getTelefono_cliente()
+                                    + "\t Dirección: " + client.getDireccion_cliente() + "\t Documento: -" + client.tipoDocumento.getTipoDocumento() + "- " + client.getDocumento_cliente());
                         }
                         break;
                     case 2:
@@ -72,11 +78,23 @@ public class ConsoleView {
                         //System.out.println(clt.toString());
                         System.out.println("Nombre cliente: " + clt.getRazonSocial_cliente()
                                 + "\nPersona de contacto: " + clt.getPrimerNombre_usuario() + " " + clt.getPrimerApellido_usuario()
-                                + "\nCargo: "+clt.cargo.getCargo()
+                                + "\nCargo: " + clt.cargo.getCargo()
                                 + "\nTipo de documento: " + clt.tipoDocumento.getTipoDocumento()
                                 + "\nDocumento: " + clt.getDocumento_cliente()
                                 + "\nDirección: " + clt.getDireccion_cliente());
                         break;
+                    case 4:
+                        System.out.print("Ingrese el id del cliente: ");
+                        input = scanner.nextInt();
+                        System.out.println("\r Listando Ups del cliente.");
+                        Ups ups = new Ups();
+                        var listadoUps = ups.listarUpsByCliente(input);
+
+                        for (Ups equipoUps : listadoUps) {
+                            System.out.println(equipoUps);
+                        }
+                        break;
+
                     default:
                         System.out.println("Default");
                         menu();
@@ -93,7 +111,26 @@ public class ConsoleView {
                 break;
 
             case 4:
-                System.out.println("Opción 4");
+                System.out.println("""
+                                   1. Listar Equipos.
+                                   2. Insertar Equipo.
+                                   3. buscar Equipo por Id.
+                                   """);
+                System.out.print("Ingrese la opción: ");
+                input = scanner.nextByte(input);
+
+                switch (input) {
+                    case 3:
+                        System.out.println("Ingrese el id");
+                        input = scanner.nextInt();
+                        Equipo equipo = new Equipo();
+                        var busqueda = equipo.findEquipoById(input);
+                        System.out.println(busqueda);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+
                 break;
             case 5:
                 insertarEquipo();
@@ -159,7 +196,7 @@ public class ConsoleView {
 
             System.out.println("\r Listando Ups del cliente.");
             Ups ups = new Ups();
-            var listadoUps = ups.listarUpsCliente(3);
+            var listadoUps = ups.listarUpsByCliente(3);
 
             for (Ups equipoUps : listadoUps) {
                 System.out.println(equipoUps);
@@ -171,7 +208,7 @@ public class ConsoleView {
 
     public static void findEquipo(int id_equipo) {
         Equipo equipo = new Equipo();
-        equipo = equipo.findEquipo(id_equipo);
+        equipo = equipo.findEquipoById(id_equipo);
         System.out.println(equipo.toString());
     }
 
@@ -206,7 +243,7 @@ public class ConsoleView {
         equipo.updateEquipo(equipo);
          */
         Equipo equipo = new Equipo();
-        equipo = equipo.findEquipo(20);
+        equipo = equipo.findEquipoById(20);
         equipo.setSerie_equipo("nueva serie");
         equipo.updateEquipo(equipo);
 

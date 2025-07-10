@@ -46,10 +46,10 @@ public class StakeholderModel {
                 //Datops de Stakeholder
                 stakeholder.setId_stakeholder(rs.getInt("id_Stakleholder"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
-                stakeholder.getCargo().setId_cargo(rs.getInt("id_cargo_stakeholder"));
-                stakeholder.getCargo().setCargo(rs.getString("cargo"));
-                stakeholder.getTipoDocumento().setId_tipoDocumento(rs.getInt("id_tipoDocumento_stakeholder"));
-                stakeholder.getTipoDocumento().setTipoDocumento(rs.getString("tipoDocumento"));
+                stakeholder.cargo.setId_cargo(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.cargo.setCargo(rs.getString("cargo"));
+                stakeholder.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_stakeholder"));
+                stakeholder.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
                 stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
                 Date fechaCreacion_s = rs.getDate("fechaCreación");
                 LocalDate fechaCreacion_stakeholder = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
@@ -125,6 +125,7 @@ public class StakeholderModel {
                 stakeholder.setFechaActualizacion(fechaActualizacion);
                 Date fechaEliminado_s = rs.getDate("fechaEliminado");
                 LocalDate fechaEliminado = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+                stakeholder.setFechaEliminado(fechaEliminado);
 
             } else {
                 System.err.println("No se pudo encontrar el Stakeholder");

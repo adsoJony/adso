@@ -40,7 +40,7 @@ public class Usuario {
     public TipoUsuario tipoUsuario;
 
     private Conexion con;
-    private UsuarioModel usuarioModel = new UsuarioModel();
+    private final UsuarioModel usuarioModel = new UsuarioModel();
 
     public Usuario() {
         this.rol = new Rol();

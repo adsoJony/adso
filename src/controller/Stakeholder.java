@@ -29,9 +29,13 @@ public class Stakeholder extends Usuario{
     public TipoDocumento tipoDocumento;
     
     
-    private StakeholderModel stakeholderModel = new StakeholderModel();
+    private final StakeholderModel stakeholderModel = new StakeholderModel();
 
     public Stakeholder() {
+        this.cargo = new Cargo();
+        this.tipoDocumento = new TipoDocumento();
+        
+        
     }
 
     public Stakeholder(int id_stakeholder, int documento_stakeholder, int id_cargo_stakeholder, int id_tipoDocumento_stakeholder, int id_usuario_stakeholder, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado) {

@@ -20,6 +20,22 @@ public class TipoEquipo {
         this.id_tipoEquipo = id_tipoEquipo;
         this.tipo_equipo = tipo_equipo;
     }
+
+    public int getId_tipoEquipo() {
+        return id_tipoEquipo;
+    }
+
+    public void setId_tipoEquipo(int id_tipoEquipo) {
+        this.id_tipoEquipo = id_tipoEquipo;
+    }
+
+    public String getTipo_equipo() {
+        return tipo_equipo;
+    }
+
+    public void setTipo_equipo(String tipo_equipo) {
+        this.tipo_equipo = tipo_equipo;
+    }
     
     
     

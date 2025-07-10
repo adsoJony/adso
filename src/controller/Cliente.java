@@ -27,7 +27,7 @@ public class Cliente extends Usuario {
     public Cargo cargo;
     public TipoDocumento tipoDocumento;
 
-    private static final ClienteModel clienteModel = new ClienteModel();
+    private final ClienteModel clienteModel = new ClienteModel();
 
     public Cliente() {
         this.cargo = new Cargo();
@@ -415,7 +415,7 @@ public class Cliente extends Usuario {
 
     public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {     //Manejar las excepciones desde un paquete de excepciones
 
-        return clienteModel.InputCliente(cliente, usuario);
+        return clienteModel.inputCliente(cliente, usuario);
 
     }
 

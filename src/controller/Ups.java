@@ -20,7 +20,7 @@ public class Ups extends Equipo {
     protected int id_equipo_ups;
     protected int potencia_va;
     protected int voltajebanco_ups;
-    protected int transformadorAislamiento;
+    protected boolean transformadorAislamiento;
     protected int tiempoAutonomia_ups;
     protected int id_topologia_ups;
     protected int cant_batNom;
@@ -28,26 +28,12 @@ public class Ups extends Equipo {
     protected int id_ultimoComprobanteServicio;
     protected int cant_bancoBat;
     //Ojbjetos para GUI
-    protected Topologia topologia;
+    public Topologia topologia;
 
     private final UpsModel upsModel = new UpsModel();
 
     public Ups() {
         this.topologia = new Topologia();
-    }
-
-    public Ups(int id_ups, int id_equipo_ups, int potencia_va, int voltajebanco_ups, int transformadorAislamiento, int tiempoAutonomia_ups, int id_topologia_ups, int cant_batNom, int cant_batTotal, int id_ultimoComprobanteServicio, int cant_bancoBat) {
-        this.id_ups = id_ups;
-        this.id_equipo_ups = id_equipo_ups;
-        this.potencia_va = potencia_va;
-        this.voltajebanco_ups = voltajebanco_ups;
-        this.transformadorAislamiento = transformadorAislamiento;
-        this.tiempoAutonomia_ups = tiempoAutonomia_ups;
-        this.id_topologia_ups = id_topologia_ups;
-        this.cant_batNom = cant_batNom;
-        this.cant_batTotal = cant_batTotal;
-        this.id_ultimoComprobanteServicio = id_ultimoComprobanteServicio;
-        this.cant_bancoBat = cant_bancoBat;
     }
 
     public int getId_ups() {
@@ -82,11 +68,11 @@ public class Ups extends Equipo {
         this.voltajebanco_ups = voltajebanco_ups;
     }
 
-    public int getTransformadorAislamiento() {
+    public boolean getTransformadorAislamiento() {
         return transformadorAislamiento;
     }
 
-    public void setTransformadorAislamiento(int transformadorAislamiento) {
+    public void setTransformadorAislamiento(boolean transformadorAislamiento) {
         this.transformadorAislamiento = transformadorAislamiento;
     }
 
@@ -261,9 +247,12 @@ public class Ups extends Equipo {
         return "Ups";
     }
 
-    public List<Ups> listarUpsCliente(int id_cliente) throws SQLException {
+    public List<Ups> listarUpsByCliente(int id_cliente) throws SQLException {
 
-        return upsModel.listarUpsCliente(id_cliente);
+        return upsModel.listarUpsByCliente(id_cliente);
     }
 
+    public boolean inputUps(Ups ups, Equipo equipo) throws SQLException {
+        return upsModel.inputUps(ups, equipo);
+    }
 }
