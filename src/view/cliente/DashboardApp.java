@@ -6,16 +6,20 @@ package view.cliente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class DashboardApp extends JFrame {
+public class DashboardApp extends JFrame  {
 
     // Panel con CardLayout
     private JPanel panelCentral;
     private CardLayout cardLayout;
-    InsertCliente insertCliente = new InsertCliente();
+    InsertCliente insertCliente;
 
-    public DashboardApp() {
+    public DashboardApp() throws SQLException {
+        this.insertCliente = new InsertCliente();
         setTitle("Dashboard CRUD");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -85,9 +89,13 @@ public class DashboardApp extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         SwingUtilities.invokeLater(() -> {
-            new DashboardApp().setVisible(true);
+            try {
+                new DashboardApp().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(DashboardApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 }

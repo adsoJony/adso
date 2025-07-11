@@ -50,7 +50,7 @@ public class AdsoMain {
      * 
      * @return Mostramos el Frame DashBoardAdso de el paquete view
      */
-    final static void mostarDashBoardAdso() {
+    final static void mostarDashBoardAdso() throws SQLException {
         DashBoardAdso dashBoardAdso = new DashBoardAdso();
         dashBoardAdso.setVisible(true);
 

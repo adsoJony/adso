@@ -4,6 +4,10 @@
  */
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+import model.TipoDocumentoModel;
+
 /**
  *
  * @author JOES
@@ -12,8 +16,11 @@ public class TipoDocumento {
     
     protected int id_tipoDocumento;
     protected String tipoDocumento;
+    
+    TipoDocumentoModel documentoModel;
 
     public TipoDocumento() {
+        this.documentoModel = new TipoDocumentoModel();
     }
 
     public TipoDocumento(int id_tipoDocumento, String tipoDocumento) {
@@ -37,6 +44,23 @@ public class TipoDocumento {
         this.tipoDocumento = tipoDocumento;
     }
     
+    
+    public HashMap<String, Integer> hashMapTipoDocumento(){
+        var list = documentoModel.listarTipoDocumento();
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        
+        for (TipoDocumento doc : list){
+            hashMap.put(doc.tipoDocumento, doc.id_tipoDocumento);
+        }
+        
+        return hashMap ;
+    }
+    
+    
+     public List<TipoDocumento> listarTipoDocumento() {
+
+        return documentoModel.listarTipoDocumento();
+    }
     
     
     
