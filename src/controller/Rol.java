@@ -4,15 +4,25 @@
  */
 package controller;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import model.CargoModel;
+import model.RolModel;
+
 /**
  *
  * @author JOES
  */
 public class Rol {
+
     protected int id_rol;
     protected String descripcion_rol;
 
+    protected RolModel rolModel;
+
     public Rol() {
+        this.rolModel = new RolModel();
     }
 
     public Rol(int id_rol, String descripcion_rol) {
@@ -36,6 +46,19 @@ public class Rol {
         this.descripcion_rol = descripcion_rol;
     }
     
-    
-    
+    public List<Rol> listarRol() throws SQLException {
+
+        return rolModel.listarRol();
+    }
+
+    public HashMap<String, Integer> hashMapRol() throws SQLException {
+        var list = rolModel.listarRol();
+        HashMap<String, Integer> hashMap = new HashMap<>();
+
+        for (Rol hash : list) {
+            hashMap.put(hash.getDescripcion_rol(), hash.getId_rol());
+        }
+        return hashMap;
+    }
+
 }

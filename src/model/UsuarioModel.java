@@ -119,8 +119,8 @@ public class UsuarioModel {
             ps.setString(5, usuario.getSegundoApellido_usuario());
             ps.setString(6, usuario.getEmail_usuario());
             ps.setString(7, usuario.getPsw_usuario());
-            ps.setInt(8, usuario.getId_rol_usuario());
-            ps.setDate(8, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
+            ps.setInt(8, usuario.rol.getId_rol());
+            ps.setDate(9, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
             //ps.setDate(9, (Date) usuario.getFechaCreacion());
             ps.setDate(10, (usuario.getFechaActualizacion() != null) ? Date.valueOf(usuario.getFechaActualizacion()) : null);
             //ps.setDate(10, (Date) usuario.getFechaActualizacion());
@@ -134,7 +134,7 @@ public class UsuarioModel {
             ps.setString(16, usuario.getAvatar_usuario());
             ps.setDate(17, (usuario.getFecha_registroUsuario() != null) ? Date.valueOf(usuario.getFecha_registroUsuario()) : null);
             //ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
-            ps.setInt(18, usuario.getId_tipoUsuario_usuario());
+            ps.setInt(18, 2);           //Se escoje por defecto el número 2(dos)  que es el "id_TipoUsuario=2" como cliente
             ps.setBoolean(19, usuario.isDeleted());
 
             if (ps.executeUpdate() != 0) {

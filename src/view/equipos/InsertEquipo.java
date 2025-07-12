@@ -26,6 +26,7 @@ public class InsertEquipo extends javax.swing.JPanel {
     Cargo cargo = new Cargo();
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
+    public HashMap<String, Integer> rolHas = new HashMap<>();
     public Cliente cliente = new Cliente();
     TipoDocumento tipoDocumento = new TipoDocumento();
 

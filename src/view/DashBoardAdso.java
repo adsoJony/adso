@@ -41,12 +41,15 @@ public class DashBoardAdso extends JFrame {
     ListarClientes listarClientes = new ListarClientes();
     ListarEquipos listarEquipos = new ListarEquipos();
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
+   
 
     
     public DashBoardAdso() throws SQLException  {
         this.insertCliente = new InsertCliente();
 
         initComponents();
+        
+        
         //add(insertCliente);
 
         getContentPane().removeAll(); // eliminar lo generado por NetBeans
@@ -84,6 +87,7 @@ public class DashBoardAdso extends JFrame {
         jMenu3 = new javax.swing.JMenu();
         ingresarClienteJMenuItem = new javax.swing.JMenuItem();
         listarCLientesJMenuItem = new javax.swing.JMenuItem();
+        jMenuItemUpdateCliente = new javax.swing.JMenuItem();
         buscarClienteByIdJMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -123,6 +127,14 @@ public class DashBoardAdso extends JFrame {
             }
         });
         jMenu3.add(listarCLientesJMenuItem);
+
+        jMenuItemUpdateCliente.setText("UpdateCliente");
+        jMenuItemUpdateCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUpdateClienteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemUpdateCliente);
 
         buscarClienteByIdJMenuItem.setText("Buscar Clitente por Documento");
         buscarClienteByIdJMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +235,12 @@ public class DashBoardAdso extends JFrame {
 
     }//GEN-LAST:event_listarEquiposJMenuItemActionPerformed
 
+    private void jMenuItemUpdateClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUpdateClienteActionPerformed
+        // TODO add your handling code here:
+        
+        cardLayout.show(dashboard, "updateCliente");
+    }//GEN-LAST:event_jMenuItemUpdateClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +282,10 @@ public class DashBoardAdso extends JFrame {
             }
         });
     }
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem buscarClienteByIdJMenuItem;
@@ -282,6 +304,7 @@ public class DashBoardAdso extends JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemUpdateCliente;
     private javax.swing.JMenuItem listarCLientesJMenuItem;
     private javax.swing.JMenuItem listarEquiposJMenuItem;
     // End of variables declaration//GEN-END:variables
