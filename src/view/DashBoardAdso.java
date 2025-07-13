@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.Cliente;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
@@ -31,31 +32,31 @@ public class DashBoardAdso extends JFrame {
     // CardLayout cardLayout;
     // InsertCliente insertCliente;
     //InsertEquipo insertEquipo;
-    CardLayout cardLayout = new CardLayout();
+    public CardLayout cardLayout = new CardLayout();
     JPanel dashboard = new JPanel(cardLayout);
     InsertCliente insertCliente;
     InsertEquipo insertEquipo = new InsertEquipo();
     DashBoardPanel dashBoardPanel = new DashBoardPanel();
     UpdateEquipo updateEquipo = new UpdateEquipo();
-    UpdateCliente updateCliente = new UpdateCliente();
+    UpdateCliente updateCliente;
     ListarClientes listarClientes = new ListarClientes();
     ListarEquipos listarEquipos = new ListarEquipos();
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
-   
-
     
-    public DashBoardAdso() throws SQLException  {
+   
+    
+    public DashBoardAdso() throws SQLException {
         this.insertCliente = new InsertCliente();
-
+        this.updateCliente = new UpdateCliente();
+        
+        
         initComponents();
-        
-        
-        //add(insertCliente);
 
+        //add(insertCliente);
         getContentPane().removeAll(); // eliminar lo generado por NetBeans
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         //getContentPane().add(dashboard);
-        
+
         dashboard.add(dashBoardPanel, "dashboardanel");
         dashboard.add(insertCliente, "insertcliente");
         dashboard.add(insertEquipo, "insertequipo");
@@ -237,7 +238,7 @@ public class DashBoardAdso extends JFrame {
 
     private void jMenuItemUpdateClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUpdateClienteActionPerformed
         // TODO add your handling code here:
-        
+
         cardLayout.show(dashboard, "updateCliente");
     }//GEN-LAST:event_jMenuItemUpdateClienteActionPerformed
 
@@ -270,22 +271,19 @@ public class DashBoardAdso extends JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()  {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 try {
                     new DashBoardAdso().setVisible(true);
                 } catch (SQLException ex) {
                     //Logger.getLogger(DashBoardAdso.class.getName()).log(Level.SEVERE, null, ex);
-                    System.err.println("Error Runnable Invoque Later: "+ex);
+                    System.err.println("Error Runnable Invoque Later: " + ex);
                 }
             }
         });
     }
-    
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem buscarClienteByIdJMenuItem;

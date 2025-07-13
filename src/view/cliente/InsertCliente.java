@@ -10,11 +10,14 @@ import controller.Cargo;
 import controller.Cliente;
 import controller.Rol;
 import controller.TipoDocumento;
+import view.DashBoardAdso;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JTextField;
-import view.combos.CargoCombo;
+import view.DashBoardAdso;
+
 
 /**
  *
@@ -22,9 +25,9 @@ import view.combos.CargoCombo;
  */
 public class InsertCliente extends javax.swing.JPanel {
 
-    CargoCombo cargoCombo = new CargoCombo();
-    List<CargoCombo> listaCargos = new ArrayList<>();
-    CargoCombo prueba = new CargoCombo();
+    
+    
+    
     Cargo cargo = new Cargo();
     Rol rol = new Rol();
     TipoDocumento tipoDocumento = new TipoDocumento();
@@ -125,6 +128,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jToggleButtonIngresarCliente = new javax.swing.JToggleButton();
         jButtonInput = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
+        jButtonUpdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
 
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -612,12 +616,21 @@ public class InsertCliente extends javax.swing.JPanel {
             }
         });
 
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(4003, Short.MAX_VALUE)
+                .addContainerGap(3913, Short.MAX_VALUE)
+                .addComponent(jButtonUpdate)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
                 .addGap(26, 26, 26)
                 .addComponent(jButtonInput)
@@ -633,7 +646,8 @@ public class InsertCliente extends javax.swing.JPanel {
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonInput)
-                        .addComponent(jButtonLimpiar)))
+                        .addComponent(jButtonLimpiar)
+                        .addComponent(jButtonUpdate)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -696,6 +710,9 @@ public class InsertCliente extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
         }
+        finally{
+                        ;
+    }
 
     }//GEN-LAST:event_jToggleButtonIngresarClienteActionPerformed
 
@@ -764,6 +781,13 @@ public class InsertCliente extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        
+      
+        
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
     /**
      * *
      * Método para cargar ComboBox Cargos
@@ -826,6 +850,7 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel UsuarioFormjPanel1;
     private javax.swing.JButton jButtonInput;
     private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;

@@ -65,7 +65,7 @@ public class CargoCombo extends Cargo {
      * @param combo
      * @return
      */
-    public Cargo obtenerIdSeleccionado(JComboBox<ItemCombo> combo) {
+    public Cargo obtenerIdSeleccionado(JComboBox<ItemComboBox> combo) {
         Cargo seleccionado = (Cargo) combo.getSelectedItem();
         if (seleccionado != null) {
             return seleccionado;

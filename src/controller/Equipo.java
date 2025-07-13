@@ -8,6 +8,7 @@ import conexion.Conexion;
 import java.time.LocalDate;
 import model.EquipoModel;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -165,6 +166,8 @@ public class Equipo {
     public List<Equipo> listarEquipos() throws SQLException {
         return equipoModel.listarEquipos();
     }
+    
+    
 
    
 

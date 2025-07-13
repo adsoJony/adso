@@ -5,6 +5,14 @@
 package controller;
 
 //import model.ModeloModel;
+
+import conexion.Conexion;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import model.EquipoModel;
+import model.ModeloModel;
+
 /**
  *
  * @author JOES
@@ -26,12 +34,17 @@ public class Modelo {
     public Marca marca;
     public VoltajeOperacion voltajeOperacion;
     public TipoEquipo tipoEquipo;
+    
+    Conexion con;
+    
+    ModeloModel modeloModel = new ModeloModel(con);;
 
     //ModeloModel modeloModel = new ModeloModel();
     public Modelo() {
         this.marca = new Marca();
         this.voltajeOperacion = new VoltajeOperacion();
         this.tipoEquipo = new TipoEquipo();
+        //this.modeloModel = new ModeloModel();
 
     }
 
@@ -137,6 +150,20 @@ public class Modelo {
 
     public void setDetalleEquipo_modelo(String detalleEquipo_modelo) {
         this.detalleEquipo_modelo = detalleEquipo_modelo;
+    }
+    
+    public List<Modelo> listarModelo() throws SQLException{
+        return modeloModel.listarModelo();
+    }
+    
+     public HashMap<String, Integer> hashMap() throws SQLException {
+        var list = modeloModel.listarModelo();
+        HashMap<String, Integer> hashMap = new HashMap<>();
+
+        for (Modelo hash : list) {
+            hashMap.put(hash.getDetalle_modelo(), hash.getId_modelo());
+        }
+        return hashMap;
     }
     
     
