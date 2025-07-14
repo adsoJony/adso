@@ -4,6 +4,7 @@
  */
 package view.colaborador;
 
+import conexion.Conexion;
 import controller.Cargo;
 import controller.Rol;
 import controller.TipoDocumento;
@@ -14,6 +15,7 @@ import controller.Rol;
 import controller.Stakeholder;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import view.DashBoardAdso;
 
 /**
  *
@@ -25,6 +27,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
     Cargo cargo = new Cargo();
     TipoDocumento tipoDocumento = new TipoDocumento();
 
+    //DashBoardAdso dashPruebaAdso = new DashBoardAdso();
     HashMap<String, Integer> cargoHas = new HashMap<>();
     HashMap<String, Integer> rolHas = new HashMap<>();
     HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
@@ -34,13 +37,15 @@ public class InsertStakeholder extends javax.swing.JPanel {
      */
     public InsertStakeholder() throws SQLException {
 
+        //  HashMaps de los combBox
         cargoHas = cargo.hashMapCargo();
         rolHas = rol.hashMapRol();
         tipoDocumentoHas = tipoDocumento.hashMapTipoDocumento();
 
         initComponents();
+
+        //      Cargamos los comboBox
         cargarCargos();
-        cargarRol();
         cargarTipoDocumento();
 
     }
@@ -73,9 +78,6 @@ public class InsertStakeholder extends javax.swing.JPanel {
         jPanel21 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jPanel18 = new javax.swing.JPanel();
-        jComboBoxRol = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
         jPanelNickname1 = new javax.swing.JPanel();
         jTextFieldNickname = new javax.swing.JTextField();
         jLabelNickname1 = new javax.swing.JLabel();
@@ -88,6 +90,9 @@ public class InsertStakeholder extends javax.swing.JPanel {
         jPanel17 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPasswordFieldB = new javax.swing.JPasswordField();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxRol = new javax.swing.JComboBox<>();
         UsuarioFormjPanel2 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jTextFieldIdentificacion = new javax.swing.JTextField();
@@ -101,10 +106,12 @@ public class InsertStakeholder extends javax.swing.JPanel {
         jPanel23 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jComboBoxCargo = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonIngresar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonPrueba = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(900, 800));
         setLayout(new java.awt.BorderLayout());
 
         jPanelTitulo.setPreferredSize(new java.awt.Dimension(900, 200));
@@ -118,16 +125,16 @@ public class InsertStakeholder extends javax.swing.JPanel {
         jPanelTituloLayout.setHorizontalGroup(
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addGap(1944, 1944, 1944)
+                .addGap(204, 204, 204)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         jPanelTituloLayout.setVerticalGroup(
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         add(jPanelTitulo, java.awt.BorderLayout.NORTH);
@@ -138,7 +145,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 616));
 
         UsuarioFormjPanel1.setAutoscrolls(true);
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 250));
 
         jPanel8.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -268,35 +275,6 @@ public class InsertStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel21);
 
-        jPanel18.setPreferredSize(new java.awt.Dimension(300, 34));
-
-        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel15.setText("Rol de Cliente");
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel1.add(jPanel18);
-
         jPanelNickname1.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanelNickname1.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -322,7 +300,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanelNickname1);
 
-        jPanel15.setPreferredSize(new java.awt.Dimension(320, 25));
+        jPanel15.setPreferredSize(new java.awt.Dimension(600, 25));
 
         jLabel13.setText("Email");
 
@@ -333,21 +311,22 @@ public class InsertStakeholder extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(81, 81, 81)
+                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addComponent(jTextFieldEmail)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(0, 3, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)))
         );
 
         UsuarioFormjPanel1.add(jPanel15);
+
+        jPanel16.setPreferredSize(new java.awt.Dimension(350, 28));
 
         passAJLabel1.setText("Password");
 
@@ -376,7 +355,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel16);
 
-        jPanel17.setPreferredSize(new java.awt.Dimension(320, 25));
+        jPanel17.setPreferredSize(new java.awt.Dimension(350, 28));
 
         jLabel14.setText("ConfirmarPasswod");
 
@@ -391,7 +370,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,10 +383,39 @@ public class InsertStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel17);
 
+        jPanel7.setPreferredSize(new java.awt.Dimension(300, 25));
+
+        jLabel6.setText("Rol");
+
+        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(49, 49, 49)
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
+
+        UsuarioFormjPanel1.add(jPanel7);
+
         jPanel1.add(UsuarioFormjPanel1);
 
         UsuarioFormjPanel2.setAutoscrolls(true);
-        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 200));
 
         jPanel19.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel19.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -524,26 +532,60 @@ public class InsertStakeholder extends javax.swing.JPanel {
 
         jPanel1.add(UsuarioFormjPanel2);
 
+        jButtonIngresar.setText("Ingresar");
+        jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngresarActionPerformed(evt);
+            }
+        });
+
         jButton2.setText("Limpiar campos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
 
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrueba.setText("Prueba de cambio panel");
+        jButtonPrueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPruebaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonPrueba)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addComponent(jButtonIngresar)
+                .addGap(0, 80, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIngresar)
+                    .addComponent(jButtonPrueba))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2);
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         // TODO add your handling code here:
 
         int id_stakeholder;
@@ -552,8 +594,8 @@ public class InsertStakeholder extends javax.swing.JPanel {
         var rolSeleccionado = jComboBoxRol.getSelectedItem();
         var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
         var id_cargo = cargoHas.get(cargoSeleccionado);
-        var id_rol = rolHas.get(rolSeleccionado);
-
+        var id_rol = rolHas.get(rolSeleccionado);         //El id_rol_usuario de stakeholder es 4
+        
         Stakeholder stakeholderFrm = new Stakeholder();
 
         try {
@@ -567,16 +609,16 @@ public class InsertStakeholder extends javax.swing.JPanel {
             char[] passChars = jPasswordFieldA.getPassword();
             String psw_usuario = new String(passChars);
             stakeholderFrm.setPsw_usuario(psw_usuario);
-            stakeholderFrm.rol.setId_rol(id_rol);
-
+            //stakeholderFrm.rol.setId_rol(id_rol);
+           stakeholderFrm.setId_rol_usuario(id_rol);
             stakeholderFrm.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
 
             //  Datos de Cliente
             stakeholderFrm.cargo.setId_cargo(id_cargo);
             stakeholderFrm.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-           
+
 // id_stakeholder = stakeholderFrm.inputStakeholder(stakeholderFrm, stakeholderFrm);
-id_stakeholder = 3;
+            id_stakeholder = 3;
             if (id_stakeholder >= 0) {
                 System.out.println("Stakeholder registrado" + id_stakeholder);
 
@@ -593,7 +635,7 @@ id_stakeholder = 3;
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
         } finally {
-            ;
+            Conexion.close();
         }
 
         //Información de usuario
@@ -603,12 +645,18 @@ id_stakeholder = 3;
         stakeholderFrm.setId_cargo_stakeholder(id_cargo);
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonIngresarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         limpiarCampos();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPruebaActionPerformed
+        // TODO add your handling code here:
+
+        DashBoardAdso.cambiarPanel("dashboardpanel");
+    }//GEN-LAST:event_jButtonPruebaActionPerformed
 
     /**
      * *
@@ -623,14 +671,6 @@ id_stakeholder = 3;
             //cargoJCombo.addItem((Integer.toString( c.getId_cargo())));        //para listar por id y utilizar Int
             jComboBoxCargo.addItem(c.getCargo());                                  //Lo usamos con String
         }
-    }
-
-    final void cargarRol() throws SQLException {
-        jComboBoxRol.removeAllItems();
-        for (Rol r : rol.listarRol()) {
-            jComboBoxRol.addItem(r.getDescripcion_rol());
-        }
-
     }
 
     /**
@@ -650,26 +690,27 @@ id_stakeholder = 3;
         jTextFieldDireccion.setText("");
         jTextFieldPrimerNombreCliente.setText("");
         jTextFieldSegundoNombre.setText("");
-        
-
         jTextFieldEmail.setText("");
         jTextFieldIdentificacion.setText("");
         jTextFieldNickname.setText("");
         jTextFieldPrimerApellido.setText("");
         jTextFieldPrimerNombreCliente.setText("");
-     
         jTextFieldSegundoApellido.setText("");;
         jTextFieldSegundoNombre.setText("");;
         jTextFieldTelefono.setText("");
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
 
+        //dashPruebaAdso.goToDashboard();
     }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel1;
     private javax.swing.JPanel UsuarioFormjPanel2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonIngresar;
+    private javax.swing.JButton jButtonPrueba;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
@@ -678,12 +719,12 @@ id_stakeholder = 3;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelNickname1;
@@ -693,12 +734,13 @@ id_stakeholder = 3;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelNickname1;

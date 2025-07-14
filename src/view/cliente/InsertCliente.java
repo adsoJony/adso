@@ -10,6 +10,7 @@ import controller.Cargo;
 import controller.Cliente;
 import controller.Rol;
 import controller.TipoDocumento;
+import controller.TipoUsuario;
 import view.DashBoardAdso;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -18,19 +19,16 @@ import java.util.List;
 import javax.swing.JTextField;
 import view.DashBoardAdso;
 
-
 /**
  *
  * @author jogof
  */
 public class InsertCliente extends javax.swing.JPanel {
 
-    
-    
-    
     Cargo cargo = new Cargo();
     Rol rol = new Rol();
     TipoDocumento tipoDocumento = new TipoDocumento();
+    //TipoUsuario tipoUsuario = new TipoUsuario();
     public Cliente cliente = new Cliente();
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
@@ -89,34 +87,31 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanelNickname = new javax.swing.JPanel();
         jTextFieldNickname = new javax.swing.JTextField();
         jLabelNickname = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jTextFieldEmail = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
-        jComboBoxRol = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         passAJLabel = new javax.swing.JLabel();
         jPasswordFieldA = new javax.swing.JPasswordField();
         jPanel12 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPasswordFieldB = new javax.swing.JPasswordField();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxRol = new javax.swing.JComboBox<>();
+        UsuarioFormjPanel1 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jComboBoxTipoDocumento = new javax.swing.JComboBox<>();
         jPanel16 = new javax.swing.JPanel();
         jTextFieldIdentificacion = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        UsuarioFormjPanel1 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jTextFieldDireccion = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jPanel22 = new javax.swing.JPanel();
-        jTextField17 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jComboBoxCargo = new javax.swing.JComboBox<>();
@@ -125,12 +120,15 @@ public class InsertCliente extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jToggleButtonIngresarCliente = new javax.swing.JToggleButton();
-        jButtonInput = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
         jButtonUpdate = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
+        jButtonInput = new javax.swing.JButton();
+        jToggleButtonIngresarCliente = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
 
+        setMaximumSize(new java.awt.Dimension(900, 800));
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 600));
         setLayout(new java.awt.BorderLayout());
 
@@ -142,7 +140,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(3763, Short.MAX_VALUE)
+                .addContainerGap(1596, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(326, 326, 326))
         );
@@ -152,6 +150,9 @@ public class InsertCliente extends javax.swing.JPanel {
         );
 
         add(jPanel1, java.awt.BorderLayout.NORTH);
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(2205, 800));
+        jPanel2.setPreferredSize(new java.awt.Dimension(800, 800));
 
         UsuarioFormjPanel.setAutoscrolls(true);
         UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(800, 300));
@@ -282,33 +283,6 @@ public class InsertCliente extends javax.swing.JPanel {
 
         UsuarioFormjPanel.add(jPanelNickname);
 
-        jPanel10.setPreferredSize(new java.awt.Dimension(320, 25));
-
-        jLabel9.setText("Email");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jTextFieldEmail)
-                .addContainerGap())
-        );
-
-        UsuarioFormjPanel.add(jPanel10);
-
         jPanel18.setMinimumSize(new java.awt.Dimension(350, 0));
         jPanel18.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -321,7 +295,7 @@ public class InsertCliente extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -336,34 +310,31 @@ public class InsertCliente extends javax.swing.JPanel {
 
         UsuarioFormjPanel.add(jPanel18);
 
-        jPanel7.setPreferredSize(new java.awt.Dimension(300, 34));
+        jPanel10.setPreferredSize(new java.awt.Dimension(600, 25));
 
-        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel9.setText("Email");
 
-        jLabel6.setText("Rol de Cliente");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextFieldEmail))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel.add(jPanel7);
+        UsuarioFormjPanel.add(jPanel10);
 
         passAJLabel.setText("Password");
 
@@ -406,7 +377,7 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,6 +389,40 @@ public class InsertCliente extends javax.swing.JPanel {
         );
 
         UsuarioFormjPanel.add(jPanel12);
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(300, 25));
+
+        jLabel6.setText("Rol");
+
+        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(49, 49, 49)
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
+
+        UsuarioFormjPanel.add(jPanel7);
+
+        jPanel2.add(UsuarioFormjPanel);
+
+        UsuarioFormjPanel1.setAutoscrolls(true);
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 300));
 
         jPanel26.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanel26.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -434,7 +439,7 @@ public class InsertCliente extends javax.swing.JPanel {
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxTipoDocumento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBoxTipoDocumento, 0, 182, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel26Layout.setVerticalGroup(
@@ -446,7 +451,7 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel.add(jPanel26);
+        UsuarioFormjPanel1.add(jPanel26);
 
         jPanel16.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel16.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -473,12 +478,7 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel.add(jPanel16);
-
-        jPanel2.add(UsuarioFormjPanel);
-
-        UsuarioFormjPanel1.setAutoscrolls(true);
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel1.add(jPanel16);
 
         jPanel17.setMinimumSize(new java.awt.Dimension(350, 0));
         jPanel17.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -506,32 +506,6 @@ public class InsertCliente extends javax.swing.JPanel {
         );
 
         UsuarioFormjPanel1.add(jPanel17);
-
-        jPanel22.setMinimumSize(new java.awt.Dimension(200, 0));
-        jPanel22.setPreferredSize(new java.awt.Dimension(300, 25));
-
-        jLabel20.setText("Email");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField17))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel1.add(jPanel22);
 
         jPanel14.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanel14.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -593,18 +567,10 @@ public class InsertCliente extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jToggleButtonIngresarCliente.setText("Ingresar");
-        jToggleButtonIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonIngresarClienteActionPerformed(evt);
-            }
-        });
-        jPanel13.add(jToggleButtonIngresarCliente);
-
-        jButtonInput.setText("Input");
-        jButtonInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInputActionPerformed(evt);
+                jButtonUpdateActionPerformed(evt);
             }
         });
 
@@ -615,39 +581,67 @@ public class InsertCliente extends javax.swing.JPanel {
             }
         });
 
-        jButtonUpdate.setText("Update");
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInput.setText("Input");
+        jButtonInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
+                jButtonInputActionPerformed(evt);
             }
         });
+
+        jToggleButtonIngresarCliente.setText("Ingresar");
+        jToggleButtonIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonIngresarClienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(361, Short.MAX_VALUE)
+                .addComponent(jButtonUpdate)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonInput)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButtonIngresarCliente)
+                .addGap(202, 202, 202))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUpdate)
+                    .addComponent(jButtonLimpiar)
+                    .addComponent(jButtonInput)
+                    .addComponent(jToggleButtonIngresarCliente))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(3919, Short.MAX_VALUE)
-                .addComponent(jButtonUpdate)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonLimpiar)
-                .addGap(26, 26, 26)
-                .addComponent(jButtonInput)
-                .addGap(67, 67, 67)
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(45, 45, 45))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonInput)
-                        .addComponent(jButtonLimpiar)
-                        .addComponent(jButtonUpdate)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         add(jPanel25, java.awt.BorderLayout.SOUTH);
@@ -661,6 +655,7 @@ public class InsertCliente extends javax.swing.JPanel {
         var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
         var rolSeleccionado = jComboBoxRol.getSelectedItem();
         int id_rol = rolHas.get(rolSeleccionado);
+        int id_tipoUsuario = 1;         //  Por ser stakeholder es 1 y 2 poara cliente
         var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
         var id_cargo = cargoHas.get(cargoSeleccionado);
         var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
@@ -677,6 +672,8 @@ public class InsertCliente extends javax.swing.JPanel {
             char[] passChars = jPasswordFieldA.getPassword();
             String psw_usuario = new String(passChars);
             cliente.setPsw_usuario(psw_usuario);
+            cliente.setId_tipoUsuario_usuario(id_tipoUsuario);
+            
             cliente.rol.setId_rol(id_rol);
 
             cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
@@ -708,10 +705,9 @@ public class InsertCliente extends javax.swing.JPanel {
 
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
+        } finally {
+            ;
         }
-        finally{
-                        ;
-    }
 
     }//GEN-LAST:event_jToggleButtonIngresarClienteActionPerformed
 
@@ -719,12 +715,12 @@ public class InsertCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         int id_cliente;
         var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
-        var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = rolHas.get(rolSeleccionado);
+        //var rolSeleccionado = jComboBoxRol.getSelectedItem();
+        int id_rol = 2;             //el id_rol_usuario
         var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
         var id_cargo = cargoHas.get(cargoSeleccionado);
+        // var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
         var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
-        //var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
 
         try {
             //Datos de Usuario
@@ -737,7 +733,7 @@ public class InsertCliente extends javax.swing.JPanel {
             char[] passChars = jPasswordFieldA.getPassword();
             String psw_usuario = new String(passChars);
             cliente.setPsw_usuario(psw_usuario);
-            cliente.rol.setId_rol(id_rol);
+            cliente.setId_rol_usuario(id_rol);
 
             cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
 
@@ -782,9 +778,8 @@ public class InsertCliente extends javax.swing.JPanel {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        
-      
-        
+
+
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
@@ -804,10 +799,10 @@ public class InsertCliente extends javax.swing.JPanel {
 
     final void cargarRol() throws SQLException {
         jComboBoxRol.removeAllItems();
-        for (Rol r : rol.listarRol()) {
-            jComboBoxRol.addItem(r.getDescripcion_rol());
+        for (Rol c : rol.listarRol()) {
+            //cargoJCombo.addItem((Integer.toString( c.getId_cargo())));        //para listar por id y utilizar Int
+            jComboBoxRol.addItem(c.getDescripcion_rol());                                  //Lo usamos con String
         }
-
     }
 
     /**
@@ -827,8 +822,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jTextFieldDireccion.setText("");
         jTextFieldPrimerNombreCliente.setText("");
         jTextFieldSegundoNombre.setText("");
-        jTextField17.setText("");
-        
+
         jTextFieldEmail.setText("");
         jTextFieldIdentificacion.setText("");
         jTextFieldNickname.setText("");
@@ -838,10 +832,9 @@ public class InsertCliente extends javax.swing.JPanel {
         jTextFieldSegundoApellido.setText("");;
         jTextFieldSegundoNombre.setText("");;
         jTextFieldTelefono.setText("");
-       jPasswordFieldA.setText("");
-       jPasswordFieldB.setText("");
-       
-        
+        jPasswordFieldA.setText("");
+        jPasswordFieldB.setText("");
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -861,7 +854,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -880,7 +872,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
@@ -888,11 +879,11 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelNickname;
     private javax.swing.JPasswordField jPasswordFieldA;
     private javax.swing.JPasswordField jPasswordFieldB;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextFieldDireccion;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIdentificacion;

@@ -31,12 +31,8 @@ public class AdsoMain {
         try {
 
             //ConsoleView.menu();
-            mostarDashBoardAdso();
+            mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
            
-            CargoCombo cargoCombo = new CargoCombo();
-            for (Cargo cargo : cargoCombo.listarCargos()){
-                System.out.println(cargo.getCargo());
-            }
            
 
         } catch (Exception e) {
