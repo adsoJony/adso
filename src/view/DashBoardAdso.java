@@ -15,9 +15,9 @@ import view.cliente.BuscarClienteByDoc;
 import view.cliente.InsertCliente;
 import view.cliente.ListarClientes;
 import view.cliente.UpdateCliente;
-import view.equipos.InsertEquipo;
-import view.equipos.ListarEquipos;
-import view.equipos.UpdateEquipo;
+import view.equipos.InsertUps;
+import view.equipos.ListarUps;
+import view.equipos.UpdateUps;
 import view.colaborador.InsertStakeholder;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -40,13 +40,13 @@ public class DashBoardAdso extends JFrame {
      */
     public static JPanel dashboard = new JPanel(cardLayout);
     InsertCliente insertCliente;
-    InsertEquipo insertEquipo = new InsertEquipo();
+    InsertUps insertEquipo = new InsertUps();
     InsertStakeholder insertStakeholder = new InsertStakeholder();
     DashBoardPanel dashBoardPanel = new DashBoardPanel();
-    UpdateEquipo updateEquipo = new UpdateEquipo();
+    UpdateUps updateEquipo = new UpdateUps();
     UpdateCliente updateCliente;
     ListarClientes listarClientes = new ListarClientes();
-    ListarEquipos listarEquipos = new ListarEquipos();
+    ListarUps listarEquipos = new ListarUps();
 
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
 

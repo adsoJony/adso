@@ -10,12 +10,13 @@ import model.StakeholderModel;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+
 /**
  *
  * @author JOES
  */
-public class Stakeholder extends Usuario{
-    
+public class Stakeholder extends Usuario {
+
     protected int id_stakeholder;
     protected int documento_stakeholder;
     protected int id_cargo_stakeholder;
@@ -27,15 +28,13 @@ public class Stakeholder extends Usuario{
     //Objetos para GUI
     public Cargo cargo;
     public TipoDocumento tipoDocumento;
-    
-    
+
     private final StakeholderModel stakeholderModel = new StakeholderModel();
 
     public Stakeholder() {
         this.cargo = new Cargo();
         this.tipoDocumento = new TipoDocumento();
-        
-        
+
     }
 
     public Stakeholder(int id_stakeholder, int documento_stakeholder, int id_cargo_stakeholder, int id_tipoDocumento_stakeholder, int id_usuario_stakeholder, LocalDate fechaCreacion, LocalDate fechaActualizacion, LocalDate fechaEliminado) {
@@ -58,8 +57,6 @@ public class Stakeholder extends Usuario{
         this.fechaActualizacion = fechaActualizacion;
         this.fechaEliminado = fechaEliminado;
     }
-
-   
 
     public int getId_stakeholder() {
         return id_stakeholder;
@@ -316,32 +313,23 @@ public class Stakeholder extends Usuario{
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
-    
-    
 
     @Override
     public String toString() {
         return "Stakeholder{" + "id_stakeholder=" + id_stakeholder + ", documento_stakeholder=" + documento_stakeholder + ", id_cargo_stakeholder=" + id_cargo_stakeholder + ", id_tipoDocumento_stakeholder=" + id_tipoDocumento_stakeholder + ", id_usuario_stakeholder=" + id_usuario_stakeholder + ", fechaCreacion=" + fechaCreacion + ", fechaActualizacion=" + fechaActualizacion + ", fechaEliminado=" + fechaEliminado + '}';
     }
-    
-    
-    
+
+    /*
     public Stakeholder findStakeholder(int idStakeholder) throws SQLException{
         return stakeholderModel.findStakeholder(idStakeholder);
     }
-    
-    public List<Stakeholder> listarStakeholder() throws SQLException{
-      return   stakeholderModel.listarStakeholder();
+     */
+    public List<Stakeholder> listarStakeholder() throws SQLException {
+        return stakeholderModel.listarStakeholder();
     }
-    
-    public int inputStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException{
+
+    public int inputStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException {
         return stakeholderModel.inputStakeholder(stakeholder, usuario);
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

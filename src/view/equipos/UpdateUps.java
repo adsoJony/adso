@@ -8,12 +8,12 @@ package view.equipos;
  *
  * @author jogof
  */
-public class UpdateEquipo extends javax.swing.JPanel {
+public class UpdateUps extends javax.swing.JPanel {
 
     /**
      * Creates new form InsertCliente
      */
-    public UpdateEquipo() {
+    public UpdateUps() {
         initComponents();
     }
 

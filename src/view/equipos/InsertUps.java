@@ -30,7 +30,7 @@ import javax.swing.text.DateFormatter;
  *
  * @author jogof
  */
-public class InsertEquipo extends javax.swing.JPanel {
+public class InsertUps extends javax.swing.JPanel {
 
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> rolHas = new HashMap<>();
@@ -46,7 +46,7 @@ public class InsertEquipo extends javax.swing.JPanel {
     /**
      * Creates new form InsertCliente
      */
-    public InsertEquipo() throws SQLException {
+    public InsertUps() throws SQLException {
 
         modeloHas = modelo.hashMap();
         topologiaHas = topologia.hashMap();

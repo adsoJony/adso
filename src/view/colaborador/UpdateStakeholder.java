@@ -21,7 +21,7 @@ import view.DashBoardAdso;
  *
  * @author jogof
  */
-public class InsertStakeholder extends javax.swing.JPanel {
+public class UpdateStakeholder extends javax.swing.JPanel {
 
     Rol rol = new Rol();
     Cargo cargo = new Cargo();
@@ -35,7 +35,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
     /**
      * Creates new form InsertStakeholder
      */
-    public InsertStakeholder() throws SQLException {
+    public UpdateStakeholder() throws SQLException {
 
         //  HashMaps de los combBox
         cargoHas = cargo.hashMapCargo();

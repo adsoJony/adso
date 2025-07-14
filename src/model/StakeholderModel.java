@@ -60,7 +60,7 @@ public class StakeholderModel {
                 Date fechaEliminado_s = rs.getDate("fechaEliminado");
                 LocalDate fechaEliminado_stakeholder = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
                 stakeholder.setFechaEliminado(fechaEliminado_stakeholder);
-                
+
                 //Datos de usuario
                 stakeholder.setId_stakeholder(rs.getInt("id_usuario"));
                 stakeholder.setNickName_usuario(rs.getString("nickName_usuario"));
@@ -101,44 +101,45 @@ public class StakeholderModel {
         return stakeholder;
     }
 
-    public Stakeholder findStakeholder(int idStakeholder) throws SQLException {
-        var stakeholder = new Stakeholder();
-        String sql = "select * from Stakeholder where id_stakeholder=?";
-        PreparedStatement ps;
-        try {
-            ps = Conexion.prepararConsulta(sql);
-            ps.setInt(1, idStakeholder);
-            ResultSet rs;
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
-                stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
-                stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
-                stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipodocumento_stakeholder"));
-                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
-                Date fechaCreacion_s = rs.getDate("fechaCreacion");
-                LocalDate fechaCreacion = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
-                stakeholder.setFechaCreacion(fechaCreacion);
-                Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
-                LocalDate fechaActualizacion = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
-                stakeholder.setFechaActualizacion(fechaActualizacion);
-                Date fechaEliminado_s = rs.getDate("fechaEliminado");
-                LocalDate fechaEliminado = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
-                stakeholder.setFechaEliminado(fechaEliminado);
-
-            } else {
-                System.err.println("No se pudo encontrar el Stakeholder");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e);
-        } finally {
-            Conexion.close();
-        }
-
-        return stakeholder;
-    }
-
+    /**
+     * public Stakeholder findStakeholder(int idStakeholder) throws SQLException
+     * { var stakeholder = new Stakeholder(); String sql = "select * from
+     * Stakeholder where id_stakeholder=?"; PreparedStatement ps; try { ps =
+     * Conexion.prepararConsulta(sql); ps.setInt(1, idStakeholder); ResultSet
+     * rs; rs = ps.executeQuery();
+     *
+     * if (rs.next()) {
+     * stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
+     * stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
+     * stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
+     * stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipodocumento_stakeholder"));
+     * stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
+     * Date fechaCreacion_s = rs.getDate("fechaCreacion"); LocalDate
+     * fechaCreacion = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate()
+     * : null; stakeholder.setFechaCreacion(fechaCreacion); Date
+     * fechaActualizacion_s = rs.getDate("fechaActualizacion"); LocalDate
+     * fechaActualizacion = (fechaActualizacion_s != null) ?
+     * fechaActualizacion_s.toLocalDate() : null;
+     * stakeholder.setFechaActualizacion(fechaActualizacion); Date
+     * fechaEliminado_s = rs.getDate("fechaEliminado"); LocalDate fechaEliminado
+     * = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+     * stakeholder.setFechaEliminado(fechaEliminado);
+     *
+     * } else { System.err.println("No se pudo encontrar el Stakeholder"); } }
+     * catch (SQLException e) { System.err.println("Error: " + e); } finally {
+     * Conexion.close(); }
+     *
+     * return stakeholder; }
+     *
+     *
+     */
+    
+    /***
+     * Método para listar los colaboradores o Stakeholders
+     * 
+     * @return List - Lista
+     * @throws SQLException 
+     */
     public List<Stakeholder> listarStakeholder() throws SQLException {
         List<Stakeholder> stakeholders = new ArrayList();
         String slq = "SELECT * "
@@ -212,7 +213,7 @@ public class StakeholderModel {
                         if (rs.next()) {
                             idStakeholder = rs.getInt(1);
                             System.out.println("El id del Stakeholder es:" + idStakeholder);
-                            
+
                         }
                         rs.close();
                     } else {
@@ -233,6 +234,34 @@ public class StakeholderModel {
             Conexion.close();
         }
         return idStakeholder;
+    }
+
+    public int delete(int id_usuario_stakeholder) throws SQLException {
+        int deleted = 0;
+        String sql = "UPDATE usuarios "
+                + "SET deleted=1, active=0 "
+                + "WHERE=id_usuario=?";
+        try {
+            ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id_usuario_stakeholder);
+
+            if (ps.executeUpdate() != 0) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    deleted = rs.getInt(1);
+
+                }
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error delete Usuario: " + e.getMessage());
+        } finally {
+            Conexion.close();
+        }
+
+        return deleted;
     }
 
 }

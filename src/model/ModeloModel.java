@@ -17,46 +17,44 @@ import java.util.List;
  * @author jogof
  */
 public class ModeloModel {
-    
-    Conexion con ;
+
+    Conexion con;
     PreparedStatement ps;
     ResultSet rs;
-    
-    public ModeloModel(Conexion con){
-        this.con= con;
+
+    public ModeloModel(Conexion con) {
+        this.con = con;
     }
-    
-    public List<Modelo> listarModelo() throws SQLException{
-        List<Modelo> list =new ArrayList<>();
+
+    public List<Modelo> listarModelo() throws SQLException {
+        List<Modelo> list = new ArrayList<>();
         String sql = "select * from modelo";
-        
+
         try {
             ps = Conexion.prepararConsulta(sql);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Modelo model = new Modelo();
                 model.setId_modelo(rs.getInt("id_modelo"));
-                model.marca.setId_marca(rs.getInt("id_marca_modelo"));
-                model.voltajeOperacion.setId_voltajeOperacion(rs.getInt("id_voltajeOperacion_modelo"));
-                model.tipoEquipo.setId_tipoEquipo(rs.getInt("id_tipoEquipo_modelo"));
-                model.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
+                model.setId_marca_modelo(rs.getInt("id_marca_modelo"));
+                model.setId_voltajeOperacion_modelo(rs.getInt("id_voltajeOperacion_modelo"));
+                model.setId_tipoEquipo_modelo(rs.getInt("id_tipoEquipo_modelo"));
                 model.setDetalle_modelo(rs.getString("detalle_modelo"));
-                model.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
+                model.setAlto(rs.getInt("alto"));
+                model.setAncho(rs.getInt("ancho"));
+                model.setProfundidad(rs.getInt("profundidad"));
+                //model.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
                 list.add(model);
             }
             rs.close();
             ps.close();
         } catch (SQLException e) {
-            System.err.println("Err: "+e);
-        }finally{
+            System.err.println("Err: " + e);
+        } finally {
             Conexion.close();
         }
-        
+
         return list;
     }
-    
-    
-    
-    
-    
+
 }

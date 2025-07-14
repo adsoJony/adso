@@ -8,12 +8,12 @@ package view.equipos;
  *
  * @author jogof
  */
-public class ListarEquipos extends javax.swing.JPanel {
+public class ListarUps extends javax.swing.JPanel {
 
     /**
      * Creates new form ListarEquipos
      */
-    public ListarEquipos() {
+    public ListarUps() {
         initComponents();
     }
 

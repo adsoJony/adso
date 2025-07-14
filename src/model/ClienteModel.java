@@ -119,7 +119,8 @@ public class ClienteModel {
     }
 
     /**
-     * Función para listar clientes. Se obtiene una lista de usuarios de tipo Cliente.
+     * Función para listar clientes. Se obtiene una lista de usuarios de tipo
+     * Cliente.
      *
      * @return Lista de Usuarios de tipo Cliente.
      * @throws SQLException
@@ -154,7 +155,7 @@ public class ClienteModel {
 
         } catch (SQLException e) {
             System.err.println("Error: " + e);
-        }finally{
+        } finally {
             con.close();
         }
         return clientes;
@@ -188,10 +189,10 @@ public class ClienteModel {
                 try {
                     ps.setInt(1, id_usuario);
                     //ps.setInt(2, cliente.getId_cargo_cliente());
-                    ps.setInt(2, cliente.cargo.getId_cargo());
+                    ps.setInt(2, cliente.getId_cargo_cliente());
                     ps.setString(3, cliente.getDireccion_cliente());
                     ps.setInt(4, cliente.getTelefono_cliente());
-                    ps.setInt(5, cliente.tipoDocumento.getId_tipoDocumento());
+                    ps.setInt(5, cliente.getId_tipoDocumento_cliente());
                     ps.setInt(6, cliente.getDocumento_cliente());
                     ps.setString(7, cliente.getRazonSocial_cliente());
 
@@ -232,10 +233,10 @@ public class ClienteModel {
 
         try {
             ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, cliente.cargo.getId_cargo());
+            ps.setInt(1, cliente.getId_cargo_cliente());
             ps.setString(2, cliente.getDireccion_cliente());
             ps.setInt(3, cliente.getTelefono_cliente());
-            ps.setInt(4, cliente.tipoDocumento.getId_tipoDocumento());
+            ps.setInt(4, cliente.getId_tipoDocumento_cliente());
             ps.setInt(5, cliente.getDocumento_cliente());
             ps.setString(6, cliente.getRazonSocial_cliente());
             ps.setInt(7, cliente.getId_cliente());  //Where id_cliente=id_cliente
@@ -246,10 +247,38 @@ public class ClienteModel {
 
         return update;
     }
+
     /*
     public boolean deleteCliente(int id_usuario){
         var deleted = false;
         
         return deleted;
     }*/
+    public int delete(int id_usuario_cliente) throws SQLException {
+        int deleted = 0;
+        String sql = "UPDATE usuarios "
+                + "SET deleted=1, active=0 "
+                + "WHERE=id_usuario=?";
+        try {
+            ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id_usuario_cliente);
+
+            if (ps.executeUpdate() != 0) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    deleted = rs.getInt(1);
+                }
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error delete Usuario: " + e.getMessage());
+        } finally {
+            Conexion.close();
+        }
+
+        return deleted;
+    }
+
 }

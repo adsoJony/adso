@@ -98,13 +98,14 @@ public class EquipoModel {
             ps = Conexion.prepararConsulta(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                System.out.println("Ejecutando listar Equipos");
                 Equipo equipo = new Equipo();
                 equipo.setId_equipo(rs.getInt("id_equipo"));
                 equipo.setSerie_equipo(rs.getString("serie_equipo"));
                 equipo.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
                 //equipo.modelo.marca.setDetalle_marca(rs.getString("detalle_marca"));
-                equipo.modelo.marca.setId_marca(rs.getInt("id_marca_equipo"));
-                equipo.modelo.setId_modelo(rs.getInt("id_modelo_equipo"));
+                equipo.setId_marca_equipo(rs.getInt("id_marca_equipo"));
+                equipo.setId_modelo_equipo(rs.getInt("id_modelo_equipo"));
                 //equipo.modelo.setDetalle_modelo(rs.getString("detalle_modelo"));
                 //equipo.modelo.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
                 Date fechaInstalacion = rs.getDate("fechaInstalacion_equipo");
@@ -115,7 +116,7 @@ public class EquipoModel {
                 equipo.setUltimoMantenimiento_equipo(ultimoMantenimiento_equipo);
                 //equipo.tipoEquipo.setTipo_equipo(rs.getString("tipo_equipo"));
                 equipo.setId_tipoEquipo_equipo(rs.getInt("id_tipoEquipo_equipo"));
-                //equipo.cliente.setId_cliente(rs.getInt("id_cliente"));
+                equipo.setId_cliente_equipo(rs.getInt("id_cliente_equipo"));
                 //equipo.cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
                 equipos.add(equipo);
 

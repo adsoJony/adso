@@ -119,7 +119,6 @@ public class InsertCliente extends javax.swing.JPanel {
         jTextFieldRazonSocial = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
@@ -128,9 +127,12 @@ public class InsertCliente extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
 
         setMaximumSize(new java.awt.Dimension(900, 800));
+        setMinimumSize(new java.awt.Dimension(600, 800));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 48));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Ingreso de clientes");
@@ -151,11 +153,11 @@ public class InsertCliente extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.NORTH);
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(2205, 800));
-        jPanel2.setPreferredSize(new java.awt.Dimension(800, 800));
+        jPanel2.setMinimumSize(new java.awt.Dimension(800, 800));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 400));
 
         UsuarioFormjPanel.setAutoscrolls(true);
-        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(720, 200));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -340,28 +342,6 @@ public class InsertCliente extends javax.swing.JPanel {
 
         jPasswordFieldA.setText("jPasswordField1");
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(passAJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passAJLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel.add(jPanel11);
-
         jPanel12.setPreferredSize(new java.awt.Dimension(320, 25));
 
         jLabel11.setText("ConfirmarPasswod");
@@ -388,7 +368,31 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel.add(jPanel12);
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(passAJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passAJLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        UsuarioFormjPanel.add(jPanel11);
 
         jPanel7.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -422,7 +426,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel2.add(UsuarioFormjPanel);
 
         UsuarioFormjPanel1.setAutoscrolls(true);
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(720, 150));
 
         jPanel26.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanel26.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -567,6 +571,8 @@ public class InsertCliente extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
+        jPanel25.setPreferredSize(new java.awt.Dimension(800, 100));
+
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -600,7 +606,7 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
+                .addContainerGap(611, Short.MAX_VALUE)
                 .addComponent(jButtonUpdate)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
@@ -629,16 +635,10 @@ public class InsertCliente extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(1078, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -676,15 +676,15 @@ public class InsertCliente extends javax.swing.JPanel {
             
             cliente.rol.setId_rol(id_rol);
 
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+            //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
 
             //  Datos de Cliente
             cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-            cliente.cargo.setId_cargo(id_cargo);
+            cliente.setId_cargo_cliente(id_cargo);
             cliente.setDireccion_cliente(jTextFieldDireccion.getText());
             int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
             cliente.setTelefono_cliente(telefonoCliente);
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+            cliente.setId_tipoDocumento_cliente(id_tipoDocumento);
             int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
             cliente.setDocumento_cliente(documentoCliente);
             id_cliente = cliente.inputCliente(cliente, cliente);
@@ -865,7 +865,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
