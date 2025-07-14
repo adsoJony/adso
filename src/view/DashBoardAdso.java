@@ -18,6 +18,7 @@ import view.cliente.UpdateCliente;
 import view.equipos.InsertEquipo;
 import view.equipos.ListarEquipos;
 import view.equipos.UpdateEquipo;
+import view.colaborador.InsertStakeholder;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,11 +37,13 @@ public class DashBoardAdso extends JFrame {
     JPanel dashboard = new JPanel(cardLayout);
     InsertCliente insertCliente;
     InsertEquipo insertEquipo = new InsertEquipo();
+    InsertStakeholder insertStakeholder = new InsertStakeholder();
     DashBoardPanel dashBoardPanel = new DashBoardPanel();
     UpdateEquipo updateEquipo = new UpdateEquipo();
     UpdateCliente updateCliente;
     ListarClientes listarClientes = new ListarClientes();
     ListarEquipos listarEquipos = new ListarEquipos();
+    
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
     
    
@@ -57,9 +60,10 @@ public class DashBoardAdso extends JFrame {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         //getContentPane().add(dashboard);
 
-        dashboard.add(dashBoardPanel, "dashboardanel");
+        dashboard.add(dashBoardPanel, "dashboardpanel");
         dashboard.add(insertCliente, "insertcliente");
         dashboard.add(insertEquipo, "insertequipo");
+        dashboard.add(insertStakeholder, "insertStakeholder");
         dashboard.add(updateEquipo, "updateEquipo");
         dashboard.add(updateCliente, "updateCliente");
         dashboard.add(listarEquipos, "listarEquipos");
@@ -100,13 +104,14 @@ public class DashBoardAdso extends JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItemDasboard = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
         jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 600));
 
         jMenu1.setText("Acciones");
@@ -176,6 +181,11 @@ public class DashBoardAdso extends JFrame {
         jMenu5.setText("Colaboradores");
 
         jMenuItem7.setText("Ingresar Colaborador");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenuItem8.setText("Listar Colaboradores");
@@ -189,6 +199,15 @@ public class DashBoardAdso extends JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Salir");
+
+        jMenuItemDasboard.setText("Dashboard");
+        jMenuItemDasboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDasboardActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemDasboard);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -241,6 +260,18 @@ public class DashBoardAdso extends JFrame {
 
         cardLayout.show(dashboard, "updateCliente");
     }//GEN-LAST:event_jMenuItemUpdateClienteActionPerformed
+
+    private void jMenuItemDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDasboardActionPerformed
+        // TODO add your handling code here:
+        
+        cardLayout.show(dashboard, "dashboardpanel");
+        
+    }//GEN-LAST:event_jMenuItemDasboardActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(dashboard, "insertStakeholder");
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,6 +333,7 @@ public class DashBoardAdso extends JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemDasboard;
     private javax.swing.JMenuItem jMenuItemUpdateCliente;
     private javax.swing.JMenuItem listarCLientesJMenuItem;
     private javax.swing.JMenuItem listarEquiposJMenuItem;

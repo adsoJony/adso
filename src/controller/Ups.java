@@ -246,6 +246,8 @@ public class Ups extends Equipo {
     public String toString(Ups ups) {
         return "Ups";
     }
+    
+    
 
     public List<Ups> listarUpsByCliente(int id_cliente) throws SQLException {
 

@@ -5,7 +5,6 @@
 package controller;
 
 //import model.ModeloModel;
-
 import conexion.Conexion;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -34,10 +33,12 @@ public class Modelo {
     public Marca marca;
     public VoltajeOperacion voltajeOperacion;
     public TipoEquipo tipoEquipo;
-    
+
     Conexion con;
-    
-    ModeloModel modeloModel = new ModeloModel(con);;
+
+    ModeloModel modeloModel = new ModeloModel(con);
+
+    ;
 
     //ModeloModel modeloModel = new ModeloModel();
     public Modelo() {
@@ -151,12 +152,12 @@ public class Modelo {
     public void setDetalleEquipo_modelo(String detalleEquipo_modelo) {
         this.detalleEquipo_modelo = detalleEquipo_modelo;
     }
-    
-    public List<Modelo> listarModelo() throws SQLException{
+
+    public List<Modelo> listarModelo() throws SQLException {
         return modeloModel.listarModelo();
     }
-    
-     public HashMap<String, Integer> hashMap() throws SQLException {
+
+    public HashMap<String, Integer> hashMap() throws SQLException {
         var list = modeloModel.listarModelo();
         HashMap<String, Integer> hashMap = new HashMap<>();
 
@@ -165,7 +166,5 @@ public class Modelo {
         }
         return hashMap;
     }
-    
-    
 
 }

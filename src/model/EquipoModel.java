@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 import controller.Equipo;
-import controller.Modelo;
 import java.time.LocalDate;
 
 /**
@@ -103,28 +102,28 @@ public class EquipoModel {
                 equipo.setId_equipo(rs.getInt("id_equipo"));
                 equipo.setSerie_equipo(rs.getString("serie_equipo"));
                 equipo.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
-                equipo.modelo.marca.setDetalle_marca(rs.getString("detalle_marca"));
+                //equipo.modelo.marca.setDetalle_marca(rs.getString("detalle_marca"));
                 equipo.modelo.marca.setId_marca(rs.getInt("id_marca_equipo"));
                 equipo.modelo.setId_modelo(rs.getInt("id_modelo_equipo"));
-                equipo.modelo.setDetalle_modelo(rs.getString("detalle_modelo"));
-                equipo.modelo.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
+                //equipo.modelo.setDetalle_modelo(rs.getString("detalle_modelo"));
+                //equipo.modelo.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
                 Date fechaInstalacion = rs.getDate("fechaInstalacion_equipo");
                 LocalDate fechaInstalacion_equipo = (fechaInstalacion != null) ? fechaInstalacion.toLocalDate() : null;
                 equipo.setFechaInstalacion_equipo(fechaInstalacion_equipo);
                 Date ultimoMantenimiento = rs.getDate("ultimoMantenimiento_equipo");
                 LocalDate ultimoMantenimiento_equipo = (ultimoMantenimiento != null) ? ultimoMantenimiento.toLocalDate() : null;
                 equipo.setUltimoMantenimiento_equipo(ultimoMantenimiento_equipo);
-                equipo.tipoEquipo.setTipo_equipo(rs.getString("tipo_equipo"));
+                //equipo.tipoEquipo.setTipo_equipo(rs.getString("tipo_equipo"));
                 equipo.setId_tipoEquipo_equipo(rs.getInt("id_tipoEquipo_equipo"));
-                equipo.cliente.setId_cliente(rs.getInt("id_cliente"));
-                equipo.cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
+                //equipo.cliente.setId_cliente(rs.getInt("id_cliente"));
+                //equipo.cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
                 equipos.add(equipo);
 
             }
             rs.close();
             rs.close();
         } catch (SQLException e) {
-            System.err.println("Error: " + e);
+            System.err.println("Error: En listar equipos... " + e);
         } finally {
             Conexion.close();
         }

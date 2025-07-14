@@ -73,7 +73,7 @@ public class UpsModel {
     public boolean inputUps(Ups ups, Equipo equipo) throws SQLException {
         var input = false;
 
-        String sql = "insert into ups (id_equipo_ups, potencia, voltajeBanco_ups, transformadorAislamiento, id_topologia_ups, cant_batNom, cant_batTotal, id_ultimoComprobanteServicio, cant_bancoBat, tiempoAutonomia_ups) "
+        String sql = "insert into ups (id_equipo_ups, potencia_va, voltajeBanco_ups, transformadorAislamiento, id_topologia_ups, cant_batNom, cant_batTotal, id_ultimoComprobanteServicio, cant_bancoBat, tiempoAutonomia_ups) "
                 + "values(?,?,?,?,?,?,?,?,?,?)";
 
         try {
@@ -84,7 +84,7 @@ public class UpsModel {
                 ps.setInt(2, ups.getPotencia_va());
                 ps.setInt(3, ups.getVoltajebanco_ups());
                 ps.setBoolean(4, ups.getTransformadorAislamiento());
-                ps.setInt(5, ups.topologia.getId_topologia());
+                ps.setInt(5, ups.getId_topologia_ups());
                 ps.setInt(6, ups.getCant_batNom());
                 ps.setInt(7, ups.getCant_batTotal());
                 ps.setInt(8, ups.getId_ultimoComprobanteServicio());

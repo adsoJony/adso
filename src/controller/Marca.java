@@ -51,6 +51,7 @@ public class Marca {
         return marcaModel.listarMarca();
     }
     
+    
     public HashMap<String, Integer> hashMap() throws SQLException {
         var list = marcaModel.listarMarca();
         HashMap<String, Integer> hashMap = new HashMap<>();
