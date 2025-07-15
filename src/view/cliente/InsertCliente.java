@@ -673,11 +673,10 @@ public class InsertCliente extends javax.swing.JPanel {
             String psw_usuario = new String(passChars);
             cliente.setPsw_usuario(psw_usuario);
             cliente.setId_tipoUsuario_usuario(id_tipoUsuario);
-            
+
             cliente.rol.setId_rol(id_rol);
 
             //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-
             //  Datos de Cliente
             cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
             cliente.setId_cargo_cliente(id_cargo);
@@ -706,7 +705,7 @@ public class InsertCliente extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
         } finally {
-            ;
+            DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "dashboardpanel");
         }
 
     }//GEN-LAST:event_jToggleButtonIngresarClienteActionPerformed
@@ -735,15 +734,13 @@ public class InsertCliente extends javax.swing.JPanel {
             cliente.setPsw_usuario(psw_usuario);
             cliente.setId_rol_usuario(id_rol);
 
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-
             //  Datos de Cliente
             cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
+            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
             cliente.cargo.setId_cargo(id_cargo);
             cliente.setDireccion_cliente(jTextFieldDireccion.getText());
             int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
             cliente.setTelefono_cliente(telefonoCliente);
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
             int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
             cliente.setDocumento_cliente(documentoCliente);
             id_cliente = cliente.inputCliente(cliente, cliente);

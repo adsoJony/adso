@@ -339,7 +339,7 @@ public class Usuario {
 
     public List<Usuario> listarUsuarios() throws SQLException {
 
-        return usuarioModel.obtenerUsuarios();
+        return usuarioModel.listar();
     }
 
     public int inputUsuario(Usuario usuario) throws SQLException {

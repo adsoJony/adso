@@ -84,7 +84,7 @@ public class UsuarioModel {
         return usuario;
     }
 
-    public List<Usuario> obtenerUsuarios() {
+    public List<Usuario> listar() {
         List<Usuario> usuarios = new ArrayList<>();
         String query = "SELECT * FROM usuarios where deleted=0";
         try {

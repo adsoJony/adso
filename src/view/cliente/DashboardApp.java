@@ -20,6 +20,9 @@ public class DashboardApp extends JFrame  {
 
     public DashboardApp() throws SQLException {
         this.insertCliente = new InsertCliente();
+        
+        
+        
         setTitle("Dashboard CRUD");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -44,6 +47,11 @@ public class DashboardApp extends JFrame  {
 
         add(panelMenu, BorderLayout.WEST);
 
+        
+        
+        
+        
+        
         // Panel central con CardLayout
         cardLayout = new CardLayout();
         panelCentral = new JPanel(cardLayout);
@@ -55,6 +63,14 @@ public class DashboardApp extends JFrame  {
 
         add(panelCentral, BorderLayout.CENTER);
 
+        
+        
+        
+        
+        
+        
+        
+        
         // Acciones de los botones
         btnUsuarios.addActionListener(e -> cardLayout.show(panelCentral, "usuarios"));
         btnEquipos.addActionListener(e -> cardLayout.show(panelCentral, "equipos"));

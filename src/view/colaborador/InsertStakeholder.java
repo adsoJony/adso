@@ -48,6 +48,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
         cargarCargos();
         cargarTipoDocumento();
         cargarRol();
+        limpiarCampos();
 
     }
 
@@ -612,11 +613,15 @@ public class InsertStakeholder extends javax.swing.JPanel {
             stakeholderFrm.setPsw_usuario(psw_usuario);
             //stakeholderFrm.rol.setId_rol(id_rol);
             stakeholderFrm.setId_rol_usuario(id_rol);
-            stakeholderFrm.setId_tipoDocumento_stakeholder(id_tipoDocumento);
+            stakeholderFrm.setId_tipoUsuario_usuario(1);
+            
 
-            //  Datos de Cliente
+            //  Datos de Stakeholder
             stakeholderFrm.setId_cargo_stakeholder(id_cargo);
             stakeholderFrm.setId_tipoDocumento_stakeholder(id_tipoDocumento);
+            stakeholderFrm.setDocumento_stakeholder(Integer.parseInt(jTextFieldIdentificacion.getText()));
+            
+            
             id_stakeholder = stakeholderFrm.inputStakeholder(stakeholderFrm, stakeholderFrm);
             //id_stakeholder = 3;
             if (id_stakeholder != 0) {
@@ -640,10 +645,7 @@ public class InsertStakeholder extends javax.swing.JPanel {
             Conexion.close();
         }
 
-        //Información de Stakeholder
-        stakeholderFrm.setId_cargo_stakeholder(id_cargo);
-
-
+        
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

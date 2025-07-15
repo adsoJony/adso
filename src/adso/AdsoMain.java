@@ -5,13 +5,15 @@
 package adso;
 
 //import java.io.UnsupportedEncodingException;
-
 import controller.Cargo;
 import java.sql.SQLException;
 import java.io.UnsupportedEncodingException;
+import javax.swing.JFrame;
 import view.ConsoleView;                        //Menu de consola - ConsoleView
 import view.DashBoardAdso;
 import view.combos.CargoCombo;
+import view.pruebas.TableEx;
+import java.sql.SQLException;
 
 /**
  *
@@ -31,9 +33,10 @@ public class AdsoMain {
         try {
 
             //ConsoleView.menu();
-            mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
-           
-           
+          mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
+
+            //Mostrar Tabla 
+            //mostrarTabla();
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -43,13 +46,22 @@ public class AdsoMain {
 
     /**
      * Método para mostrar el Frame DashBoardAdso de View
-     * 
+     *
      * @return Mostramos el Frame DashBoardAdso de el paquete view
      */
     final static void mostarDashBoardAdso() throws SQLException {
         DashBoardAdso dashBoardAdso = new DashBoardAdso();
         dashBoardAdso.setVisible(true);
 
+    }
+
+    final static void mostrarTabla() throws SQLException{
+        JFrame frameTable = new JFrame();
+        TableEx tableEx = new TableEx();
+        tableEx.cargarTabla();
+        frameTable.add(tableEx);
+        
+        frameTable.setVisible(true);
     }
 
 }

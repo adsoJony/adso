@@ -22,6 +22,7 @@ import view.colaborador.InsertStakeholder;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import view.pruebas.*;
 
 /**
  *
@@ -34,10 +35,6 @@ public class DashBoardAdso extends JFrame {
     // InsertCliente insertCliente;
     //InsertEquipo insertEquipo;
     public static CardLayout cardLayout = new CardLayout();
-
-    /**
-     *
-     */
     public static JPanel dashboard = new JPanel(cardLayout);
     InsertCliente insertCliente;
     InsertUps insertEquipo = new InsertUps();
@@ -47,6 +44,11 @@ public class DashBoardAdso extends JFrame {
     UpdateCliente updateCliente;
     ListarClientes listarClientes = new ListarClientes();
     ListarUps listarEquipos = new ListarUps();
+    
+    
+    //tablas de ejemplos
+    JtableSwing jtableSwing = new JtableSwing();
+    TableEx tableEx = new TableEx();
 
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
 
@@ -61,6 +63,12 @@ public class DashBoardAdso extends JFrame {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         //getContentPane().add(dashboard);
 
+        
+        //Agreganos las pruebas de panel Jtable
+        dashboard.add(jtableSwing, "tablaswing");
+        dashboard.add(tableEx, "prueba");
+        
+        
         dashboard.add(dashBoardPanel, "dashboardpanel");
         dashboard.add(insertCliente, "insertcliente");
         dashboard.add(insertEquipo, "insertequipo");
@@ -70,8 +78,9 @@ public class DashBoardAdso extends JFrame {
         dashboard.add(listarEquipos, "listarEquipos");
         dashboard.add(listarClientes, "listarClientes");
         dashboard.add(buscarClienteByDoc, "buscarClienteByDoc");
+
         add(dashboard);
-        cardLayout.show(dashboard, "dashboardpanel");
+        cardLayout.show(dashboard, "tablaswing");     
 
         setLocationRelativeTo(null);
 
