@@ -10,6 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.DashBoardAdso;
+import static view.DashBoardAdso.cardLayout;
+import static view.DashBoardAdso.dashboard;
+import view.cliente.DashboardApp;
+import view.cliente.UpdateCliente;
+import view.cliente.UpdateCliente;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,6 +25,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JtableSwing extends javax.swing.JPanel {
 
+    UpdateCliente updateCliente = new UpdateCliente();
+    CardLayout cardLayout = new CardLayout();
+    JPanel dashboard = new JPanel();
+    
+
+    
     /**
      * Creates new form JtableSwing
      */
@@ -25,6 +39,10 @@ public class JtableSwing extends javax.swing.JPanel {
         cargarTabla();
 
     }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,11 +55,13 @@ public class JtableSwing extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClientes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButtonIdSeleccionado = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        jButtonInicio = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,26 +72,26 @@ public class JtableSwing extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableClientes);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-
-        jButtonIdSeleccionado.setText("Id Seleccionado");
-        jButtonIdSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+        jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIdSeleccionadoActionPerformed(evt);
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
+        jButtonInicio.setText("Inicio");
+        jButtonInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInicioActionPerformed(evt);
             }
         });
 
@@ -81,15 +101,39 @@ public class JtableSwing extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonIdSeleccionado)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonActualizar)
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jButtonInicio))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jButtonIdSeleccionado)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addComponent(jButtonActualizar)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonEliminar)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonInicio)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -98,31 +142,55 @@ public class JtableSwing extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonIdSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIdSeleccionadoActionPerformed
-        // TODO add your handling code here:
-        
-        int filaSeleccionada = jTable1.getSelectedRow();
-        if(filaSeleccionada >= 0){
-            Object id = jTable1.getValueAt(filaSeleccionada, 0);
-            JOptionPane.showMessageDialog(null, "El ide seleccionado es; "+id);
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+
+        //  Mostramos un mensaje con los datos de la fila seleccionada
+        int filaSeleccionada = jTableClientes.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            Object id = jTableClientes.getValueAt(filaSeleccionada, 0);
+            //JOptionPane.showMessageDialog(null, "El ide seleccionado tiene el id; " + Integer.parseInt(id.toString()));
+
+            try {
+                
+                
+                Cliente c = new Cliente();
+                c.setId_cliente(Integer.parseInt(id.toString()));
+                c = c.findClienteById(Integer.parseInt(id.toString()));
+                updateCliente.setearCamposClienteFrm(c);        //  Establecemos los campos en el panel de Update Cliente
+                //update.setearCamposClienteFrm(c);
+                JOptionPane.showMessageDialog(null, "Cliente: "+c.toString());
+                DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateCliente");    //Se puede cambiar por 
+                //cardLayout.show(dashboard, "updateCliente");
+                dashboard.revalidate();
+                dashboard.repaint();
+                
+//updateC.cargarMemoria(c);
+            } catch (Exception e) {
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado un cliente....");
         }
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
-    }//GEN-LAST:event_jButtonIdSeleccionadoActionPerformed
+    private void jButtonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioActionPerformed
+
+        DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "dashboardpanel");  //Nos dirige a la pagina central del dash
+    }//GEN-LAST:event_jButtonInicioActionPerformed
 
     //  Métodos de la tabla
     //  Cargamos la tabla con cliente
@@ -132,7 +200,7 @@ public class JtableSwing extends javax.swing.JPanel {
 
             List<Cliente> listaClientes = new ArrayList();
             Cliente cliente = new Cliente();
-            listaClientes = cliente.listarClientes();
+            listaClientes = cliente.listarClientes();       //  Listamos a los clientes en un objeto tipo  lista
 
             //   Aqui tomamos el objeto de tipo Cliente por ejemplo y lo convertimos a objeto bidimencional o array bidimencional
             Object[][] data = new Object[listaClientes.size()][5];
@@ -147,11 +215,11 @@ public class JtableSwing extends javax.swing.JPanel {
             }
 
             //   Seteamos las columnas, agregandoles el nombre a cada una
-            String[] columnas = {"Id", "Nombre", "Apellido", "Razón Social","Activo"};
+            String[] columnas = {"Id", "Nombre", "Apellido", "Razón Social", "Activo"};
 
             //   Creamos una DefaultTableMode
             DefaultTableModel modelo = new DefaultTableModel(data, columnas);
-            jTable1.setModel(modelo);
+            jTableClientes.setModel(modelo);
 
         } catch (SQLException e) {
             System.err.print("Error Jtable: " + e.getMessage());
@@ -160,10 +228,12 @@ public class JtableSwing extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonIdSeleccionado;
+    private javax.swing.JButton jButtonActualizar;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonInicio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableClientes;
     // End of variables declaration//GEN-END:variables
 }

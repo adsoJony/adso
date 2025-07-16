@@ -98,7 +98,6 @@ public class EquipoModel {
             ps = Conexion.prepararConsulta(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                System.out.println("Ejecutando listar Equipos");
                 Equipo equipo = new Equipo();
                 equipo.setId_equipo(rs.getInt("id_equipo"));
                 equipo.setSerie_equipo(rs.getString("serie_equipo"));

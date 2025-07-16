@@ -186,7 +186,7 @@ public class ConsoleView {
 
             // stakeholder.inputStakeholder(stakeholder, usuario);
             System.out.println("Imprimiendo Stakehholder con función find.");
-            System.out.println(stakeholder.findStakeholder(3));
+            //System.out.println(stakeholder.findStakeholder(3));
 
             System.out.println("imprimiendo lista Stakeholder");
             var stakeholders = stakeholder.listarStakeholder();

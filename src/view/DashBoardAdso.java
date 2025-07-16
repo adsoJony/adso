@@ -47,7 +47,7 @@ public class DashBoardAdso extends JFrame {
     
     
     //tablas de ejemplos
-    JtableSwing jtableSwing = new JtableSwing();
+    //JtableSwing jtableSwing = new JtableSwing();
     TableEx tableEx = new TableEx();
 
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
@@ -65,7 +65,7 @@ public class DashBoardAdso extends JFrame {
 
         
         //Agreganos las pruebas de panel Jtable
-        dashboard.add(jtableSwing, "tablaswing");
+        //dashboard.add(jtableSwing, "tablaswing");
         dashboard.add(tableEx, "prueba");
         
         
@@ -80,7 +80,9 @@ public class DashBoardAdso extends JFrame {
         dashboard.add(buscarClienteByDoc, "buscarClienteByDoc");
 
         add(dashboard);
-        cardLayout.show(dashboard, "tablaswing");     
+        
+        //      Ajustamos el Panel Central - Home 
+        cardLayout.show(dashboard, "listarClientes");     
 
         setLocationRelativeTo(null);
 

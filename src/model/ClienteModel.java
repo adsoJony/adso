@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,17 +63,19 @@ public class ClienteModel {
 
                 cliente.setId_cliente(rs.getInt("id_cliente"));
                 cliente.setId_usuario_cliente(rs.getInt("id_usuario_cliente"));
-                //cliente.setId_cargo_cliente(rs.getInt("id_cargo_cliente"));
+                cliente.setId_cargo_cliente(rs.getInt("id_cargo_cliente"));
+                //cliente.setId_cargo_cliente(rs.getInt("id_cargo"));
                 cliente.cargo.setId_cargo(rs.getInt("id_cargo"));
                 cliente.cargo.setCargo(rs.getString("cargo"));
                 cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
                 cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
+                cliente.setId_tipoDocumento_cliente(rs.getInt(rs.getInt("id_tipoDocumento_cliente")));
                 cliente.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
                 cliente.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
                 cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
                 cliente.setRazonSocial_cliente(rs.getString("razonSocial_cliente"));
                 //Datos de usuario
-                cliente.setId_cliente(rs.getInt("id_usuario"));
+                cliente.setId_usuario(rs.getInt("id_usuario"));
                 cliente.setNickName_usuario(rs.getString("nickName_usuario"));
                 cliente.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
                 cliente.setSegundoNombre_usuario(rs.getString("segundoNombre_usuario"));
@@ -228,18 +231,26 @@ public class ClienteModel {
     //Update de cliente recibiendo el id dentro del objeto usuario
     public boolean updateCliente(Cliente cliente, Usuario usuario) throws SQLException {
         var update = false;
-        String sql = "update cliente set id_cargo_cliente=?, direccion_cliente=?, telefono_cliente=?, id_documento_cliente=?,"
+        String sql = "update cliente set id_cargo_cliente=?, direccion_cliente=?, telefono_cliente=?, id_tipoDocumento_cliente=?,"
                 + "documento_cliente=?, razonSocial_cliente=? where id_cliente=?";
 
         try {
-            ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, cliente.getId_cargo_cliente());
-            ps.setString(2, cliente.getDireccion_cliente());
-            ps.setInt(3, cliente.getTelefono_cliente());
-            ps.setInt(4, cliente.getId_tipoDocumento_cliente());
-            ps.setInt(5, cliente.getDocumento_cliente());
-            ps.setString(6, cliente.getRazonSocial_cliente());
-            ps.setInt(7, cliente.getId_cliente());  //Where id_cliente=id_cliente
+
+            if (usuario.updateUsuario(usuario)) {
+                ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, cliente.getId_cargo_cliente());
+                ps.setString(2, cliente.getDireccion_cliente());
+                ps.setInt(3, cliente.getTelefono_cliente());
+                ps.setInt(4, cliente.getId_tipoDocumento_cliente());
+                ps.setInt(5, cliente.getDocumento_cliente());
+                ps.setString(6, cliente.getRazonSocial_cliente());
+                ps.setInt(7, cliente.getId_cliente());  //Where id_cliente=id_cliente
+
+                if (ps.executeUpdate() != 0) {
+                    update = true;
+                    JOptionPane.showMessageDialog(null, "Cliente actualizado con exito!");
+                }
+            }
 
         } catch (SQLException e) {
             System.err.println("Error: " + e);

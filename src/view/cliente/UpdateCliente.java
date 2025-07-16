@@ -29,6 +29,8 @@ public class UpdateCliente extends javax.swing.JPanel {
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
     public HashMap<String, Integer> rolHas = new HashMap<>();
+    //Accedemos desde feura de la clase para instalar los valores a actualizar
+    public static Cliente clienteUpdateFrm = new Cliente();
 
     /**
      * Crea un nuevo formulario UpdateCliente
@@ -37,16 +39,18 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         initComponents();
 
+        //  Limpiamos todos los campos
+        limpiarCampos();
+
         //Obtenemos los HasMap para los combo box
         cargoHas = cargo.hashMapCargo();
         tipoDocumentoHas = tipoDocumento.hashMapTipoDocumento();
         rolHas = rol.hashMapRol();
 
         //  Cargamos las los 
-        cargarCargos();
-        cargarRol();
-        cargarTipoDocumento();
-
+        //cargarCargos();
+        //cargarRol();
+        //cargarTipoDocumento();
     }
 
     /**
@@ -110,9 +114,9 @@ public class UpdateCliente extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
-        jButtonInput = new javax.swing.JButton();
+        jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtoncargardatos = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -550,10 +554,10 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jButtonInput.setText("Input");
-        jButtonInput.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdate.setText("Input");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInputActionPerformed(evt);
+                jButtonUpdateActionPerformed(evt);
             }
         });
 
@@ -564,10 +568,10 @@ public class UpdateCliente extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Cargar datos de memoria");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtoncargardatos.setText("Cargar datos de memoria");
+        jButtoncargardatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtoncargardatosActionPerformed(evt);
             }
         });
 
@@ -577,11 +581,11 @@ public class UpdateCliente extends javax.swing.JPanel {
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
                 .addContainerGap(300, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtoncargardatos)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
                 .addGap(26, 26, 26)
-                .addComponent(jButtonInput)
+                .addComponent(jButtonUpdate)
                 .addGap(209, 209, 209))
         );
         jPanel25Layout.setVerticalGroup(
@@ -589,9 +593,9 @@ public class UpdateCliente extends javax.swing.JPanel {
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInput)
+                    .addComponent(jButtonUpdate)
                     .addComponent(jButtonLimpiar)
-                    .addComponent(jButton1))
+                    .addComponent(jButtoncargardatos))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -612,12 +616,13 @@ public class UpdateCliente extends javax.swing.JPanel {
         add(jPanel13, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInputActionPerformed
-        // TODO add your handling code here:
-        int id_cliente;
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // Acción del botón UpDate o actualizar CLiente:
+        
+        JOptionPane.showMessageDialog(null, "Dato almacenado: "+clienteUpdateFrm);
         var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
         var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = rolHas.get(rolSeleccionado);
+        int id_rol = rolHas.get(rolSeleccionado);       //  Obtenemos el Id del HashMap
         var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
         var id_cargo = cargoHas.get(cargoSeleccionado);
         var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
@@ -625,29 +630,28 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         try {
             //Datos de Usuario
-            cliente.setNickName_usuario(jTextFieldNickname.getText());
-            cliente.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
-            cliente.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
-            cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
-            cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
-            cliente.setEmail_usuario(jTextFieldEmail.getText());
+            clienteUpdateFrm.setNickName_usuario(jTextFieldNickname.getText());
+            clienteUpdateFrm.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
+            clienteUpdateFrm.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
+            clienteUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
+            clienteUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
+            clienteUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
             char[] passChars = jPasswordFieldA.getPassword();
             String psw_usuario = new String(passChars);
-            cliente.setPsw_usuario(psw_usuario);
-            cliente.rol.setId_rol(id_rol);
-
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+            clienteUpdateFrm.setPsw_usuario(psw_usuario);
+            clienteUpdateFrm.setId_rol_usuario(id_rol);
 
             //  Datos de Cliente
-            cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-            cliente.cargo.setId_cargo(id_cargo);
-            cliente.setDireccion_cliente(jTextFieldDireccion.getText());
+            clienteUpdateFrm.setId_tipoDocumento_cliente(id_tipoDocumento);
+            clienteUpdateFrm.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
+            //cliente.cargo.setId_cargo(id_cargo);
+            clienteUpdateFrm.setDireccion_cliente(jTextFieldDireccion.getText());
             int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
-            cliente.setTelefono_cliente(telefonoCliente);
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+            clienteUpdateFrm.setTelefono_cliente(telefonoCliente);
+            //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
             int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
-            cliente.setDocumento_cliente(documentoCliente);
-            boolean update = cliente.updateCliente(cliente, cliente);
+            clienteUpdateFrm.setDocumento_cliente(documentoCliente);
+            boolean update = clienteUpdateFrm.updateCliente(clienteUpdateFrm, clienteUpdateFrm);
 
             if (update = true) {
                 System.out.println("Cliente Actualizado" + update);
@@ -656,18 +660,13 @@ public class UpdateCliente extends javax.swing.JPanel {
             } else {
                 System.err.println("No se pudo ingresar CLiente");
             }
-            JOptionPane.showMessageDialog(null, "Cargo seleccionado: " + cargoSeleccionado
-                    + "\n El del HashMap del cargo: " + id_cargo
-                    + "\n Documento seleccionado: " + tipoDocumentoSeleccionado
-                    + "\n El del HashMap del codumento: " + id_tipoDocumento
-                    + "\n Nombre de la casilla de texto: " + cliente.getPrimerNombre_usuario()
-                    + cliente.toString());
+            JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + clienteUpdateFrm.toString());
 
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
         }
 
-    }//GEN-LAST:event_jButtonInputActionPerformed
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         try {
@@ -680,15 +679,16 @@ public class UpdateCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtoncargardatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncargardatosActionPerformed
         try {
             // TODO add your handling code here:
-
-            cargarMemoria();
-        } catch (SQLException ex) {
+            setearCamposClienteFrm(clienteUpdateFrm);
+            JOptionPane.showMessageDialog(null, "Accionando Boton cargar Datos");
+        } catch (Exception ex) {
             Logger.getLogger(UpdateCliente.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtoncargardatosActionPerformed
 
     /**
      * *
@@ -729,12 +729,40 @@ public class UpdateCliente extends javax.swing.JPanel {
         }
     }
 
-    final void limpiarCampos() throws SQLException {
+    public void setearCamposClienteFrm(Cliente c) throws SQLException {
+        JOptionPane.showMessageDialog(null, "Setear camposClienteFrm: Licnete" + c.toString());
 
+        clienteUpdateFrm = c;
+        setFields(c);
+
+    }
+
+    public void setFields(Cliente c) throws SQLException {
+        //limpiarCampos();
+
+        JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
+        System.out.println("Impriendo desde la funcion setar campos frm");
+        jTextFieldDireccion.setText(c.getDireccion_cliente());
+        jTextFieldPrimerNombreCliente.setText(c.getPrimerNombre_usuario());
+        jTextFieldSegundoNombre.setText(c.getSegundoNombre_usuario());
+        jTextFieldEmail.setText(c.getEmail_usuario());
+        jTextFieldIdentificacion.setText(Integer.toString(c.getDocumento_cliente()));
+        jTextFieldNickname.setText(c.getNickName_usuario());
+        jTextFieldPrimerApellido.setText(c.getPrimerApellido_usuario());
+        jTextFieldSegundoApellido.setText(c.getSegundoApellido_usuario());;
+        jTextFieldRazonSocial.setText(c.getRazonSocial_cliente());
+
+        jTextFieldTelefono.setText(Integer.toString(c.getTelefono_cliente()));
+        jPasswordFieldA.setText("");
+        jPasswordFieldB.setText("");
+        jComboBoxTipoDocumento.setSelectedItem(clienteUpdateFrm);
+
+    }
+
+    final void limpiarCampos() throws SQLException {
         jTextFieldDireccion.setText("");
         jTextFieldPrimerNombreCliente.setText("");
         jTextFieldSegundoNombre.setText("");
-        
 
         jTextFieldEmail.setText("");
         jTextFieldIdentificacion.setText("");
@@ -748,20 +776,19 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
 
-        JOptionPane.showMessageDialog(null, "Cargo cargado es: " + cliente.cargo.getCargo());
         cargarCargos();
         cargarTipoDocumento();
         cargarRol();
 
     }
 
-    final void cargarMemoria() throws SQLException {
+    public void cargarMemoria(Cliente c) throws SQLException {
 
-        jTextFieldDireccion.setText(cliente.getDireccion_cliente());
-        jTextFieldPrimerNombreCliente.setText(cliente.getPrimerNombre_usuario());
-        jTextFieldSegundoNombre.setText("");
-        jTextFieldEmail.setText(cliente.getEmail_usuario());
-        jTextFieldIdentificacion.setText("");
+        jTextFieldDireccion.setText(c.getDireccion_cliente());
+        jTextFieldPrimerNombreCliente.setText(c.getPrimerNombre_usuario());
+        jTextFieldSegundoNombre.setText("Escritura desde Funcion");
+        jTextFieldEmail.setText(c.getEmail_usuario());
+        jTextFieldIdentificacion.setText("Identificación");
         jTextFieldNickname.setText("");
         jTextFieldPrimerApellido.setText("");
         jTextFieldPrimerNombreCliente.setText("");
@@ -772,10 +799,8 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
 
-        JOptionPane.showMessageDialog(null, "Cargando desde el cliente en memoria" + "Cargo cargado es: " + cliente.cargo.getCargo());
-        cargarCargos();
-        cargarTipoDocumento();
-        cargarRol();
+        JOptionPane.showMessageDialog(null, "Cargando desde el cliente en memoria" + "Cargo cargado es: " + c.getPrimerNombre_usuario());
+        setearCamposClienteFrm(c);
 
     }
 
@@ -783,9 +808,9 @@ public class UpdateCliente extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel;
     private javax.swing.JPanel UsuarioFormjPanel1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonInput;
     private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonUpdate;
+    private javax.swing.JButton jButtoncargardatos;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;

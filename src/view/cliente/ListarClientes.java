@@ -4,7 +4,15 @@
  */
 package view.cliente;
 
+import controller.Cliente;
+import java.awt.CardLayout;
 import view.equipos.*;
+import view.pruebas.JtableSwing;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import static view.DashBoardAdso.cardLayout;
+import static view.DashBoardAdso.dashboard;
 
 /**
  *
@@ -12,11 +20,34 @@ import view.equipos.*;
  */
 public class ListarClientes extends javax.swing.JPanel {
 
+    CardLayout cardLayout = new CardLayout();
+    JPanel dashboard = new JPanel();
+    UpdateCliente updateCliente = new UpdateCliente();
+
+    JtableSwing jTable;
+
     /**
      * Creates new form ListarEquipos
      */
-    public ListarClientes() {
+    public ListarClientes() throws SQLException {
         initComponents();
+
+        this.jTable = new JtableSwing();
+        jTable.cargarTabla();
+        add(jTable);
+
+    }
+
+    public ListarClientes(CardLayout cardLayout, JPanel dashboard, UpdateCliente updateCliente) throws SQLException {
+        this.cardLayout = cardLayout;
+        this.updateCliente = updateCliente;
+        this.dashboard = dashboard;
+        initComponents();
+
+        this.jTable = new JtableSwing();
+        jTable.cargarTabla();
+        add(jTable);
+
     }
 
     /**
@@ -28,30 +59,71 @@ public class ListarClientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanelTable = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
+        setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listar Clientes");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(161, 161, 161))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        add(jPanel1, java.awt.BorderLayout.NORTH);
+
+        jButton1.setText("listar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
+        jPanelTable.setLayout(jPanelTableLayout);
+        jPanelTableLayout.setHorizontalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTableLayout.createSequentialGroup()
+                .addContainerGap(222, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(217, 217, 217))
+        );
+        jPanelTableLayout.setVerticalGroup(
+            jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTableLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        add(jPanelTable, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanelTable;
     // End of variables declaration//GEN-END:variables
 }

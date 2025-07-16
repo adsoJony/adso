@@ -349,9 +349,9 @@ public class Usuario {
         //return id_usuario;
     }
 
-    public boolean updateUsuario(Usuario usuario, int idUsuario) throws SQLException {
+    public boolean updateUsuario(Usuario usuario) throws SQLException {
 
-        return usuarioModel.updateUsuario(usuario, idUsuario);
+        return usuarioModel.updateUsuario(usuario);
     }
 
     public boolean deleteUsuario(int idUsuario) throws SQLException {
