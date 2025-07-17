@@ -33,10 +33,7 @@ public class AdsoMain {
         try {
 
             //ConsoleView.menu();
-          mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
-
-            //Mostrar Tabla 
-            //mostrarTabla();
+            mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -53,15 +50,6 @@ public class AdsoMain {
         DashBoardAdso dashBoardAdso = new DashBoardAdso();
         dashBoardAdso.setVisible(true);
 
-    }
-
-    final static void mostrarTabla() throws SQLException{
-        JFrame frameTable = new JFrame();
-        TableEx tableEx = new TableEx();
-        tableEx.cargarTabla();
-        frameTable.add(tableEx);
-        
-        frameTable.setVisible(true);
     }
 
 }

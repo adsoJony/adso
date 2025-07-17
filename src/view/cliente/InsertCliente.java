@@ -10,14 +10,9 @@ import controller.Cargo;
 import controller.Cliente;
 import controller.Rol;
 import controller.TipoDocumento;
-import controller.TipoUsuario;
-import view.DashBoardAdso;
-import java.awt.CardLayout;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import javax.swing.JTextField;
-import view.DashBoardAdso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +24,9 @@ public class InsertCliente extends javax.swing.JPanel {
     Rol rol = new Rol();
     TipoDocumento tipoDocumento = new TipoDocumento();
     //TipoUsuario tipoUsuario = new TipoUsuario();
+    
     public Cliente cliente = new Cliente();
+    
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
     public HashMap<String, Integer> rolHas = new HashMap<>();
@@ -47,9 +44,6 @@ public class InsertCliente extends javax.swing.JPanel {
         cargoHas = cargo.hashMapCargo();
         tipoDocumentoHas = tipoDocumento.hashMapTipoDocumento();
         rolHas = rol.hashMapRol();
-
-        //Imprimimos un mensaje por consola
-        System.out.println("Imprimiendo hasMap" + cargoHas);            //Impresion de hashmap
 
         //  Cargamos los comboBox
         cargarCargos();
@@ -118,13 +112,9 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel15 = new javax.swing.JPanel();
         jTextFieldRazonSocial = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
-        jButtonInput = new javax.swing.JButton();
-        jToggleButtonIngresarCliente = new javax.swing.JToggleButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jButtonIngresarCliente = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(900, 800));
         setMinimumSize(new java.awt.Dimension(600, 800));
@@ -135,16 +125,16 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 48));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Ingreso de clientes");
+        jLabel1.setText("Ingreso de Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(1596, Short.MAX_VALUE)
+                .addContainerGap(274, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(326, 326, 326))
+                .addGap(237, 237, 237))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,35 +559,19 @@ public class InsertCliente extends javax.swing.JPanel {
 
         jPanel2.add(UsuarioFormjPanel1);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        jPanel8.setPreferredSize(new java.awt.Dimension(700, 100));
 
-        jPanel25.setPreferredSize(new java.awt.Dimension(800, 100));
-
-        jButtonUpdate.setText("Update");
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
-            }
-        });
-
-        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.setText("Limpiar formulario");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLimpiarActionPerformed(evt);
             }
         });
 
-        jButtonInput.setText("Input");
-        jButtonInput.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIngresarCliente.setText("Ingresar Cliente");
+        jButtonIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInputActionPerformed(evt);
-            }
-        });
-
-        jToggleButtonIngresarCliente.setText("Ingresar");
-        jToggleButtonIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonIngresarClienteActionPerformed(evt);
+                jButtonIngresarClienteActionPerformed(evt);
             }
         });
 
@@ -605,117 +579,34 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(611, Short.MAX_VALUE)
-                .addComponent(jButtonUpdate)
-                .addGap(18, 18, 18)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
                 .addComponent(jButtonLimpiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonInput)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButtonIngresarCliente)
-                .addGap(202, 202, 202))
+                .addComponent(jButtonIngresarCliente)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonUpdate)
                     .addComponent(jButtonLimpiar)
-                    .addComponent(jButtonInput)
-                    .addComponent(jToggleButtonIngresarCliente))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(jButtonIngresarCliente))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1078, Short.MAX_VALUE))
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel2.add(jPanel8);
 
-        add(jPanel25, java.awt.BorderLayout.SOUTH);
-        add(jScrollPane1, java.awt.BorderLayout.LINE_END);
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButtonIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonIngresarClienteActionPerformed
+    private void jButtonIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarClienteActionPerformed
         // TODO add your handling code here:
-
         int id_cliente;
         var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
         var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = rolHas.get(rolSeleccionado);
-        int id_tipoUsuario = 1;         //  Por ser stakeholder es 1 y 2 poara cliente
-        var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
-        var id_cargo = cargoHas.get(cargoSeleccionado);
-        var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
-        //var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
-
-        try {
-            //Datos de Usuario
-            cliente.setNickName_usuario(jTextFieldNickname.getText());
-            cliente.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
-            cliente.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
-            cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
-            cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
-            cliente.setEmail_usuario(jTextFieldEmail.getText());
-            char[] passChars = jPasswordFieldA.getPassword();
-            String psw_usuario = new String(passChars);
-            cliente.setPsw_usuario(psw_usuario);
-            cliente.setId_tipoUsuario_usuario(id_tipoUsuario);
-
-            cliente.rol.setId_rol(id_rol);
-
-            //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-            //  Datos de Cliente
-            cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-            cliente.setId_cargo_cliente(id_cargo);
-            cliente.setDireccion_cliente(jTextFieldDireccion.getText());
-            int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
-            cliente.setTelefono_cliente(telefonoCliente);
-            cliente.setId_tipoDocumento_cliente(id_tipoDocumento);
-            int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
-            cliente.setDocumento_cliente(documentoCliente);
-            id_cliente = cliente.inputCliente(cliente, cliente);
-
-            if (id_cliente >= 0) {
-                System.out.println("Cliente registrado" + id_cliente);
-
-                //Ejecutar metodo para lismpiar y repintar pantalla
-            } else {
-                System.err.println("No se pudo ingresar CLiente");
-            }
-            JOptionPane.showMessageDialog(null, "Cargo seleccionado: " + cargoSeleccionado
-                    + "\n El del HashMap del cargo: " + id_cargo
-                    + "\n Documento seleccionado: " + tipoDocumentoSeleccionado
-                    + "\n El del HashMap del codumento: " + id_tipoDocumento
-                    + "\n Nombre de la casilla de texto: " + cliente.getPrimerNombre_usuario()
-                    + cliente.toString());
-
-        } catch (Exception e) {
-            System.err.println("Errot: " + e.getMessage());
-        } finally {
-            DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "dashboardpanel");
-        }
-
-    }//GEN-LAST:event_jToggleButtonIngresarClienteActionPerformed
-
-    private void jButtonInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInputActionPerformed
-        // TODO add your handling code here:
-        int id_cliente;
-        var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
-        //var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = 2;             //el id_rol_usuario
+        int id_rol = rolHas.get(rolSeleccionado);             //el id_rol_usuario
         var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
         var id_cargo = cargoHas.get(cargoSeleccionado);
         // var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
@@ -729,9 +620,11 @@ public class InsertCliente extends javax.swing.JPanel {
             cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
             cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
             cliente.setEmail_usuario(jTextFieldEmail.getText());
+            /*  Conversión de pass de Usuario*/
             char[] passChars = jPasswordFieldA.getPassword();
             String psw_usuario = new String(passChars);
             cliente.setPsw_usuario(psw_usuario);
+            /*      ****        */
             cliente.setId_rol_usuario(id_rol);
 
             //  Datos de Cliente
@@ -747,37 +640,29 @@ public class InsertCliente extends javax.swing.JPanel {
 
             if (id_cliente >= 0) {
                 System.out.println("Cliente registrado" + id_cliente);
+                JOptionPane.showMessageDialog(null, "Cliente: " + cliente.getRazonSocial_cliente() + " a sido ingresado exitosamente");
 
-                //Ejecutar metodo para lismpiar y repintar pantalla
             } else {
                 System.err.println("No se pudo ingresar CLiente");
             }
-            JOptionPane.showMessageDialog(null, "Cargo seleccionado: " + cargoSeleccionado
-                    + "\n El del HashMap del cargo: " + id_cargo
-                    + "\n Documento seleccionado: " + tipoDocumentoSeleccionado
-                    + "\n El del HashMap del codumento: " + id_tipoDocumento
-                    + "\n Nombre de la casilla de texto: " + cliente.getPrimerNombre_usuario()
-                    + cliente.toString());
-
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Se deben lletar todos los campos correctamente.");
         }
 
 
-    }//GEN-LAST:event_jButtonInputActionPerformed
+    }//GEN-LAST:event_jButtonIngresarClienteActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
 
-        limpiarCampos();
+            limpiarCampos();
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
      * *
@@ -815,7 +700,7 @@ public class InsertCliente extends javax.swing.JPanel {
         }
     }
 
-    final void limpiarCampos() {
+    final void limpiarCampos() throws SQLException {
         jTextFieldDireccion.setText("");
         jTextFieldPrimerNombreCliente.setText("");
         jTextFieldSegundoNombre.setText("");
@@ -831,15 +716,18 @@ public class InsertCliente extends javax.swing.JPanel {
         jTextFieldTelefono.setText("");
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
+        cargarCargos();
+        cargarRol();
+        cargarTipoDocumento();
+                
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel;
     private javax.swing.JPanel UsuarioFormjPanel1;
-    private javax.swing.JButton jButtonInput;
+    private javax.swing.JButton jButtonIngresarCliente;
     private javax.swing.JButton jButtonLimpiar;
-    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
@@ -868,7 +756,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -879,7 +766,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelNickname;
     private javax.swing.JPasswordField jPasswordFieldA;
     private javax.swing.JPasswordField jPasswordFieldB;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldDireccion;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIdentificacion;
@@ -890,7 +776,63 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldSegundoApellido;
     private javax.swing.JTextField jTextFieldSegundoNombre;
     private javax.swing.JTextField jTextFieldTelefono;
-    private javax.swing.JToggleButton jToggleButtonIngresarCliente;
     private javax.swing.JLabel passAJLabel;
     // End of variables declaration//GEN-END:variables
 }
+
+/**
+ * *
+ *
+ * Método para ingresar cliente
+ *
+ * int id_cliente; var cargoSeleccionado = jComboBoxCargo.getSelectedItem(); var
+ * rolSeleccionado = jComboBoxRol.getSelectedItem(); int id_rol =
+ * rolHas.get(rolSeleccionado); int id_tipoUsuario = 1; // Por ser stakeholder
+ * es 1 y 2 poara cliente var tipoDocumentoSeleccionado =
+ * jComboBoxTipoDocumento.getSelectedItem(); var id_cargo =
+ * cargoHas.get(cargoSeleccionado); var id_tipoDocumento =
+ * tipoDocumentoHas.get(tipoDocumentoSeleccionado); //var id_tipoDocumento =
+ * tipoDocumentoHas.get(tipoDocumentoSeleccionado);
+ *
+ * try { //Datos de Usuario
+ * cliente.setNickName_usuario(jTextFieldNickname.getText());
+ * cliente.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
+ * cliente.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
+ * cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
+ * cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
+ * cliente.setEmail_usuario(jTextFieldEmail.getText()); char[] passChars =
+ * jPasswordFieldA.getPassword(); String psw_usuario = new String(passChars);
+ * cliente.setPsw_usuario(psw_usuario);
+ * cliente.setId_tipoUsuario_usuario(id_tipoUsuario);
+ *
+ * cliente.rol.setId_rol(id_rol);
+ *
+ * //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento); // Datos de
+ * Cliente cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
+ * cliente.setId_cargo_cliente(id_cargo);
+ * cliente.setDireccion_cliente(jTextFieldDireccion.getText()); int
+ * telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
+ * cliente.setTelefono_cliente(telefonoCliente);
+ * cliente.setId_tipoDocumento_cliente(id_tipoDocumento); int documentoCliente =
+ * Integer.parseInt(jTextFieldIdentificacion.getText().trim());
+ * cliente.setDocumento_cliente(documentoCliente); id_cliente =
+ * cliente.inputCliente(cliente, cliente);
+ *
+ * if (id_cliente >= 0) { System.out.println("Cliente registrado" + id_cliente);
+ *
+ * //Ejecutar metodo para lismpiar y repintar pantalla } else {
+ * System.err.println("No se pudo ingresar CLiente"); }
+ * JOptionPane.showMessageDialog(null, "Cargo seleccionado: " +
+ * cargoSeleccionado + "\n El del HashMap del cargo: " + id_cargo + "\n
+ * Documento seleccionado: " + tipoDocumentoSeleccionado + "\n El del HashMap
+ * del codumento: " + id_tipoDocumento + "\n Nombre de la casilla de texto: " +
+ * cliente.getPrimerNombre_usuario() + cliente.toString());
+ *
+ * } catch (Exception e) { System.err.println("Errot: " + e.getMessage()); }
+ * finally { DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard,
+ * "dashboardpanel"); }
+ *
+ *
+ *
+ *
+ */

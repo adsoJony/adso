@@ -62,6 +62,7 @@ public class UpdateCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel13 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -112,35 +113,60 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPanel15 = new javax.swing.JPanel();
         jTextFieldRazonSocial = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
-        jButtoncargardatos = new javax.swing.JButton();
+        jButtonCargarDatos = new javax.swing.JButton();
 
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4808, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 79, Short.MAX_VALUE)
+        );
+
+        setMaximumSize(new java.awt.Dimension(900, 800));
+        setPreferredSize(new java.awt.Dimension(700, 450));
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 150));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 100));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Update CLiente");
+        jLabel1.setText("Actualizar Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(3179, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(328, 328, 328)
                 .addComponent(jLabel1)
-                .addGap(943, 943, 943))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        add(jPanel1, java.awt.BorderLayout.NORTH);
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanel2.setMinimumSize(new java.awt.Dimension(900, 800));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 400));
 
         UsuarioFormjPanel.setAutoscrolls(true);
-        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel.setMaximumSize(new java.awt.Dimension(600, 400));
+        UsuarioFormjPanel.setMinimumSize(new java.awt.Dimension(250, 300));
+        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(700, 200));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -382,7 +408,9 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPanel2.add(UsuarioFormjPanel);
 
         UsuarioFormjPanel1.setAutoscrolls(true);
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 300));
+        UsuarioFormjPanel1.setMaximumSize(new java.awt.Dimension(600, 400));
+        UsuarioFormjPanel1.setMinimumSize(new java.awt.Dimension(600, 400));
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(700, 150));
 
         jPanel16.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel16.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -552,26 +580,27 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         jPanel2.add(UsuarioFormjPanel1);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        jPanel25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel25.setPreferredSize(new java.awt.Dimension(500, 79));
 
-        jButtonUpdate.setText("Input");
+        jButtonUpdate.setText("Actualizar Cliente");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateActionPerformed(evt);
             }
         });
 
-        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.setText("Limpiar formulario");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLimpiarActionPerformed(evt);
             }
         });
 
-        jButtoncargardatos.setText("Cargar datos de memoria");
-        jButtoncargardatos.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCargarDatos.setText("Cargar formulario");
+        jButtonCargarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtoncargardatosActionPerformed(evt);
+                jButtonCargarDatosActionPerformed(evt);
             }
         });
 
@@ -579,14 +608,14 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
-                .addComponent(jButtoncargardatos)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jButtonCargarDatos)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
                 .addGap(26, 26, 26)
                 .addComponent(jButtonUpdate)
-                .addGap(209, 209, 209))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,100 +624,92 @@ public class UpdateCliente extends javax.swing.JPanel {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonUpdate)
                     .addComponent(jButtonLimpiar)
-                    .addComponent(jButtoncargardatos))
+                    .addComponent(jButtonCargarDatos))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(869, 869, 869)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2636, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel2.add(jPanel25);
 
-        add(jPanel13, java.awt.BorderLayout.SOUTH);
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // Acción del botón UpDate o actualizar CLiente:
-        
-        JOptionPane.showMessageDialog(null, "Dato almacenado: "+clienteUpdateFrm);
-        var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
-        var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = rolHas.get(rolSeleccionado);       //  Obtenemos el Id del HashMap
-        var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
-        var id_cargo = cargoHas.get(cargoSeleccionado);
-        var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
-        //var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
+        if (jTextFieldEmail != null && clienteUpdateFrm.getId_cliente() != 0) {
 
-        try {
-            //Datos de Usuario
-            clienteUpdateFrm.setNickName_usuario(jTextFieldNickname.getText());
-            clienteUpdateFrm.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
-            clienteUpdateFrm.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
-            clienteUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
-            clienteUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
-            clienteUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
-            char[] passChars = jPasswordFieldA.getPassword();
-            String psw_usuario = new String(passChars);
-            clienteUpdateFrm.setPsw_usuario(psw_usuario);
-            clienteUpdateFrm.setId_rol_usuario(id_rol);
+            JOptionPane.showMessageDialog(null, "Dato almacenado: " + clienteUpdateFrm);
+            var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
+            var rolSeleccionado = jComboBoxRol.getSelectedItem();
+            int id_rol = rolHas.get(rolSeleccionado);       //  Obtenemos el Id del HashMap
+            var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
+            var id_cargo = cargoHas.get(cargoSeleccionado);
+            var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
+            //var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
 
-            //  Datos de Cliente
-            clienteUpdateFrm.setId_tipoDocumento_cliente(id_tipoDocumento);
-            clienteUpdateFrm.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-            //cliente.cargo.setId_cargo(id_cargo);
-            clienteUpdateFrm.setDireccion_cliente(jTextFieldDireccion.getText());
-            int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
-            clienteUpdateFrm.setTelefono_cliente(telefonoCliente);
-            //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-            int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
-            clienteUpdateFrm.setDocumento_cliente(documentoCliente);
-            boolean update = clienteUpdateFrm.updateCliente(clienteUpdateFrm, clienteUpdateFrm);
+            try {
+                //Datos de Usuario
+                clienteUpdateFrm.setNickName_usuario(jTextFieldNickname.getText());
+                clienteUpdateFrm.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
+                clienteUpdateFrm.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
+                clienteUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
+                clienteUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
+                clienteUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
+                char[] passChars = jPasswordFieldA.getPassword();
+                String psw_usuario = new String(passChars);
+                clienteUpdateFrm.setPsw_usuario(psw_usuario);
+                clienteUpdateFrm.setId_rol_usuario(id_rol);
 
-            if (update = true) {
-                System.out.println("Cliente Actualizado" + update);
+                //  Datos de Cliente
+                clienteUpdateFrm.setId_tipoDocumento_cliente(id_tipoDocumento);
+                clienteUpdateFrm.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
+                //cliente.cargo.setId_cargo(id_cargo);
+                clienteUpdateFrm.setDireccion_cliente(jTextFieldDireccion.getText());
+                int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
+                clienteUpdateFrm.setTelefono_cliente(telefonoCliente);
+                //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+                int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
+                clienteUpdateFrm.setDocumento_cliente(documentoCliente);
+                boolean update = clienteUpdateFrm.updateCliente(clienteUpdateFrm, clienteUpdateFrm);
 
-                //Ejecutar metodo para lismpiar y repintar pantalla
-            } else {
-                System.err.println("No se pudo ingresar CLiente");
+                if (update = true) {
+                    System.out.println("Cliente Actualizado" + update);
+
+                    //Ejecutar metodo para lismpiar y repintar pantalla
+                } else {
+                    System.err.println("No se pudo ingresar CLiente");
+                }
+                JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + clienteUpdateFrm.toString());
+
+            } catch (Exception e) {
+                System.err.println("Errot: " + e.getMessage());
             }
-            JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + clienteUpdateFrm.toString());
 
-        } catch (Exception e) {
-            System.err.println("Errot: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha cargado ningun campo"
+                    + "\n Debe Acceder al listado de clientes para seleccionar una acción");
         }
-
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         try {
-            // TODO add your handling code here:
-
             limpiarCampos();
+            clienteUpdateFrm = null;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex);
 
         }
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
-    private void jButtoncargardatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncargardatosActionPerformed
+    private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
         try {
             // TODO add your handling code here:
             setearCamposClienteFrm(clienteUpdateFrm);
-            JOptionPane.showMessageDialog(null, "Accionando Boton cargar Datos");
+            //JOptionPane.showMessageDialog(null, "Accionando Boton cargar Datos");
         } catch (Exception ex) {
             Logger.getLogger(UpdateCliente.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-    }//GEN-LAST:event_jButtoncargardatosActionPerformed
+    }//GEN-LAST:event_jButtonCargarDatosActionPerformed
 
     /**
      * *
@@ -713,7 +734,6 @@ public class UpdateCliente extends javax.swing.JPanel {
         for (Rol r : rol.listarRol()) {
             jComboBoxRol.addItem(r.getDescripcion_rol());
         }
-
     }
 
     /**
@@ -730,17 +750,23 @@ public class UpdateCliente extends javax.swing.JPanel {
     }
 
     public void setearCamposClienteFrm(Cliente c) throws SQLException {
-        JOptionPane.showMessageDialog(null, "Setear camposClienteFrm: Licnete" + c.toString());
 
-        clienteUpdateFrm = c;
-        setFields(c);
-
+        try {
+            if (c != null) {
+                clienteUpdateFrm = c;
+                setFrm();
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay datos en memoria");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay datos en memoria. Error: " + e.getMessage());
+        }
     }
 
     public void setFields(Cliente c) throws SQLException {
         //limpiarCampos();
 
-        JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
+        //JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
         System.out.println("Impriendo desde la funcion setar campos frm");
         jTextFieldDireccion.setText(c.getDireccion_cliente());
         jTextFieldPrimerNombreCliente.setText(c.getPrimerNombre_usuario());
@@ -755,7 +781,40 @@ public class UpdateCliente extends javax.swing.JPanel {
         jTextFieldTelefono.setText(Integer.toString(c.getTelefono_cliente()));
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
-        jComboBoxTipoDocumento.setSelectedItem(clienteUpdateFrm);
+        String tipoDocumento = c.tipoDocumento.getTipoDocumento();
+        jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
+        String cargo = c.cargo.getCargo();
+        jComboBoxCargo.setSelectedItem(cargo);
+        String rol = c.rol.getDescripcion_rol();
+        jComboBoxRol.setSelectedItem(rol);
+
+    }
+
+    public void setFrm() throws SQLException {
+        //limpiarCampos();
+        //clienteUpdateFrm = c;
+
+        //JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
+        System.out.println("Impriendo desde setFrm");
+        jTextFieldDireccion.setText(clienteUpdateFrm.getDireccion_cliente());
+        jTextFieldPrimerNombreCliente.setText(clienteUpdateFrm.getPrimerNombre_usuario());
+        jTextFieldSegundoNombre.setText(clienteUpdateFrm.getSegundoNombre_usuario());
+        jTextFieldEmail.setText(clienteUpdateFrm.getEmail_usuario());
+        jTextFieldIdentificacion.setText(Integer.toString(clienteUpdateFrm.getDocumento_cliente()));
+        jTextFieldNickname.setText(clienteUpdateFrm.getNickName_usuario());
+        jTextFieldPrimerApellido.setText(clienteUpdateFrm.getPrimerApellido_usuario());
+        jTextFieldSegundoApellido.setText(clienteUpdateFrm.getSegundoApellido_usuario());;
+        jTextFieldRazonSocial.setText(clienteUpdateFrm.getRazonSocial_cliente());
+
+        jTextFieldTelefono.setText(Integer.toString(clienteUpdateFrm.getTelefono_cliente()));
+        jPasswordFieldA.setText("");
+        jPasswordFieldB.setText("");
+        String tipoDocumento = clienteUpdateFrm.tipoDocumento.getTipoDocumento();
+        jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
+        String cargo = clienteUpdateFrm.cargo.getCargo();
+        jComboBoxCargo.setSelectedItem(cargo);
+        String rol = clienteUpdateFrm.rol.getDescripcion_rol();
+        jComboBoxRol.setSelectedItem(rol);
 
     }
 
@@ -808,9 +867,9 @@ public class UpdateCliente extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel;
     private javax.swing.JPanel UsuarioFormjPanel1;
+    private javax.swing.JButton jButtonCargarDatos;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonUpdate;
-    private javax.swing.JButton jButtoncargardatos;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;

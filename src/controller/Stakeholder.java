@@ -319,17 +319,21 @@ public class Stakeholder extends Usuario {
         return "Stakeholder{" + "id_stakeholder=" + id_stakeholder + ", documento_stakeholder=" + documento_stakeholder + ", id_cargo_stakeholder=" + id_cargo_stakeholder + ", id_tipoDocumento_stakeholder=" + id_tipoDocumento_stakeholder + ", id_usuario_stakeholder=" + id_usuario_stakeholder + ", fechaCreacion=" + fechaCreacion + ", fechaActualizacion=" + fechaActualizacion + ", fechaEliminado=" + fechaEliminado + '}';
     }
 
-    /*
-    public Stakeholder findStakeholder(int idStakeholder) throws SQLException{
-        return stakeholderModel.findStakeholder(idStakeholder);
+    
+    public Stakeholder findStakeholderById(int idStakeholder) throws SQLException{
+        return stakeholderModel.findStakeholderById(idStakeholder);
     }
-     */
+     
     public List<Stakeholder> listarStakeholder() throws SQLException {
         return stakeholderModel.listarStakeholder();
     }
 
     public int inputStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException {
         return stakeholderModel.inputStakeholder(stakeholder, usuario);
+    }
+    
+    public boolean updateStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException{
+        return stakeholderModel.updateStakeholder(stakeholder, usuario);
     }
 
 }

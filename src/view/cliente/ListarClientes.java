@@ -8,6 +8,7 @@ import controller.Cliente;
 import java.awt.CardLayout;
 import view.equipos.*;
 import view.pruebas.JtableSwing;
+import view.tables.ClienteTable;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ public class ListarClientes extends javax.swing.JPanel {
     JPanel dashboard = new JPanel();
     UpdateCliente updateCliente = new UpdateCliente();
 
-    JtableSwing jTable;
+    ClienteTable clienteTable;
 
     /**
      * Creates new form ListarEquipos
@@ -32,21 +33,22 @@ public class ListarClientes extends javax.swing.JPanel {
     public ListarClientes() throws SQLException {
         initComponents();
 
-        this.jTable = new JtableSwing();
-        jTable.cargarTabla();
-        add(jTable);
+        this.clienteTable = new ClienteTable();
+        clienteTable.cargarTabla();
+        add(clienteTable);
 
     }
-
+    
+    
     public ListarClientes(CardLayout cardLayout, JPanel dashboard, UpdateCliente updateCliente) throws SQLException {
         this.cardLayout = cardLayout;
         this.updateCliente = updateCliente;
         this.dashboard = dashboard;
         initComponents();
 
-        this.jTable = new JtableSwing();
-        jTable.cargarTabla();
-        add(jTable);
+        this.clienteTable = new ClienteTable(this.cardLayout, this.dashboard, this.updateCliente);
+        clienteTable.cargarTabla();
+        add(clienteTable);
 
     }
 
@@ -116,6 +118,8 @@ public class ListarClientes extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        JOptionPane.showMessageDialog(null, "fila: "+clienteTable.getIdSelectedRow());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

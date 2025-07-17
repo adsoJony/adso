@@ -133,12 +133,12 @@ public class StakeholderModel {
      *
      *
      */
-    
-    /***
+    /**
+     * *
      * Método para listar los colaboradores o Stakeholders
-     * 
+     *
      * @return List - Lista
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<Stakeholder> listarStakeholder() throws SQLException {
         List<Stakeholder> stakeholders = new ArrayList();
@@ -154,6 +154,9 @@ public class StakeholderModel {
             while (rs.next()) {
                 Stakeholder stakeholder = new Stakeholder();
                 stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
+                stakeholder.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                stakeholder.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
+                stakeholder.setEmail_usuario(rs.getString("email_usuario"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
                 stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
                 stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
@@ -249,7 +252,6 @@ public class StakeholderModel {
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     deleted = rs.getInt(1);
-
                 }
             }
             rs.close();
@@ -262,6 +264,62 @@ public class StakeholderModel {
         }
 
         return deleted;
+    }
+
+    public boolean updateStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException {
+        var idStakeholder = stakeholder.getId_stakeholder();
+        var update = false;
+
+        String sql = "update stakeholder set documento_stakeholder=?, id_cargo_stakeholder=?,  id_tipoDocumento_stakeholder=?"
+                + " where id_stakeholder=?";
+        PreparedStatement ps;
+
+        try {
+            //Conexion.conexionSetAutoCommit(false);
+            update = usuario.updateUsuario(usuario);
+            if (update != false) {
+                System.out.println("Usuario Actualizado desde Stakeholder");
+                try {
+                    ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, stakeholder.getDocumento_stakeholder());
+                    ps.setInt(2, stakeholder.getId_cargo_stakeholder());
+                    ps.setInt(3, stakeholder.getId_tipoDocumento_stakeholder());
+                    ps.setInt(4, idStakeholder);
+                    //ps.setDate(5, (stakeholder.getFechaCreacion() != null) ? Date.valueOf(stakeholder.getFechaCreacion()) : null);
+                    //ps.setDate(5, (Date) stakeholder.getFechaCreacion());
+                    //ps.setDate(6, (stakeholder.getFechaActualizacion() != null) ? Date.valueOf(stakeholder.getFechaActualizacion()) : null);
+                    //ps.setDate(6, (Date) stakeholder.getFechaActualizacion());
+                    //ps.setDate(7, (stakeholder.getFechaEliminado() != null) ? Date.valueOf(stakeholder.getFechaEliminado()) : null);
+                    //ps.setDate(7, (Date) stakeholder.getFechaEliminado());
+
+                    if (ps.executeUpdate() != 0) {
+                        System.out.println("Stakeholder Actualizado");
+                        ResultSet rs;
+                        rs = ps.getGeneratedKeys();
+                        if (rs.next()) {
+                            idStakeholder = rs.getInt(1);
+                            System.out.println("El id del Stakeholder es:" + idStakeholder);
+
+                        }
+                        rs.close();
+                    } else {
+                        System.err.println("El stakeholder no ha podido ser ingresado");
+                    }
+                    Conexion.commit();
+                } catch (SQLException e) {
+                    System.err.println("Error: " + e.getMessage());
+                    Conexion.rollBack();
+                }
+            } else {
+                Conexion.rollBack();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+            Conexion.rollBack();
+        } finally {
+            Conexion.close();
+        }
+        return update;
     }
 
 }

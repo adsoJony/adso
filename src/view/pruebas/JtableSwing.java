@@ -25,24 +25,30 @@ import javax.swing.JPanel;
  */
 public class JtableSwing extends javax.swing.JPanel {
 
-    UpdateCliente updateCliente = new UpdateCliente();
-    CardLayout cardLayout = new CardLayout();
-    JPanel dashboard = new JPanel();
-    
+    //CardLayout cardLayout = new CardLayout();
+    //JPanel dashboard = new JPanel();
+    UpdateCliente updateCliente;
 
-    
     /**
      * Creates new form JtableSwing
+     *
+     * @throws java.sql.SQLException
      */
-    public JtableSwing() throws SQLException {
+    public JtableSwing() throws SQLException /*throws SQLException */ {
+        this.updateCliente = new UpdateCliente();
         initComponents();
         cargarTabla();
 
     }
-    
-    
-    
-    
+
+    public JtableSwing(CardLayout cardLayout, JPanel dashboard, UpdateCliente updateCliente) throws SQLException {
+        // this.cardLayout = cardLayout;
+        //this.updateCliente = updateCliente;
+        //this.dashboard = dashboard;
+        initComponents();
+        cargarTabla();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,19 +167,19 @@ public class JtableSwing extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(null, "El ide seleccionado tiene el id; " + Integer.parseInt(id.toString()));
 
             try {
-                
-                
+
                 Cliente c = new Cliente();
                 c.setId_cliente(Integer.parseInt(id.toString()));
                 c = c.findClienteById(Integer.parseInt(id.toString()));
                 updateCliente.setearCamposClienteFrm(c);        //  Establecemos los campos en el panel de Update Cliente
+
                 //update.setearCamposClienteFrm(c);
-                JOptionPane.showMessageDialog(null, "Cliente: "+c.toString());
+                //JOptionPane.showMessageDialog(null, "Cliente: " + c.toString());
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateCliente");    //Se puede cambiar por 
                 //cardLayout.show(dashboard, "updateCliente");
-                dashboard.revalidate();
-                dashboard.repaint();
-                
+                DashBoardAdso.dashboard.revalidate();
+                DashBoardAdso.dashboard.repaint();
+
 //updateC.cargarMemoria(c);
             } catch (Exception e) {
             }

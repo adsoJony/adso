@@ -22,6 +22,8 @@ import view.colaborador.InsertStakeholder;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import view.colaborador.ListarStakeholder;
+import view.colaborador.UpdateStakeholder;
 import view.pruebas.*;
 
 /**
@@ -42,7 +44,9 @@ public class DashBoardAdso extends JFrame {
     DashBoardPanel dashBoardPanel = new DashBoardPanel();
     UpdateUps updateEquipo = new UpdateUps();
     UpdateCliente updateCliente;
+    UpdateStakeholder updateStakeholder = new UpdateStakeholder();
     ListarClientes listarClientes = new ListarClientes();
+    ListarStakeholder listarStakeholder = new ListarStakeholder();
     ListarUps listarEquipos = new ListarUps();
     
     
@@ -75,14 +79,16 @@ public class DashBoardAdso extends JFrame {
         dashboard.add(insertStakeholder, "insertStakeholder");
         dashboard.add(updateEquipo, "updateEquipo");
         dashboard.add(updateCliente, "updateCliente");
+        dashboard.add(updateStakeholder, "updateStakeholder");
         dashboard.add(listarEquipos, "listarEquipos");
         dashboard.add(listarClientes, "listarClientes");
+        dashboard.add(listarStakeholder, "listarStakeholder");
         dashboard.add(buscarClienteByDoc, "buscarClienteByDoc");
 
         add(dashboard);
         
         //      Ajustamos el Panel Central - Home 
-        cardLayout.show(dashboard, "listarClientes");     
+        cardLayout.show(dashboard, "listarStakeholder");     
 
         setLocationRelativeTo(null);
 
@@ -124,7 +130,7 @@ public class DashBoardAdso extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 600));
-        setPreferredSize(new java.awt.Dimension(1024, 800));
+        setPreferredSize(new java.awt.Dimension(900, 800));
 
         jMenu1.setText("Acciones");
 
@@ -201,6 +207,11 @@ public class DashBoardAdso extends JFrame {
         jMenu5.add(jMenuItem7);
 
         jMenuItem8.setText("Listar Colaboradores");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem8);
 
         jMenuItem9.setText("Eliminar colaborador");
@@ -257,7 +268,7 @@ public class DashBoardAdso extends JFrame {
 
     private void listarCLientesJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarCLientesJMenuItemActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Hola mundo accionado por Listar cliente");
+        //JOptionPane.showMessageDialog(null, "Hola mundo accionado por Listar cliente");
         cardLayout.show(dashboard, "listarClientes");
     }//GEN-LAST:event_listarCLientesJMenuItemActionPerformed
 
@@ -286,6 +297,12 @@ public class DashBoardAdso extends JFrame {
         cambiarPanel("insertStakeholder");
         //cardLayout.show(dashboard, "insertStakeholder");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(dashboard, "listarStakeholder");
+        
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments

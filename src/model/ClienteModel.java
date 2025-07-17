@@ -145,6 +145,7 @@ public class ClienteModel {
                 cliente.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
                 cliente.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
                 cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
+                cliente.setEmail_usuario(rs.getString("email_usuario"));
                 cliente.setTelefono_cliente(rs.getInt("telefono_cliente"));
                 cliente.setDocumento_cliente(rs.getInt("documento_cliente"));
                 cliente.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_cliente"));
