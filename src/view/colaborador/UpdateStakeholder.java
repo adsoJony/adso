@@ -13,9 +13,13 @@ import controller.Cargo;
 import controller.TipoDocumento;
 import controller.Rol;
 import controller.Stakeholder;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import view.DashBoardAdso;
+import view.cliente.UpdateCliente;
+//import static view.cliente.UpdateCliente.clienteUpdateFrm;
 
 /**
  *
@@ -27,30 +31,30 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     Cargo cargo = new Cargo();
     TipoDocumento tipoDocumento = new TipoDocumento();
 
-    Stakeholder stakeholder = new Stakeholder();
-    Stakeholder stakeholderFrm = new Stakeholder();
+    public Stakeholder stakeholder = new Stakeholder();
+    public static Stakeholder stakeholderUpdateFrm = new Stakeholder();
     //DashBoardAdso dashPruebaAdso = new DashBoardAdso();
     HashMap<String, Integer> cargoHas = new HashMap<>();
     HashMap<String, Integer> rolHas = new HashMap<>();
     HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
 
     /**
-     * Creates new form InsertStakeholder
+     * Creates new form InsertStakeholder - Constructor -
      */
     public UpdateStakeholder() throws SQLException {
+
+        initComponents();
+        limpiarCampos();
 
         //  HashMaps de los combBox
         cargoHas = cargo.hashMapCargo();
         rolHas = rol.hashMapRol();
         tipoDocumentoHas = tipoDocumento.hashMapTipoDocumento();
 
-        initComponents();
-
         //      Cargamos los comboBox
-        cargarCargos();
-        cargarTipoDocumento();
-        cargarRol();
-
+        //cargarCargos();
+        //cargarTipoDocumento();
+        //cargarRol();
     }
 
     /**
@@ -67,7 +71,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         UsuarioFormjPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jTextFieldPrimerNombreCliente = new javax.swing.JTextField();
+        jTextFieldPrimerNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jTextFieldSegundoNombre = new javax.swing.JTextField();
@@ -78,9 +82,9 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel14 = new javax.swing.JPanel();
         jTextFieldSegundoApellido = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jTextFieldTelefono = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxRol = new javax.swing.JComboBox<>();
         jPanelNickname1 = new javax.swing.JPanel();
         jTextFieldNickname = new javax.swing.JTextField();
         jLabelNickname1 = new javax.swing.JLabel();
@@ -93,9 +97,6 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel17 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPasswordFieldB = new javax.swing.JPasswordField();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBoxRol = new javax.swing.JComboBox<>();
         UsuarioFormjPanel2 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jTextFieldIdentificacion = new javax.swing.JTextField();
@@ -110,6 +111,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonCargarDatos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 800));
         setLayout(new java.awt.BorderLayout());
@@ -147,7 +149,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel1.setRequestFocusEnabled(false);
 
         UsuarioFormjPanel1.setAutoscrolls(true);
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 250));
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 200));
 
         jPanel8.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -160,13 +162,13 @@ public class UpdateStakeholder extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jTextFieldPrimerNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPrimerNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(0, 3, Short.MAX_VALUE))
         );
@@ -250,32 +252,34 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel14);
 
-        jPanel21.setMinimumSize(new java.awt.Dimension(350, 0));
-        jPanel21.setPreferredSize(new java.awt.Dimension(300, 25));
+        jPanel7.setPreferredSize(new java.awt.Dimension(300, 25));
 
-        jLabel18.setText("Teléfono");
+        jLabel6.setText("Rol");
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel6)
+                .addGap(49, 49, 49)
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel1.add(jPanel21);
+        UsuarioFormjPanel1.add(jPanel7);
 
         jPanelNickname1.setMinimumSize(new java.awt.Dimension(200, 0));
         jPanelNickname1.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -385,39 +389,10 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel17);
 
-        jPanel7.setPreferredSize(new java.awt.Dimension(300, 25));
-
-        jLabel6.setText("Rol");
-
-        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addGap(49, 49, 49)
-                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel1.add(jPanel7);
-
         jPanel1.add(UsuarioFormjPanel1);
 
         UsuarioFormjPanel2.setAutoscrolls(true);
-        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 200));
+        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 120));
 
         jPanel19.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel19.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -531,13 +506,22 @@ public class UpdateStakeholder extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jButtonCargarDatos)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonCargarDatos))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
                 .addGap(26, 26, 26)
@@ -552,7 +536,8 @@ public class UpdateStakeholder extends javax.swing.JPanel {
                     .addComponent(jButtonUpdate)
                     .addComponent(jButtonLimpiar)
                     .addComponent(jButtonCargarDatos))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         jPanel1.add(jPanel25);
@@ -562,9 +547,9 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // Acción del botón UpDate o actualizar CLiente:
-        if (jTextFieldEmail != null && clienteUpdateFrm.getId_cliente() != 0) {
+        if (jTextFieldEmail != null && stakeholderUpdateFrm.getId_stakeholder() != 0) {
 
-            JOptionPane.showMessageDialog(null, "Dato almacenado: " + clienteUpdateFrm);
+            JOptionPane.showMessageDialog(null, "Dato almacenado: " + stakeholderUpdateFrm);
             var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
             var rolSeleccionado = jComboBoxRol.getSelectedItem();
             int id_rol = rolHas.get(rolSeleccionado);       //  Obtenemos el Id del HashMap
@@ -575,37 +560,32 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
             try {
                 //Datos de Usuario
-                clienteUpdateFrm.setNickName_usuario(jTextFieldNickname.getText());
-                clienteUpdateFrm.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
-                clienteUpdateFrm.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
-                clienteUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
-                clienteUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
-                clienteUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
+                stakeholderUpdateFrm.setNickName_usuario(jTextFieldNickname.getText());
+                stakeholderUpdateFrm.setPrimerNombre_usuario(jTextFieldPrimerNombre.getText());
+                stakeholderUpdateFrm.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
+                stakeholderUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
+                stakeholderUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
+                stakeholderUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
                 char[] passChars = jPasswordFieldA.getPassword();
                 String psw_usuario = new String(passChars);
-                clienteUpdateFrm.setPsw_usuario(psw_usuario);
-                clienteUpdateFrm.setId_rol_usuario(id_rol);
+                stakeholderUpdateFrm.setPsw_usuario(psw_usuario);
+                stakeholderUpdateFrm.setId_rol_usuario(id_rol);
 
                 //  Datos de Cliente
-                clienteUpdateFrm.setId_tipoDocumento_cliente(id_tipoDocumento);
-                clienteUpdateFrm.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-                //cliente.cargo.setId_cargo(id_cargo);
-                clienteUpdateFrm.setDireccion_cliente(jTextFieldDireccion.getText());
-                int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
-                clienteUpdateFrm.setTelefono_cliente(telefonoCliente);
-                //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-                int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
-                clienteUpdateFrm.setDocumento_cliente(documentoCliente);
-                boolean update = clienteUpdateFrm.updateCliente(clienteUpdateFrm, clienteUpdateFrm);
+                stakeholderUpdateFrm.setId_tipoDocumento_stakeholder(id_tipoDocumento);
+
+                int documentoStakeholder = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
+                stakeholderUpdateFrm.setDocumento_stakeholder(documentoStakeholder);
+                boolean update = stakeholderUpdateFrm.updateStakeholder(stakeholderUpdateFrm, stakeholderUpdateFrm);
 
                 if (update = true) {
                     System.out.println("Cliente Actualizado" + update);
 
                     //Ejecutar metodo para lismpiar y repintar pantalla
                 } else {
-                    System.err.println("No se pudo ingresar CLiente");
+                    System.err.println("No se pudo Actualizar el CLiente");
                 }
-                JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + clienteUpdateFrm.toString());
+                JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + stakeholderUpdateFrm.toString());
 
             } catch (Exception e) {
                 System.err.println("Errot: " + e.getMessage());
@@ -613,15 +593,15 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
         } else {
             JOptionPane.showMessageDialog(null, "No se ha cargado ningun campo"
-                + "\n Debe Acceder al listado de clientes para seleccionar una acción");
+                    + "\n Debe Acceder al listado de clientes para seleccionar una acción");
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         try {
             limpiarCampos();
-            clienteUpdateFrm = null;
-        } catch (SQLException ex) {
+            stakeholderUpdateFrm = null;
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex);
 
         }
@@ -630,13 +610,23 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
         try {
             // TODO add your handling code here:
-            setearCamposClienteFrm(clienteUpdateFrm);
-            //JOptionPane.showMessageDialog(null, "Accionando Boton cargar Datos");
+            System.out.println("Stakeholder Update frm desde el boton -" + stakeholderUpdateFrm.toString());
+            //limpiarCampos();
+            setearCamposStakeholderFrm(stakeholderUpdateFrm);
+            JOptionPane.showMessageDialog(null, "Accionando Boton Cargar Datos: " + stakeholderUpdateFrm.toString());
         } catch (Exception ex) {
-            Logger.getLogger(UpdateCliente.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(UpdateStakeholder.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateStakeholder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al Cargar los datos" + ex.getMessage());
 
         }
     }//GEN-LAST:event_jButtonCargarDatosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        JOptionPane.showMessageDialog(null, "evento boton:" + stakeholderUpdateFrm.toString());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * *
@@ -673,20 +663,20 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         }
     }
 
-    final void limpiarCampos() {
+    public void limpiarCampos() throws SQLException {
 
-        jTextFieldPrimerNombreCliente.setText("");
+        jTextFieldPrimerNombre.setText("");
         jTextFieldSegundoNombre.setText("");
         jTextFieldEmail.setText("");
         jTextFieldIdentificacion.setText("");
         jTextFieldNickname.setText("");
         jTextFieldPrimerApellido.setText("");
-        jTextFieldPrimerNombreCliente.setText("");
+        jTextFieldPrimerNombre.setText("");
         jTextFieldSegundoApellido.setText("");;
         jTextFieldSegundoNombre.setText("");;
-        jTextFieldTelefono.setText("");
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
+        cargarRol();
 
         //dashPruebaAdso.goToDashboard();
     }
@@ -695,45 +685,96 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
         try {
             if (s != null) {
-                stakeholderFrm = s;
-                setFields(s);
+                stakeholderUpdateFrm = s;
+                setFrm();
+                setFrm();
+
+                //DashBoardAdso.dashboard.repaint();
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay datos en memoria");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No hay datos en memoria. Error: " + e.getMessage());
+        }
+
+    }
+
+    public void setFields(Stakeholder s) throws SQLException {
+
+        try {
+            if (s != null) {
+                stakeholderUpdateFrm = s;
+                //setFrm();
+
+                System.out.println("Impriendo desde la funcion setFields con ingreso de Stakeholder" + stakeholderUpdateFrm.toString());
+
+                //  Datos de Usuario
+                jTextFieldPrimerNombre.setText(stakeholderUpdateFrm.getPrimerNombre_usuario());
+
+                jTextFieldSegundoNombre.setText(stakeholderUpdateFrm.getSegundoNombre_usuario());
+                jTextFieldEmail.setText(stakeholderUpdateFrm.getEmail_usuario());
+                jTextFieldIdentificacion.setText(Integer.toString(this.stakeholderUpdateFrm.getDocumento_stakeholder()));
+                jTextFieldNickname.setText(stakeholderUpdateFrm.getNickName_usuario());
+                jTextFieldPrimerApellido.setText(stakeholderUpdateFrm.getPrimerApellido_usuario());
+                jTextFieldSegundoApellido.setText(stakeholderUpdateFrm.getSegundoApellido_usuario());;
+
+                jPasswordFieldA.setText("");
+                jPasswordFieldB.setText("");
+                String tipoDocumento = stakeholderUpdateFrm.tipoDocumento.getTipoDocumento();
+                jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
+                String cargo = stakeholderUpdateFrm.cargo.getCargo();
+                jComboBoxCargo.setSelectedItem(cargo);
+                String rol = stakeholderUpdateFrm.rol.getDescripcion_rol();
+                jComboBoxRol.setSelectedItem(rol);
+
+                JOptionPane.showMessageDialog(null, "Panel de prueba update frm: " + stakeholderUpdateFrm.getPrimerNombre_usuario() + ""
+                        + " \n " + stakeholderUpdateFrm.toString());
+
+                //DashBoardAdso.dashboard.repaint();
             } else {
                 JOptionPane.showMessageDialog(null, "No hay datos en memoria");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No hay datos en memoria. Error: " + e.getMessage());
         }
+
     }
 
-    public void setFields(Stakeholder s) throws SQLException {
+    public void setFrm() throws SQLException {
         //limpiarCampos();
+        //clienteUpdateFrm = c;
 
         //JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
-        System.out.println("Impriendo desde la funcion setar campos frm");
-        //  Datos de Usuario
-        jTextFieldPrimerNombreCliente.setText(s.getPrimerNombre_usuario());
-        jTextFieldSegundoNombre.setText(s.getSegundoNombre_usuario());
-        jTextFieldEmail.setText(s.getEmail_usuario());
-        jTextFieldIdentificacion.setText(Integer.toString(s.getDocumento_stakeholder()));
-        jTextFieldNickname.setText(s.getNickName_usuario());
-        jTextFieldPrimerApellido.setText(s.getPrimerApellido_usuario());
-        jTextFieldSegundoApellido.setText(s.getSegundoApellido_usuario());;
+        System.out.println("  ");
+        System.out.println("Impriendo desde setFrm " + stakeholderUpdateFrm.toString());
+        //jTextFieldDireccion.setText(stakeholderUpdateFrm.getDireccion_cliente());
+        jTextFieldPrimerNombre.setText(stakeholderUpdateFrm.getPrimerNombre_usuario());
+        jTextFieldSegundoNombre.setText(stakeholderUpdateFrm.getSegundoNombre_usuario());
+        jTextFieldEmail.setText(stakeholderUpdateFrm.getEmail_usuario());
+        jTextFieldIdentificacion.setText(Integer.toString(stakeholderUpdateFrm.getDocumento_stakeholder()));
+        jTextFieldNickname.setText(stakeholderUpdateFrm.getNickName_usuario());
+        jTextFieldPrimerApellido.setText(stakeholderUpdateFrm.getPrimerApellido_usuario());
+        jTextFieldSegundoApellido.setText(stakeholderUpdateFrm.getSegundoApellido_usuario());;
 
+        //jTextFieldTelefono.setText(Integer.toString(clienteUpdateFrm.getTelefono_cliente()));
         jPasswordFieldA.setText("");
         jPasswordFieldB.setText("");
-        String tipoDocumento = s.tipoDocumento.getTipoDocumento();
+        String tipoDocumento = stakeholderUpdateFrm.tipoDocumento.getTipoDocumento();
         jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
-        String cargo = s.cargo.getCargo();
+        String cargo = stakeholderUpdateFrm.cargo.getCargo();
         jComboBoxCargo.setSelectedItem(cargo);
-        String rol = s.rol.getDescripcion_rol();
+        String rol = stakeholder.rol.getDescripcion_rol();
         jComboBoxRol.setSelectedItem(rol);
-
+        cargarCargos();
+        cargarTipoDocumento();
+        cargarRol();
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel1;
     private javax.swing.JPanel UsuarioFormjPanel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCargarDatos;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonUpdate;
@@ -746,7 +787,6 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel6;
@@ -760,7 +800,6 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
@@ -775,10 +814,9 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldIdentificacion;
     private javax.swing.JTextField jTextFieldNickname;
     private javax.swing.JTextField jTextFieldPrimerApellido;
-    private javax.swing.JTextField jTextFieldPrimerNombreCliente;
+    public javax.swing.JTextField jTextFieldPrimerNombre;
     private javax.swing.JTextField jTextFieldSegundoApellido;
-    private javax.swing.JTextField jTextFieldSegundoNombre;
-    private javax.swing.JTextField jTextFieldTelefono;
+    public javax.swing.JTextField jTextFieldSegundoNombre;
     private javax.swing.JLabel passAJLabel1;
     // End of variables declaration//GEN-END:variables
 }

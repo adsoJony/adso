@@ -31,6 +31,7 @@ public class StakeholderTable extends javax.swing.JPanel {
     //CardLayout cardLayout = new CardLayout();
     //JPanel dashboard = new JPanel();
     UpdateStakeholder updateStakeholder;
+    Stakeholder stakeholder = new Stakeholder();
 
     /**
      * Creates new form JtableSwing
@@ -170,16 +171,24 @@ public class StakeholderTable extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(null, "El ide seleccionado tiene el id; " + Integer.parseInt(id.toString()));
 
             try {
-                int id_stakeholder = Integer.parseInt(id.toString());
                 Stakeholder s = new Stakeholder();
-                s.setId_stakeholder(id_stakeholder);
-                s = s.findStakeholderById(id_stakeholder);
-                updateStakeholder.setearCamposStakeholderFrm(s);        //  Establecemos los campos en el panel de Update Cliente
+                int id_stakeholder = Integer.parseInt(id.toString());
+                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder);
 
-                //update.setearCamposClienteFrm(c);
-                JOptionPane.showMessageDialog(null, "Stakeholder: " + s.toString());
-                
-                
+                s.setId_stakeholder(Integer.parseInt(id.toString()));
+
+                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder+""
+                //    + "\n EL stakeholder tiene datos:"+s.getId_stakeholder());
+                s = s.findStakeholderById(Integer.parseInt(id.toString()));
+
+                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder+""
+                //      + "\n EL stakeholder tiene datos:"+s.toString());
+                updateStakeholder.limpiarCampos();
+                //updateStakeholder.setearCamposStakeholderFrm(s);        //  Establecemos los campos en el panel de Update Cliente
+                updateStakeholder.setFields(s);
+                //updateStakeholder.setFrm();
+
+                //JOptionPane.showMessageDialog(null, "Stakeholder name : " + s.getPrimerNombre_usuario());
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateStakeholder");    //Se puede cambiar por 
 
 //updateC.cargarMemoria(c);
@@ -219,11 +228,11 @@ public class StakeholderTable extends javax.swing.JPanel {
                 data[i][1] = s.getPrimerNombre_usuario();
                 data[i][2] = s.getPrimerApellido_usuario();
                 data[i][3] = s.getEmail_usuario();
-                data[i][4] = s.getActive();
+                data[i][4] = (s.getActive()) ? "Activo" : "Inactivo";
             }
 
             //   Seteamos las columnas, agregandoles el nombre a cada una
-            String[] columnas = {"Id", "Nombre", "Apeyiido", "Email", "Activo"};
+            String[] columnas = {"Id", "Nombre", "Apellido", "Email", "Activo"};
 
             //   Creamos una DefaultTableMode
             DefaultTableModel modelo = new DefaultTableModel(data, columnas);

@@ -197,7 +197,7 @@ public class UsuarioModel {
             ps.setInt(18, usuario.getId_usuario());
 
             if (ps.executeUpdate() != 0) {
-                System.out.println("El usuario ha sido Actualizaco");
+                System.out.println("El usuario ha sido Actualizado");
                 update = true;
             } else {
                 System.err.println("El Usuario no pudo ser Actualizado");
@@ -205,7 +205,7 @@ public class UsuarioModel {
             ps.close();
 
         } catch (SQLException e) {
-            System.err.println("Error: " + e);
+            System.err.println("Error: " + e.getMessage());
         }
         Conexion.close();
         return update;

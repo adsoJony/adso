@@ -669,6 +669,7 @@ public class UpdateCliente extends javax.swing.JPanel {
                 //cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
                 int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
                 clienteUpdateFrm.setDocumento_cliente(documentoCliente);
+                
                 boolean update = clienteUpdateFrm.updateCliente(clienteUpdateFrm, clienteUpdateFrm);
 
                 if (update = true) {
@@ -763,7 +764,9 @@ public class UpdateCliente extends javax.swing.JPanel {
         }
     }
 
-    public void setFields(Cliente c) throws SQLException {
+    
+    /*
+    public void setFields() throws SQLException {
         //limpiarCampos();
 
         //JOptionPane.showMessageDialog(null, "SetFields Cliente " + c.toString());
@@ -788,7 +791,7 @@ public class UpdateCliente extends javax.swing.JPanel {
         String rol = c.rol.getDescripcion_rol();
         jComboBoxRol.setSelectedItem(rol);
 
-    }
+    }       */
 
     public void setFrm() throws SQLException {
         //limpiarCampos();
@@ -819,6 +822,7 @@ public class UpdateCliente extends javax.swing.JPanel {
     }
 
     final void limpiarCampos() throws SQLException {
+        System.out.println("Limpiando campos");
         jTextFieldDireccion.setText("");
         jTextFieldPrimerNombreCliente.setText("");
         jTextFieldSegundoNombre.setText("");

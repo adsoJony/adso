@@ -44,14 +44,16 @@ public class StakeholderModel {
             rs = ps.executeQuery();
             if (rs.next()) {
                 //Datops de Stakeholder
-                stakeholder.setId_stakeholder(rs.getInt("id_Stakleholder"));
+                stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
                 stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
+                stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
                 stakeholder.cargo.setId_cargo(rs.getInt("id_cargo_stakeholder"));
                 stakeholder.cargo.setCargo(rs.getString("cargo"));
+                stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipoDocumento_stakeHolder"));
                 stakeholder.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_stakeholder"));
                 stakeholder.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
                 stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
-                Date fechaCreacion_s = rs.getDate("fechaCreación");
+                Date fechaCreacion_s = rs.getDate("fechaCreacion");
                 LocalDate fechaCreacion_stakeholder = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
                 stakeholder.setFechaCreacion(fechaCreacion_stakeholder);
                 Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
@@ -93,10 +95,13 @@ public class StakeholderModel {
                 stakeholder.getTipoUsuario().setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
                 stakeholder.getTipoUsuario().setTipoUsuario(rs.getString("tipoUsuario"));
                 stakeholder.setDeleted(rs.getBoolean("deleted"));
+                
             } else {
                 System.err.println("No se pudo encontrar al Stakeholder");
+               
             }
         } catch (Exception e) {
+            System.out.println("Error stakeholder By Id:" +e.getMessage());
         }
         return stakeholder;
     }
@@ -169,6 +174,7 @@ public class StakeholderModel {
                 LocalDate fechaActualizacion = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
                 Date fechaEliminado_s = rs.getDate("fechaEliminado");
                 LocalDate fechaEliminado = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+                stakeholder.setActive(rs.getBoolean("active"));
                 stakeholders.add(stakeholder);
 
             }
@@ -277,7 +283,7 @@ public class StakeholderModel {
         try {
             //Conexion.conexionSetAutoCommit(false);
             update = usuario.updateUsuario(usuario);
-            if (update != false) {
+            if (update) {
                 System.out.println("Usuario Actualizado desde Stakeholder");
                 try {
                     ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
@@ -301,24 +307,32 @@ public class StakeholderModel {
                             System.out.println("El id del Stakeholder es:" + idStakeholder);
 
                         }
-                        rs.close();
+                       
                     } else {
                         System.err.println("El stakeholder no ha podido ser ingresado");
                     }
+                    ps.close();
                     Conexion.commit();
                 } catch (SQLException e) {
                     System.err.println("Error: " + e.getMessage());
                     Conexion.rollBack();
                 }
             } else {
+                System.err.println("Error: No se pudo ingresar el usuario ni cliente ");
                 Conexion.rollBack();
             }
+            
+             
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
             Conexion.rollBack();
         } finally {
-            Conexion.close();
+           
         }
+        
+         Conexion.close();
+            rs.close();
+           
         return update;
     }
 

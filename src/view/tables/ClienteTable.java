@@ -178,8 +178,8 @@ public class ClienteTable extends javax.swing.JPanel {
                 //JOptionPane.showMessageDialog(null, "Cliente: " + c.toString());
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateCliente");    //Se puede cambiar por 
                 //cardLayout.show(dashboard, "updateCliente");
-                DashBoardAdso.dashboard.revalidate();
-                DashBoardAdso.dashboard.repaint();
+                //DashBoardAdso.dashboard.revalidate();
+                //DashBoardAdso.dashboard.repaint();
 
 //updateC.cargarMemoria(c);
             } catch (Exception e) {
