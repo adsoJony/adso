@@ -13,6 +13,8 @@ import controller.Cargo;
 import controller.TipoDocumento;
 import controller.Rol;
 import controller.Stakeholder;
+import controller.Usuario;
+import java.awt.HeadlessException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.HashMap;
@@ -37,6 +39,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     HashMap<String, Integer> cargoHas = new HashMap<>();
     HashMap<String, Integer> rolHas = new HashMap<>();
     HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
+    Usuario usuario = new Usuario();
 
     /**
      * Creates new form InsertStakeholder - Constructor -
@@ -571,23 +574,24 @@ public class UpdateStakeholder extends javax.swing.JPanel {
                 stakeholderUpdateFrm.setPsw_usuario(psw_usuario);
                 stakeholderUpdateFrm.setId_rol_usuario(id_rol);
 
-                //  Datos de Cliente
+                //  Datos de Stakeholder
                 stakeholderUpdateFrm.setId_tipoDocumento_stakeholder(id_tipoDocumento);
-
                 int documentoStakeholder = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
                 stakeholderUpdateFrm.setDocumento_stakeholder(documentoStakeholder);
+                
                 boolean update = stakeholderUpdateFrm.updateStakeholder(stakeholderUpdateFrm, stakeholderUpdateFrm);
+                System.out.println("Nombre " + stakeholderUpdateFrm.getPrimerNombre_usuario()
+                        + "\n Apellido "+stakeholderUpdateFrm.getPrimerApellido_usuario());
+                if (update) {
 
-                if (update = true) {
-                    System.out.println("Cliente Actualizado" + update);
-
+                    usuario = stakeholderUpdateFrm;
+                    JOptionPane.showMessageDialog(null, "Stakeholder" + stakeholderUpdateFrm.toString() + usuario.toString());
                     //Ejecutar metodo para lismpiar y repintar pantalla
                 } else {
-                    System.err.println("No se pudo Actualizar el CLiente");
+                    System.err.println("No se pudo Actualizar el Stakeholder");
                 }
-                JOptionPane.showMessageDialog(null, "Cliente Enviado a : " + stakeholderUpdateFrm.toString());
 
-            } catch (Exception e) {
+            } catch (HeadlessException | NumberFormatException | SQLException e) {
                 System.err.println("Errot: " + e.getMessage());
             }
 
@@ -613,7 +617,6 @@ public class UpdateStakeholder extends javax.swing.JPanel {
             System.out.println("Stakeholder Update frm desde el boton -" + stakeholderUpdateFrm.toString());
             //limpiarCampos();
             setearCamposStakeholderFrm(stakeholderUpdateFrm);
-            JOptionPane.showMessageDialog(null, "Accionando Boton Cargar Datos: " + stakeholderUpdateFrm.toString());
         } catch (Exception ex) {
             //Logger.getLogger(UpdateStakeholder.class.getName()).log(Level.SEVERE, null, ex);
             java.util.logging.Logger.getLogger(UpdateStakeholder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

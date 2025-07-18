@@ -230,15 +230,15 @@ public class StakeholderModel {
                     }
                     Conexion.commit();
                 } catch (SQLException e) {
-                    System.err.println("Error: " + e);
-                    Conexion.rollBack();
+                    System.err.println("Error: " + e.getMessage());
+                    //Conexion.rollBack();
                 }
             } else {
                 Conexion.rollBack();
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e);
-            Conexion.rollBack();
+            //Conexion.rollBack();
         } finally {
             Conexion.close();
         }
@@ -282,8 +282,8 @@ public class StakeholderModel {
 
         try {
             //Conexion.conexionSetAutoCommit(false);
-            update = usuario.updateUsuario(usuario);
-            if (update) {
+            
+            if (usuario.updateUsuario(usuario)) {
                 System.out.println("Usuario Actualizado desde Stakeholder");
                 try {
                     ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
@@ -305,12 +305,12 @@ public class StakeholderModel {
                         if (rs.next()) {
                             idStakeholder = rs.getInt(1);
                             System.out.println("El id del Stakeholder es:" + idStakeholder);
-
                         }
                        
                     } else {
                         System.err.println("El stakeholder no ha podido ser ingresado");
                     }
+                    rs.close();
                     ps.close();
                     Conexion.commit();
                 } catch (SQLException e) {
@@ -324,14 +324,12 @@ public class StakeholderModel {
             
              
         } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error update S: " + e.getMessage());
             Conexion.rollBack();
-        } finally {
-           
-        }
+        } 
         
          Conexion.close();
-            rs.close();
+            
            
         return update;
     }

@@ -205,7 +205,7 @@ public class UsuarioModel {
             ps.close();
 
         } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error: " +e);
         }
         Conexion.close();
         return update;
