@@ -5,15 +5,11 @@
 package adso;
 
 //import java.io.UnsupportedEncodingException;
-import controller.Cargo;
-import java.sql.SQLException;
-import java.io.UnsupportedEncodingException;
-import javax.swing.JFrame;
-import view.ConsoleView;                        //Menu de consola - ConsoleView
+import java.io.UnsupportedEncodingException;                      //Menu de consola - ConsoleView
 import view.DashBoardAdso;
-import view.combos.CargoCombo;
-import view.pruebas.TableEx;
 import java.sql.SQLException;
+import view.Login;
+
 
 /**
  *
@@ -33,8 +29,24 @@ public class AdsoMain {
         try {
 
             //ConsoleView.menu();
-            mostarDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
-
+            //runDashBoardAdso();          //Mostramos el DashBoardAdso frame con sus cardLayouts
+            runLogin();
+            
+            
+            
+            /**
+             *
+             * Logger session = new Logger();
+             *
+             * var checkSes = session.login("jonathangomezf@gmail.com",
+             * "password");
+             *
+             * System.out.println("\n \t Check Method: "+checkSes);
+             *
+             */
+            
+            
+            
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -46,10 +58,18 @@ public class AdsoMain {
      *
      * @return Mostramos el Frame DashBoardAdso de el paquete view
      */
-    final static void mostarDashBoardAdso() throws SQLException {
+    final static void runDashBoardAdso() throws SQLException {
         DashBoardAdso dashBoardAdso = new DashBoardAdso();
         dashBoardAdso.setVisible(true);
-
+    }
+    
+    final static void runLogin() throws SQLException{
+        Login login = new Login();
+        login.setVisible(true);
+        
+        
+        
+        
     }
 
 }

@@ -359,14 +359,15 @@ public class Usuario {
         return usuarioModel.deleteUsuario(idUsuario);
     }
 
-    public boolean checkEmail(Usuario usuario) throws SQLException {
+    public boolean checkEmail(String eMail) throws SQLException {
         // UsuarioModel usuarioModel = new UsuarioModel();
-        return usuarioModel.checkEmail(usuario.getEmail_usuario());
+        return usuarioModel.checkEmail(eMail);
     }
 
     public boolean checkNickname(Usuario usuario) throws SQLException {
         // UsuarioModel usuarioModel = new UsuarioModel();
         return usuarioModel.checkNickname(usuario.getNickName_usuario());
     }
-
+    
+   
 }

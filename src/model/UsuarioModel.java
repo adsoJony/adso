@@ -105,9 +105,12 @@ public class UsuarioModel {
 
     public int inputUsuario(Usuario usuario) throws SQLException {
         int id_usuario = 0;
-        String query = "insert into usuarios(nickName_usuario, primerNombre_usuario, segundoNombre_usuario, primerApellido_usuario, segundoApellido_usuario,"
-                + " email_usuario, psw_usuario,id_rol_usuario, fechaCreacion, fechaActualizacion, fechaEliminado, activation_token, reset_token,"
-                + "reset_token_expires_at, active, avatar_usuario, fecha_registrousuario, id_tipoUsuario_usuario, deleted)"
+        String query = "insert into usuarios(nickName_usuario, primerNombre_usuario, segundoNombre_usuario, "
+                + "primerApellido_usuario, segundoApellido_usuario,"
+                + " email_usuario, psw_usuario,id_rol_usuario, fechaCreacion, fechaActualizacion, fechaEliminado, "
+                + "activation_token, reset_token,"
+                + "reset_token_expires_at, active, avatar_usuario, fecha_registrousuario, id_tipoUsuario_usuario, "
+                + "deleted)"
                 + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps;
         try {
@@ -165,8 +168,8 @@ public class UsuarioModel {
         var update = false;
         //var idUsuario = usuario.getId_usuario();
         String sql = "update usuarios set nickName_usuario=?, primerNombre_usuario=?, segundoNombre_usuario=?, primerApellido_usuario=?, segundoApellido_usuario=?,"
-                + " email_usuario=?, psw_usuario=?, fechaCreacion=?, fechaActualizacion=?, fechaEliminado=?, activation_token=?, reset_token=?,"
-                + "reset_token_expires_at=?, active=?, avatar_usuario=?, fecha_registrousuario=?, deleted=? where id_usuario=?";
+                + " email_usuario=?, fechaCreacion=?, fechaActualizacion=?, fechaEliminado=?, activation_token=?, reset_token=?,"
+                + "reset_token_expires_at=?, active=?, avatar_usuario=?, fecha_registrousuario=? where id_usuario=?";
         PreparedStatement ps;
         try {
             ps = Conexion.prepararConsulta(sql, Statement.RETURN_GENERATED_KEYS);
@@ -176,25 +179,25 @@ public class UsuarioModel {
             ps.setString(4, usuario.getPrimerApellido_usuario());
             ps.setString(5, usuario.getSegundoApellido_usuario());
             ps.setString(6, usuario.getEmail_usuario());
-            ps.setString(7, usuario.getPsw_usuario());
+            //ps.setString(7, usuario.getPsw_usuario());
            // ps.setInt(8, usuario.getId_rol_usuario());
-            ps.setDate(8, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
+            ps.setDate(7, (usuario.getFechaCreacion() != null) ? Date.valueOf(usuario.getFechaCreacion()) : null);
             //ps.setDate(9, (Date) usuario.getFechaCreacion());
-            ps.setDate(9, (usuario.getFechaActualizacion() != null) ? Date.valueOf(usuario.getFechaActualizacion()) : null);
+            ps.setDate(8, (usuario.getFechaActualizacion() != null) ? Date.valueOf(usuario.getFechaActualizacion()) : null);
             //ps.setDate(10, (Date) usuario.getFechaActualizacion());
-            ps.setDate(10, (usuario.getFechaEliminado() != null) ? Date.valueOf(usuario.getFechaEliminado()) : null);
+            ps.setDate(9, (usuario.getFechaEliminado() != null) ? Date.valueOf(usuario.getFechaEliminado()) : null);
             //ps.setDate(11, (Date) usuario.getFechaEliminado());
-            ps.setString(11, usuario.getActivation_token());
-            ps.setString(12, usuario.getReset_token());
-            ps.setDate(13, (usuario.getReset_token_expires_at() != null) ? Date.valueOf(usuario.getReset_token_expires_at()) : null);
+            ps.setString(10, usuario.getActivation_token());
+            ps.setString(11, usuario.getReset_token());
+            ps.setDate(12, (usuario.getReset_token_expires_at() != null) ? Date.valueOf(usuario.getReset_token_expires_at()) : null);
             //ps.setDate(14, (Date) usuario.getReset_token_expires_at());
-            ps.setBoolean(14, usuario.isActive());
-            ps.setString(15, usuario.getAvatar_usuario());
-            ps.setDate(16, (usuario.getFecha_registroUsuario() != null) ? Date.valueOf(usuario.getFecha_registroUsuario()) : null);
+            ps.setBoolean(13, usuario.isActive());
+            ps.setString(14, usuario.getAvatar_usuario());
+            ps.setDate(15, (usuario.getFecha_registroUsuario() != null) ? Date.valueOf(usuario.getFecha_registroUsuario()) : null);
             //ps.setDate(17, (Date) usuario.getFecha_registroUsuario());
             
-            ps.setBoolean(17, usuario.isDeleted());
-            ps.setInt(18, usuario.getId_usuario());
+            //ps.setBoolean(17, usuario.isDeleted());
+            ps.setInt(16, usuario.getId_usuario());
 
             if (ps.executeUpdate() != 0) {
                 System.out.println("El usuario ha sido Actualizado");

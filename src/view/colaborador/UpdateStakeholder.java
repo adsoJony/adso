@@ -21,6 +21,8 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import view.DashBoardAdso;
 import view.cliente.UpdateCliente;
+import org.mindrot.jbcrypt.BCrypt;
+
 //import static view.cliente.UpdateCliente.clienteUpdateFrm;
 
 /**
@@ -32,19 +34,25 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     Rol rol = new Rol();
     Cargo cargo = new Cargo();
     TipoDocumento tipoDocumento = new TipoDocumento();
+    
+    
 
     public Stakeholder stakeholder = new Stakeholder();
-    public static Stakeholder stakeholderUpdateFrm = new Stakeholder();
+    public Stakeholder stakeholderUpdateFrm;
     //DashBoardAdso dashPruebaAdso = new DashBoardAdso();
     HashMap<String, Integer> cargoHas = new HashMap<>();
     HashMap<String, Integer> rolHas = new HashMap<>();
     HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
     Usuario usuario = new Usuario();
 
+    
+    
+    
     /**
      * Creates new form InsertStakeholder - Constructor -
      */
     public UpdateStakeholder() throws SQLException {
+        this.stakeholderUpdateFrm = new Stakeholder();
 
         initComponents();
         limpiarCampos();
@@ -94,12 +102,9 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel15 = new javax.swing.JPanel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        passAJLabel1 = new javax.swing.JLabel();
-        jPasswordFieldA = new javax.swing.JPasswordField();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jPasswordFieldB = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordFieldPsw = new javax.swing.JPasswordField();
         UsuarioFormjPanel2 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jTextFieldIdentificacion = new javax.swing.JTextField();
@@ -114,7 +119,6 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jButtonUpdate = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonCargarDatos = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 800));
         setLayout(new java.awt.BorderLayout());
@@ -335,67 +339,38 @@ public class UpdateStakeholder extends javax.swing.JPanel {
 
         UsuarioFormjPanel1.add(jPanel15);
 
-        jPanel16.setPreferredSize(new java.awt.Dimension(350, 28));
+        jPanel2.setPreferredSize(new java.awt.Dimension(300, 25));
 
-        passAJLabel1.setText("Password");
+        jLabel2.setText("Password");
 
-        jPasswordFieldA.setText("jPasswordField1");
+        jPasswordFieldPsw.setText("jPasswordField1");
 
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(passAJLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(jPasswordFieldPsw, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passAJLabel1)
-                    .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel1.add(jPanel16);
-
-        jPanel17.setPreferredSize(new java.awt.Dimension(350, 28));
-
-        jLabel14.setText("ConfirmarPasswod");
-
-        jPasswordFieldB.setText("jPasswordField2");
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jPasswordFieldPsw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        UsuarioFormjPanel1.add(jPanel17);
+        UsuarioFormjPanel1.add(jPanel2);
 
         jPanel1.add(UsuarioFormjPanel1);
 
         UsuarioFormjPanel2.setAutoscrolls(true);
-        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 120));
+        UsuarioFormjPanel2.setPreferredSize(new java.awt.Dimension(800, 100));
 
         jPanel19.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel19.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -488,7 +463,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jPanel25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel25.setPreferredSize(new java.awt.Dimension(600, 79));
 
-        jButtonUpdate.setText("Actualizar Cliente");
+        jButtonUpdate.setText("Actualizar ");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateActionPerformed(evt);
@@ -509,27 +484,18 @@ public class UpdateStakeholder extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jButtonCargarDatos))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addComponent(jButtonCargarDatos)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLimpiar)
                 .addGap(26, 26, 26)
                 .addComponent(jButtonUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(108, 108, 108))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,8 +505,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
                     .addComponent(jButtonUpdate)
                     .addComponent(jButtonLimpiar)
                     .addComponent(jButtonCargarDatos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel25);
@@ -551,6 +516,14 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // Acción del botón UpDate o actualizar CLiente:
         if (jTextFieldEmail != null && stakeholderUpdateFrm.getId_stakeholder() != 0) {
+
+            /**
+             * Gestion de BCrypt y PasswordField
+             */
+            char[] passChars = jPasswordFieldPsw.getPassword();
+            String psw_usuario = new String(passChars);
+            String pswHased = BCrypt.hashpw(psw_usuario, BCrypt.gensalt(10));
+            
 
             JOptionPane.showMessageDialog(null, "Dato almacenado: " + stakeholderUpdateFrm);
             var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
@@ -569,19 +542,18 @@ public class UpdateStakeholder extends javax.swing.JPanel {
                 stakeholderUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
                 stakeholderUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
                 stakeholderUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
-                char[] passChars = jPasswordFieldA.getPassword();
-                String psw_usuario = new String(passChars);
-                stakeholderUpdateFrm.setPsw_usuario(psw_usuario);
+
+                stakeholderUpdateFrm.setPsw_usuario(pswHased);
                 stakeholderUpdateFrm.setId_rol_usuario(id_rol);
 
                 //  Datos de Stakeholder
                 stakeholderUpdateFrm.setId_tipoDocumento_stakeholder(id_tipoDocumento);
                 int documentoStakeholder = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
                 stakeholderUpdateFrm.setDocumento_stakeholder(documentoStakeholder);
-                
-                boolean update = stakeholderUpdateFrm.updateStakeholder(stakeholderUpdateFrm, stakeholderUpdateFrm);
+
+                boolean update = stakeholderUpdateFrm.update(stakeholderUpdateFrm);
                 System.out.println("Nombre " + stakeholderUpdateFrm.getPrimerNombre_usuario()
-                        + "\n Apellido "+stakeholderUpdateFrm.getPrimerApellido_usuario());
+                        + "\n Apellido " + stakeholderUpdateFrm.getPrimerApellido_usuario());
                 if (update) {
 
                     usuario = stakeholderUpdateFrm;
@@ -612,24 +584,24 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarDatosActionPerformed
-        try {
-            // TODO add your handling code here:
-            System.out.println("Stakeholder Update frm desde el boton -" + stakeholderUpdateFrm.toString());
-            //limpiarCampos();
-            setearCamposStakeholderFrm(stakeholderUpdateFrm);
-        } catch (Exception ex) {
-            //Logger.getLogger(UpdateStakeholder.class.getName()).log(Level.SEVERE, null, ex);
-            java.util.logging.Logger.getLogger(UpdateStakeholder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al Cargar los datos" + ex.getMessage());
+        if (stakeholderUpdateFrm != null) {
 
+            try {
+
+                // TODO add your handling code here:
+                //System.out.println("Stakeholder Update frm desde el boton -" + stakeholderUpdateFrm.toString());
+                //limpiarCampos();
+                setearCamposStakeholderFrm(stakeholderUpdateFrm);
+            } catch (Exception ex) {
+                //Logger.getLogger(UpdateStakeholder.class.getName()).log(Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(UpdateStakeholder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al Cargar los datos" + ex.getMessage());
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "EL formulario no continene datos");
         }
     }//GEN-LAST:event_jButtonCargarDatosActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        JOptionPane.showMessageDialog(null, "evento boton:" + stakeholderUpdateFrm.toString());
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * *
@@ -675,10 +647,11 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jTextFieldNickname.setText("");
         jTextFieldPrimerApellido.setText("");
         jTextFieldPrimerNombre.setText("");
-        jTextFieldSegundoApellido.setText("");;
-        jTextFieldSegundoNombre.setText("");;
-        jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        jTextFieldSegundoApellido.setText("");
+        jTextFieldSegundoNombre.setText("");
+        jPasswordFieldPsw.setText("");
+        //jPasswordFieldA.setText("");
+        //jPasswordFieldB.setText("");
         cargarRol();
 
         //dashPruebaAdso.goToDashboard();
@@ -721,8 +694,8 @@ public class UpdateStakeholder extends javax.swing.JPanel {
                 jTextFieldPrimerApellido.setText(stakeholderUpdateFrm.getPrimerApellido_usuario());
                 jTextFieldSegundoApellido.setText(stakeholderUpdateFrm.getSegundoApellido_usuario());;
 
-                jPasswordFieldA.setText("");
-                jPasswordFieldB.setText("");
+                //jPasswordFieldA.setText("");
+                //jPasswordFieldB.setText("");
                 String tipoDocumento = stakeholderUpdateFrm.tipoDocumento.getTipoDocumento();
                 jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
                 String cargo = stakeholderUpdateFrm.cargo.getCargo();
@@ -760,8 +733,8 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         jTextFieldSegundoApellido.setText(stakeholderUpdateFrm.getSegundoApellido_usuario());;
 
         //jTextFieldTelefono.setText(Integer.toString(clienteUpdateFrm.getTelefono_cliente()));
-        jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        //jPasswordFieldA.setText("");
+        //jPasswordFieldB.setText("");
         String tipoDocumento = stakeholderUpdateFrm.tipoDocumento.getTipoDocumento();
         jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
         String cargo = stakeholderUpdateFrm.cargo.getCargo();
@@ -773,11 +746,18 @@ public class UpdateStakeholder extends javax.swing.JPanel {
         cargarRol();
     }
 
+    public Stakeholder getStakeholderUpdateFrm() {
+        return this.stakeholderUpdateFrm;
+    }
+
+    public void setStakeholderUpdateFrm(Stakeholder stakeholderUpdateFrm) {
+        this.stakeholderUpdateFrm = stakeholderUpdateFrm;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsuarioFormjPanel1;
     private javax.swing.JPanel UsuarioFormjPanel2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCargarDatos;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonUpdate;
@@ -788,9 +768,9 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -800,9 +780,8 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
@@ -811,8 +790,7 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelNickname1;
     private javax.swing.JPanel jPanelTitulo;
-    private javax.swing.JPasswordField jPasswordFieldA;
-    private javax.swing.JPasswordField jPasswordFieldB;
+    private javax.swing.JPasswordField jPasswordFieldPsw;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIdentificacion;
     private javax.swing.JTextField jTextFieldNickname;
@@ -820,6 +798,5 @@ public class UpdateStakeholder extends javax.swing.JPanel {
     public javax.swing.JTextField jTextFieldPrimerNombre;
     private javax.swing.JTextField jTextFieldSegundoApellido;
     public javax.swing.JTextField jTextFieldSegundoNombre;
-    private javax.swing.JLabel passAJLabel1;
     // End of variables declaration//GEN-END:variables
 }

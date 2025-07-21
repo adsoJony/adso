@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import view.DashBoardAdso;
 import static view.DashBoardAdso.cardLayout;
 import static view.DashBoardAdso.dashboard;
-import view.cliente.DashboardApp;
+import view.pruebas.DashboardApp;
 import view.cliente.UpdateCliente;
 import view.cliente.UpdateCliente;
 import java.awt.CardLayout;
@@ -82,6 +82,7 @@ public class StakeholderTable extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableStakeholder.setPreferredSize(new java.awt.Dimension(750, 80));
         jScrollPane1.setViewportView(jTableStakeholder);
 
         jButtonActualizar.setText("Actualizar");
@@ -135,15 +136,15 @@ public class StakeholderTable extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -173,20 +174,20 @@ public class StakeholderTable extends javax.swing.JPanel {
             try {
                 Stakeholder s = new Stakeholder();
                 int id_stakeholder = Integer.parseInt(id.toString());
-                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder);
 
                 s.setId_stakeholder(Integer.parseInt(id.toString()));
 
-                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder+""
-                //    + "\n EL stakeholder tiene datos:"+s.getId_stakeholder());
-                s = s.findStakeholderById(Integer.parseInt(id.toString()));
-
-                //JOptionPane.showMessageDialog(null, "El id seleccionado tiene el id; " + id_stakeholder+""
-                //      + "\n EL stakeholder tiene datos:"+s.toString());
-                updateStakeholder.limpiarCampos();
-                //updateStakeholder.setearCamposStakeholderFrm(s);        //  Establecemos los campos en el panel de Update Cliente
-                updateStakeholder.setFields(s);
-                //updateStakeholder.setFrm();
+                s = s.findStakeholderById(id_stakeholder);
+                //UpdateStakeholder.stakeholderUpdateFrm = s.findStakeholderById(Integer.parseInt(id.toString()));
+                UpdateStakeholder updateStakeholder =new UpdateStakeholder();
+                updateStakeholder.setStakeholderUpdateFrm(s);
+                dashboard.add(updateStakeholder, "updateStakeholder");
+                updateStakeholder.setFrm();
+                
+                //updateStakeholder.limpiarCampos();
+                
+                
+               
 
                 //JOptionPane.showMessageDialog(null, "Stakeholder name : " + s.getPrimerNombre_usuario());
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateStakeholder");    //Se puede cambiar por 

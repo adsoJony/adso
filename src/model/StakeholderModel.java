@@ -64,7 +64,7 @@ public class StakeholderModel {
                 stakeholder.setFechaEliminado(fechaEliminado_stakeholder);
 
                 //Datos de usuario
-                stakeholder.setId_stakeholder(rs.getInt("id_usuario"));
+                stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
                 stakeholder.setNickName_usuario(rs.getString("nickName_usuario"));
                 stakeholder.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
                 stakeholder.setSegundoNombre_usuario(rs.getString("segundoNombre_usuario"));
@@ -95,13 +95,13 @@ public class StakeholderModel {
                 stakeholder.getTipoUsuario().setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
                 stakeholder.getTipoUsuario().setTipoUsuario(rs.getString("tipoUsuario"));
                 stakeholder.setDeleted(rs.getBoolean("deleted"));
-                
+
             } else {
                 System.err.println("No se pudo encontrar al Stakeholder");
-               
+
             }
         } catch (Exception e) {
-            System.out.println("Error stakeholder By Id:" +e.getMessage());
+            System.out.println("Error stakeholder By Id:" + e.getMessage());
         }
         return stakeholder;
     }
@@ -282,7 +282,7 @@ public class StakeholderModel {
 
         try {
             //Conexion.conexionSetAutoCommit(false);
-            
+
             if (usuario.updateUsuario(usuario)) {
                 System.out.println("Usuario Actualizado desde Stakeholder");
                 try {
@@ -306,7 +306,7 @@ public class StakeholderModel {
                             idStakeholder = rs.getInt(1);
                             System.out.println("El id del Stakeholder es:" + idStakeholder);
                         }
-                       
+
                     } else {
                         System.err.println("El stakeholder no ha podido ser ingresado");
                     }
@@ -321,17 +321,177 @@ public class StakeholderModel {
                 System.err.println("Error: No se pudo ingresar el usuario ni cliente ");
                 Conexion.rollBack();
             }
-            
-             
+
         } catch (SQLException e) {
             System.err.println("Error update S: " + e.getMessage());
             Conexion.rollBack();
-        } 
-        
-         Conexion.close();
-            
-           
+        }
+
+        Conexion.close();
+
         return update;
+    }
+
+    public boolean update(Stakeholder stakeholder) throws SQLException {
+        var idStakeholder = stakeholder.getId_stakeholder();
+
+        var update = false;
+
+        String sqlU = "update usuarios set primerNombre_usuario=?, segundoNombre_usuario=?, primerApellido_usuario=?, "
+                + "segundoApellido_usuario=?, email_usuario=?, psw_usuario=? "
+                + "where id_usuario=?";
+
+        String sql = "update stakeholder set documento_stakeholder=?, id_cargo_stakeholder=?,  id_tipoDocumento_stakeholder=?"
+                + " where id_stakeholder=?";
+        PreparedStatement ps;
+        PreparedStatement ps2;
+
+        try {
+            //Conexion.conexionSetAutoCommit(false);
+            ps = Conexion.prepararConsulta(sqlU);
+            ps.setString(1, stakeholder.getPrimerNombre_usuario());
+            ps.setString(2, stakeholder.getSegundoNombre_usuario());
+            ps.setString(3, stakeholder.getPrimerApellido_usuario());
+            ps.setString(4, stakeholder.getSegundoApellido_usuario());
+            ps.setString(5, stakeholder.getEmail_usuario());
+            ps.setString(6, stakeholder.getPsw_usuario());
+            ps.setInt(7, stakeholder.getId_usuario_stakeholder());
+
+            if (ps.executeUpdate() != 0) {
+                System.out.println("Usuario Actualizado desde StakeholderM");
+                try {
+                    ps2 = Conexion.prepararConsulta(sql);
+                    ps2.setInt(1, stakeholder.getDocumento_stakeholder());
+                    ps2.setInt(2, stakeholder.getId_cargo_stakeholder());
+                    ps2.setInt(3, stakeholder.getId_tipoDocumento_stakeholder());
+                    ps2.setInt(4, idStakeholder);
+                    //ps.setDate(5, (stakeholder.getFechaCreacion() != null) ? Date.valueOf(stakeholder.getFechaCreacion()) : null);
+                    //ps.setDate(5, (Date) stakeholder.getFechaCreacion());
+                    //ps.setDate(6, (stakeholder.getFechaActualizacion() != null) ? Date.valueOf(stakeholder.getFechaActualizacion()) : null);
+                    //ps.setDate(6, (Date) stakeholder.getFechaActualizacion());
+                    //ps.setDate(7, (stakeholder.getFechaEliminado() != null) ? Date.valueOf(stakeholder.getFechaEliminado()) : null);
+                    //ps.setDate(7, (Date) stakeholder.getFechaEliminado());
+
+                    if (ps2.executeUpdate() != 0) {
+                        System.out.println("Stakeholder Actualizado");
+                        //ResultSet rs;
+                        //rs = ps.getGeneratedKeys();
+                        update = true;
+                        //rs.close();
+                    } else {
+                        System.err.println("El stakeholder no ha podido ser ingresado");
+                    }
+
+                    ps.close();
+                    Conexion.commit();
+                } catch (SQLException e) {
+                    System.err.println("Error: " + e.getMessage());
+                    Conexion.rollBack();
+                }
+            } else {
+                System.err.println("Error: No se pudo ingresar el usuario ni cliente ");
+                Conexion.rollBack();
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error update S: " + e.getMessage());
+            Conexion.rollBack();
+        }
+
+        Conexion.close();
+
+        return update;
+    }
+
+    //indStakeholderByEmail
+    public Stakeholder findStakeholderByEmail(String eMail) {
+
+        Stakeholder stakeholder = new Stakeholder();
+
+        /**
+         * String sql = "Select * from stakeholder " + "join usuarios on
+         * id_usuario=id_usuario_stakeholder " + "join cargo on
+         * id_cargo_stakeholder=id_cargo " + "join tipodocumento on
+         * id_tipoDocumento_stakeholder=id_tipoDocumento " + "join rol on
+         * id_rol=id_rol_usuario " + "join tipousuario on
+         * id_tipoUsuario=id_tipoUsuario_usuario " + "where id_stakeholder=?";
+         *
+         */
+        String sql = "select * from usuarios "
+                + "join stakeholder on id_usuario=id_usuario_stakeholder "
+                + "join cargo on id_cargo_stakeholder=id_cargo "
+                + "join tipodocumento on id_tipoDocumento_stakeholder=id_tipoDocumento "
+                + "join rol on id_rol=id_rol_usuario join tipousuario on id_tipoUsuario=id_tipoUsuario_usuario "
+                + "where email_usuario=?";
+
+        try {
+            ps = Conexion.prepararConsulta(sql);
+            ps.setString(1, eMail);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                //Datops de Stakeholder
+                stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
+                stakeholder.setDocumento_stakeholder(rs.getInt("documento_stakeholder"));
+                stakeholder.setId_cargo_stakeholder(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.cargo.setId_cargo(rs.getInt("id_cargo_stakeholder"));
+                stakeholder.cargo.setCargo(rs.getString("cargo"));
+                stakeholder.setId_tipoDocumento_stakeholder(rs.getInt("id_tipoDocumento_stakeHolder"));
+                stakeholder.tipoDocumento.setId_tipoDocumento(rs.getInt("id_tipoDocumento_stakeholder"));
+                stakeholder.tipoDocumento.setTipoDocumento(rs.getString("tipoDocumento"));
+                stakeholder.setId_usuario_stakeholder(rs.getInt("id_usuario_stakeholder"));
+                Date fechaCreacion_s = rs.getDate("fechaCreacion");
+                LocalDate fechaCreacion_stakeholder = (fechaCreacion_s != null) ? fechaCreacion_s.toLocalDate() : null;
+                stakeholder.setFechaCreacion(fechaCreacion_stakeholder);
+                Date fechaActualizacion_s = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion_stakeholder = (fechaActualizacion_s != null) ? fechaActualizacion_s.toLocalDate() : null;
+                stakeholder.setFechaActualizacion(fechaActualizacion_stakeholder);
+                Date fechaEliminado_s = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado_stakeholder = (fechaEliminado_s != null) ? fechaEliminado_s.toLocalDate() : null;
+                stakeholder.setFechaEliminado(fechaEliminado_stakeholder);
+
+                //Datos de usuario
+                stakeholder.setId_stakeholder(rs.getInt("id_stakeholder"));
+                stakeholder.setNickName_usuario(rs.getString("nickName_usuario"));
+                stakeholder.setPrimerNombre_usuario(rs.getString("primerNombre_usuario"));
+                stakeholder.setSegundoNombre_usuario(rs.getString("segundoNombre_usuario"));
+                stakeholder.setPrimerApellido_usuario(rs.getString("primerApellido_usuario"));
+                stakeholder.setSegundoApellido_usuario(rs.getString("segundoApellido_usuario"));
+                stakeholder.setEmail_usuario(rs.getString("email_usuario"));
+                stakeholder.getRol().setId_rol(rs.getInt("id_rol_usuario"));
+                stakeholder.getRol().setDescripcion_rol(rs.getString("descripcion_rol"));
+                Date fechaCreacion_u = rs.getDate("fechaCreacion");
+                LocalDate gechaCreacion = (fechaCreacion_u != null) ? fechaCreacion_u.toLocalDate() : null;
+                stakeholder.setFechaCreacion(gechaCreacion);
+                Date fechaActualizacion_u = rs.getDate("fechaActualizacion");
+                LocalDate fechaActualizacion = (fechaActualizacion_u != null) ? fechaActualizacion_u.toLocalDate() : null;
+                stakeholder.setFechaActualizacion(fechaActualizacion);
+                Date fechaEliminado_u = rs.getDate("fechaEliminado");
+                LocalDate fechaEliminado = (fechaEliminado_u != null) ? fechaEliminado_u.toLocalDate() : null;
+                stakeholder.setFechaEliminado(fechaEliminado);
+                stakeholder.setActivation_token(rs.getString("activation_token"));
+                stakeholder.setReset_token(rs.getString("reset_token"));
+                Date reset_token_expires_at_u = rs.getDate("reset_token_expires_at");
+                LocalDate reset_token_expires_at = (reset_token_expires_at_u != null) ? reset_token_expires_at_u.toLocalDate() : null;
+                stakeholder.setReset_token_expires_at(reset_token_expires_at);
+                stakeholder.setActive(rs.getBoolean("active"));
+                stakeholder.setAvatar_usuario(rs.getString("avatar_usuario"));
+                Date fechaRegistro = rs.getDate("fecha_registroUsuario");
+                LocalDate fecha_registroUsuario = (fechaRegistro != null) ? fechaRegistro.toLocalDate() : null;
+                stakeholder.setFecha_registroUsuario(fecha_registroUsuario);
+                stakeholder.getTipoUsuario().setId_tipoUsuario(rs.getInt("id_tipoUsuario_usuario"));
+                stakeholder.getTipoUsuario().setTipoUsuario(rs.getString("tipoUsuario"));
+                stakeholder.setDeleted(rs.getBoolean("deleted"));
+                stakeholder.setPsw_usuario(rs.getString("psw_usuario"));
+
+            } else {
+                System.err.println("No se pudo encontrar al Stakeholder por el email.");
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error stakeholder By Email:" + e.getMessage());
+        }
+        return stakeholder;
     }
 
 }

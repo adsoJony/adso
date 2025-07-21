@@ -31,27 +31,18 @@ public class ListarClientes extends javax.swing.JPanel {
      * Creates new form ListarEquipos
      */
     public ListarClientes() throws SQLException {
+        
+        
         initComponents();
 
         this.clienteTable = new ClienteTable();
-        clienteTable.cargarTabla();
+        
         add(clienteTable);
+        clienteTable.cargarTabla();
+        
 
     }
     
-    
-    public ListarClientes(CardLayout cardLayout, JPanel dashboard, UpdateCliente updateCliente) throws SQLException {
-        this.cardLayout = cardLayout;
-        this.updateCliente = updateCliente;
-        this.dashboard = dashboard;
-        initComponents();
-
-        this.clienteTable = new ClienteTable(this.cardLayout, this.dashboard, this.updateCliente);
-        clienteTable.cargarTabla();
-        add(clienteTable);
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

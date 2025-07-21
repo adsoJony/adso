@@ -38,10 +38,11 @@ public class InsertUps extends javax.swing.JPanel {
     public HashMap<String, Integer> topologiaHas = new HashMap<>();
     public HashMap<String, Integer> marcaHas = new HashMap<>();
     public Cliente cliente;
-    public Equipo equipo = new Equipo();
     Modelo modelo = new Modelo();
     Marca marca = new Marca();
     Topologia topologia = new Topologia();
+    public Ups equipoFrm = new Ups();
+    public int id_cliente;
 
     /**
      * Creates new form InsertCliente
@@ -70,13 +71,8 @@ public class InsertUps extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         EquipoFormjPanel = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jTextFieldUbicacion = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jTextFieldSerieEquipo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -86,6 +82,9 @@ public class InsertUps extends javax.swing.JPanel {
         jPanel9 = new javax.swing.JPanel();
         jComboBoxModelo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jTextFieldUbicacion = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -121,54 +120,24 @@ public class InsertUps extends javax.swing.JPanel {
         jTextFieldVoltajeBanco = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jButtonIngresar = new javax.swing.JButton();
+        jButtonLimpiarFormulario = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(1200, 900));
+        jPanel2.setPreferredSize(new java.awt.Dimension(900, 550));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setText("Ingreso de Ups");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(658, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(326, 326, 326))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
-        jPanel2.add(jPanel3, java.awt.BorderLayout.NORTH);
+        jPanel4.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanel4.setMinimumSize(new java.awt.Dimension(600, 110));
+        jPanel4.setPreferredSize(new java.awt.Dimension(700, 500));
 
         EquipoFormjPanel.setAutoscrolls(true);
-        EquipoFormjPanel.setPreferredSize(new java.awt.Dimension(800, 203));
-
-        jLabel5.setText("Ubicación:");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(24, 24, 24)
-                .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        EquipoFormjPanel.setPreferredSize(new java.awt.Dimension(700, 150));
 
         jLabel6.setText("Serie del equipo");
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 16));
@@ -192,6 +161,8 @@ public class InsertUps extends javax.swing.JPanel {
                     .addComponent(jTextFieldSerieEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
+
+        EquipoFormjPanel.add(jPanel8);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(178, 25));
 
@@ -219,6 +190,8 @@ public class InsertUps extends javax.swing.JPanel {
                 .addGap(0, 3, Short.MAX_VALUE))
         );
 
+        EquipoFormjPanel.add(jPanel1);
+
         jPanel9.setPreferredSize(new java.awt.Dimension(178, 25));
 
         jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -244,6 +217,31 @@ public class InsertUps extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(0, 3, Short.MAX_VALUE))
         );
+
+        EquipoFormjPanel.add(jPanel9);
+
+        jLabel5.setText("Ubicación:");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(24, 24, 24)
+                .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        EquipoFormjPanel.add(jPanel7);
 
         jLabel4.setText("Dia de instalación: ");
 
@@ -288,6 +286,8 @@ public class InsertUps extends javax.swing.JPanel {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
+        EquipoFormjPanel.add(jPanel6);
+
         jLabel13.setText("IdCliente");
 
         jTextFieldId_cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -317,51 +317,12 @@ public class InsertUps extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout EquipoFormjPanelLayout = new javax.swing.GroupLayout(EquipoFormjPanel);
-        EquipoFormjPanel.setLayout(EquipoFormjPanelLayout);
-        EquipoFormjPanelLayout.setHorizontalGroup(
-            EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EquipoFormjPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EquipoFormjPanelLayout.createSequentialGroup()
-                        .addGroup(EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(EquipoFormjPanelLayout.createSequentialGroup()
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EquipoFormjPanelLayout.createSequentialGroup()
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(100, 100, 100)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 109, Short.MAX_VALUE))
-                    .addGroup(EquipoFormjPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        EquipoFormjPanelLayout.setVerticalGroup(
-            EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EquipoFormjPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(EquipoFormjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
+        EquipoFormjPanel.add(jPanel13);
 
         jPanel4.add(EquipoFormjPanel);
 
         UpsFormjPanel1.setAutoscrolls(true);
-        UpsFormjPanel1.setPreferredSize(new java.awt.Dimension(800, 250));
+        UpsFormjPanel1.setPreferredSize(new java.awt.Dimension(700, 200));
 
         jPanel18.setMinimumSize(new java.awt.Dimension(200, 0));
 
@@ -386,6 +347,8 @@ public class InsertUps extends javax.swing.JPanel {
                     .addComponent(jTextFieldBatNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
+
+        UpsFormjPanel1.add(jPanel18);
 
         jPanel26.setMinimumSize(new java.awt.Dimension(200, 0));
 
@@ -444,6 +407,8 @@ public class InsertUps extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        UpsFormjPanel1.add(jPanel26);
+
         jLabel10.setText("Transformador de aislamiento");
 
         jRadioButton1.setText("jRadioButton1");
@@ -474,6 +439,8 @@ public class InsertUps extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        UpsFormjPanel1.add(jPanel10);
+
         jLabel17.setText("Tiempo de Autonomia");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -497,6 +464,8 @@ public class InsertUps extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        UpsFormjPanel1.add(jPanel11);
+
         jLabel18.setText("Cantidad Bancos de Batería");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -519,6 +488,8 @@ public class InsertUps extends javax.swing.JPanel {
                     .addComponent(jTextFieldCantBancosBateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        UpsFormjPanel1.add(jPanel12);
 
         jPanel16.setMinimumSize(new java.awt.Dimension(200, 0));
 
@@ -549,51 +520,11 @@ public class InsertUps extends javax.swing.JPanel {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout UpsFormjPanel1Layout = new javax.swing.GroupLayout(UpsFormjPanel1);
-        UpsFormjPanel1.setLayout(UpsFormjPanel1Layout);
-        UpsFormjPanel1Layout.setHorizontalGroup(
-            UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UpsFormjPanel1Layout.createSequentialGroup()
-                .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(UpsFormjPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UpsFormjPanel1Layout.createSequentialGroup()
-                        .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(UpsFormjPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(3, 3, 3)))
-                .addGap(0, 76, Short.MAX_VALUE))
-        );
-        UpsFormjPanel1Layout.setVerticalGroup(
-            UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UpsFormjPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(UpsFormjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
-        );
+        UpsFormjPanel1.add(jPanel16);
 
         jPanel4.add(UpsFormjPanel1);
 
-        jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
+        jPanel5.setPreferredSize(new java.awt.Dimension(600, 50));
 
         jButtonIngresar.setText("Ingresar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -602,24 +533,57 @@ public class InsertUps extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(984, Short.MAX_VALUE)
+        jButtonLimpiarFormulario.setText("Limpiar formulario");
+        jButtonLimpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarFormularioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(182, Short.MAX_VALUE)
+                .addComponent(jButtonLimpiarFormulario)
+                .addGap(28, 28, 28)
                 .addComponent(jButtonIngresar)
-                .addGap(168, 168, 168))
+                .addGap(189, 189, 189))
         );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonIngresar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIngresar)
+                    .addComponent(jButtonLimpiarFormulario))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel25, java.awt.BorderLayout.SOUTH);
+        jPanel4.add(jPanel5);
+
+        jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jPanel3.setPreferredSize(new java.awt.Dimension(800, 48));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setText("Ingreso de Ups");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jLabel2)
+                .addContainerGap(374, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -627,13 +591,17 @@ public class InsertUps extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -643,7 +611,7 @@ public class InsertUps extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            Ups equipoFrm = new Ups();
+
             var transformador = false;
             var marcaSeleccionada = jComboBoxMarca.getSelectedItem();
             var id_marca = marcaHas.get(marcaSeleccionada);
@@ -661,7 +629,7 @@ public class InsertUps extends javax.swing.JPanel {
             equipoFrm.setId_marca_equipo(id_marca);
             equipoFrm.setId_modelo_equipo(id_modelo);
             equipoFrm.setId_tipoEquipo_equipo(1);
-            
+
             //Datos de Ups
             equipoFrm.setPotencia_va(Integer.parseInt(jTextFieldPotencia.getText()));
             equipoFrm.setVoltajebanco_ups(Integer.parseInt(jTextFieldVoltajeBanco.getText()));
@@ -671,23 +639,19 @@ public class InsertUps extends javax.swing.JPanel {
             equipoFrm.setTiempoAutonomia_ups(Integer.parseInt(jTextFieldTiempoAutonomia.getText()));
             equipoFrm.setCant_batTotal(Integer.parseInt(jTextFieldCantBancosBateria.getText()));
             equipoFrm.setCant_bancoBat(Integer.parseInt(jTextFieldCantBancosBateria.getText()));
-            
+
             boolean id_equipoFrm = equipoFrm.inputUps(equipoFrm, equipoFrm);
-            
-            if (id_equipoFrm){
+
+            if (id_equipoFrm) {
                 JOptionPane.showMessageDialog(null, "Ups agregado con exito.");
-                
+
             }
-            
+
             cliente = equipoFrm.cliente.findClienteById(id_cliente);
-            
+
             equipoFrm.setCliente(this.cliente);                                 //Asignamos el valor del ID al cliente
             //equipoFrm.setId_cliente_equipo(this.cliente.getId_cliente());       //Aqui le asignamos el valor de ID a id_cliente
-            
-            JOptionPane.showMessageDialog(null, "Marca: " + equipoFrm.marca.getId_marca() + "\n Ubicación: " + equipoFrm.getUbicacion_equipo() + " \n "
-                    + "\n Id_cliente: " + id_cliente
-                    + " \n Cliente: " + equipoFrm.cliente.toString()
-                    + "\n Equipo: " + equipoFrm.toString());
+
         } catch (SQLException e) {
             System.err.println("error: " + e + " en Evento:" + evt);
         }
@@ -697,6 +661,22 @@ public class InsertUps extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldId_clienteActionPerformed
 
+    private void jButtonLimpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarFormularioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLimpiarFormularioActionPerformed
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    
+    
+    
+    
     final void cargarModelo() throws SQLException {
         jComboBoxModelo.removeAllItems();
         for (Modelo type : modelo.listarModelo()) {
@@ -729,6 +709,7 @@ public class InsertUps extends javax.swing.JPanel {
     private javax.swing.JPanel EquipoFormjPanel;
     private javax.swing.JPanel UpsFormjPanel1;
     private javax.swing.JButton jButtonIngresar;
+    private javax.swing.JButton jButtonLimpiarFormulario;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JComboBox<String> jComboBoxModelo;
     private javax.swing.JComboBox<String> jComboBoxTopologia;
@@ -759,10 +740,10 @@ public class InsertUps extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

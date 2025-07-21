@@ -335,5 +335,14 @@ public class Stakeholder extends Usuario {
     public boolean updateStakeholder(Stakeholder stakeholder, Usuario usuario) throws SQLException{
         return stakeholderModel.updateStakeholder(stakeholder, usuario);
     }
+    
+    public boolean update(Stakeholder stakeholder) throws SQLException{
+        return stakeholderModel.update(stakeholder);
+    }
+    
+    public Stakeholder findStakeholderByEmail(String eMail){
+        
+        return stakeholderModel.findStakeholderByEmail(eMail);
+    }
 
 }

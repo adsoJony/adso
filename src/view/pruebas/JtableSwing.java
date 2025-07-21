@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import view.DashBoardAdso;
 import static view.DashBoardAdso.cardLayout;
 import static view.DashBoardAdso.dashboard;
-import view.cliente.DashboardApp;
 import view.cliente.UpdateCliente;
 import view.cliente.UpdateCliente;
 import java.awt.CardLayout;

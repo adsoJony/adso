@@ -85,12 +85,6 @@ public class UpdateCliente extends javax.swing.JPanel {
         jPanel10 = new javax.swing.JPanel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        passAJLabel = new javax.swing.JLabel();
-        jPasswordFieldA = new javax.swing.JPasswordField();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPasswordFieldB = new javax.swing.JPasswordField();
         jPanel7 = new javax.swing.JPanel();
         jComboBoxRol = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -165,8 +159,8 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         UsuarioFormjPanel.setAutoscrolls(true);
         UsuarioFormjPanel.setMaximumSize(new java.awt.Dimension(600, 400));
-        UsuarioFormjPanel.setMinimumSize(new java.awt.Dimension(250, 300));
-        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(700, 200));
+        UsuarioFormjPanel.setMinimumSize(new java.awt.Dimension(250, 120));
+        UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(700, 150));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 25));
 
@@ -321,61 +315,6 @@ public class UpdateCliente extends javax.swing.JPanel {
 
         UsuarioFormjPanel.add(jPanel10);
 
-        passAJLabel.setText("Password");
-
-        jPasswordFieldA.setText("jPasswordField1");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(passAJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passAJLabel)
-                    .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel.add(jPanel11);
-
-        jPanel12.setPreferredSize(new java.awt.Dimension(320, 25));
-
-        jLabel11.setText("ConfirmarPasswod");
-
-        jPasswordFieldB.setText("jPasswordField2");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        UsuarioFormjPanel.add(jPanel12);
-
         jPanel7.setPreferredSize(new java.awt.Dimension(300, 34));
 
         jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -410,7 +349,7 @@ public class UpdateCliente extends javax.swing.JPanel {
         UsuarioFormjPanel1.setAutoscrolls(true);
         UsuarioFormjPanel1.setMaximumSize(new java.awt.Dimension(600, 400));
         UsuarioFormjPanel1.setMinimumSize(new java.awt.Dimension(600, 400));
-        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(700, 150));
+        UsuarioFormjPanel1.setPreferredSize(new java.awt.Dimension(700, 100));
 
         jPanel16.setMinimumSize(new java.awt.Dimension(300, 0));
         jPanel16.setPreferredSize(new java.awt.Dimension(300, 25));
@@ -654,9 +593,9 @@ public class UpdateCliente extends javax.swing.JPanel {
                 clienteUpdateFrm.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
                 clienteUpdateFrm.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
                 clienteUpdateFrm.setEmail_usuario(jTextFieldEmail.getText());
-                char[] passChars = jPasswordFieldA.getPassword();
-                String psw_usuario = new String(passChars);
-                clienteUpdateFrm.setPsw_usuario(psw_usuario);
+                //char[] passChars = jPasswordFieldA.getPassword();
+                //String psw_usuario = new String(passChars);
+                //clienteUpdateFrm.setPsw_usuario(psw_usuario);
                 clienteUpdateFrm.setId_rol_usuario(id_rol);
 
                 //  Datos de Cliente
@@ -810,8 +749,8 @@ public class UpdateCliente extends javax.swing.JPanel {
         jTextFieldRazonSocial.setText(clienteUpdateFrm.getRazonSocial_cliente());
 
         jTextFieldTelefono.setText(Integer.toString(clienteUpdateFrm.getTelefono_cliente()));
-        jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        //jPasswordFieldA.setText("");
+        //jPasswordFieldB.setText("");
         String tipoDocumento = clienteUpdateFrm.tipoDocumento.getTipoDocumento();
         jComboBoxTipoDocumento.setSelectedItem(tipoDocumento);
         String cargo = clienteUpdateFrm.cargo.getCargo();
@@ -836,8 +775,8 @@ public class UpdateCliente extends javax.swing.JPanel {
         jTextFieldSegundoApellido.setText("");;
         jTextFieldSegundoNombre.setText("");;
         jTextFieldTelefono.setText("");
-        jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        //jPasswordFieldA.setText("");
+        //jPasswordFieldB.setText("");
 
         cargarCargos();
         cargarTipoDocumento();
@@ -859,13 +798,32 @@ public class UpdateCliente extends javax.swing.JPanel {
         jTextFieldSegundoApellido.setText("");;
         jTextFieldSegundoNombre.setText("");;
         jTextFieldTelefono.setText("");
-        jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        //jPasswordFieldA.setText("");
+        //jPasswordFieldB.setText("");
 
         JOptionPane.showMessageDialog(null, "Cargando desde el cliente en memoria" + "Cargo cargado es: " + c.getPrimerNombre_usuario());
         setearCamposClienteFrm(c);
 
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public static Cliente getClienteUpdateFrm() {
+        return clienteUpdateFrm;
+    }
+
+    public void setClienteUpdateFrm(Cliente clienteUpdateFrm) {
+        UpdateCliente.clienteUpdateFrm = clienteUpdateFrm;
+    }
+    
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -878,7 +836,6 @@ public class UpdateCliente extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -894,8 +851,6 @@ public class UpdateCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelNickname;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
@@ -911,8 +866,6 @@ public class UpdateCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelNickname;
-    private javax.swing.JPasswordField jPasswordFieldA;
-    private javax.swing.JPasswordField jPasswordFieldB;
     private javax.swing.JTextField jTextFieldDireccion;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIdentificacion;
@@ -923,6 +876,5 @@ public class UpdateCliente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldSegundoApellido;
     private javax.swing.JTextField jTextFieldSegundoNombre;
     private javax.swing.JTextField jTextFieldTelefono;
-    private javax.swing.JLabel passAJLabel;
     // End of variables declaration//GEN-END:variables
 }

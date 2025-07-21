@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import view.cliente.BuscarClienteByDoc;
 import view.cliente.InsertCliente;
@@ -24,7 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import view.colaborador.ListarStakeholder;
 import view.colaborador.UpdateStakeholder;
-import view.pruebas.*;
 
 /**
  *
@@ -47,16 +45,15 @@ public class DashBoardAdso extends JFrame {
     UpdateStakeholder updateStakeholder = new UpdateStakeholder();
     ListarClientes listarClientes = new ListarClientes();
     ListarStakeholder listarStakeholder = new ListarStakeholder();
-    ListarUps listarEquipos = new ListarUps();
-    
-    
-    //tablas de ejemplos
-    //JtableSwing jtableSwing = new JtableSwing();
-    TableEx tableEx = new TableEx();
+    ListarUps listarUps = new ListarUps();
 
+    //UpsTable upsTable = new UpsTable();
+    //tablas de ejemplos y Pruebas
+    //JtableSwing jtableSwing = new JtableSwing();
     BuscarClienteByDoc buscarClienteByDoc = new BuscarClienteByDoc();
 
     public DashBoardAdso() throws SQLException {
+
         this.insertCliente = new InsertCliente();
         this.updateCliente = new UpdateCliente();
 
@@ -67,12 +64,8 @@ public class DashBoardAdso extends JFrame {
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         //getContentPane().add(dashboard);
 
-        
         //Agreganos las pruebas de panel Jtable
         //dashboard.add(jtableSwing, "tablaswing");
-        dashboard.add(tableEx, "prueba");
-        
-        
         dashboard.add(dashBoardPanel, "dashboardpanel");
         dashboard.add(insertCliente, "insertcliente");
         dashboard.add(insertEquipo, "insertequipo");
@@ -80,15 +73,16 @@ public class DashBoardAdso extends JFrame {
         dashboard.add(updateEquipo, "updateEquipo");
         dashboard.add(updateCliente, "updateCliente");
         dashboard.add(updateStakeholder, "updateStakeholder");
-        dashboard.add(listarEquipos, "listarEquipos");
+        dashboard.add(listarUps, "listarEquipos");
         dashboard.add(listarClientes, "listarClientes");
         dashboard.add(listarStakeholder, "listarStakeholder");
         dashboard.add(buscarClienteByDoc, "buscarClienteByDoc");
 
+        //dashboard.add(upsTable, "upsTable");
         add(dashboard);
-        
+
         //      Ajustamos el Panel Central - Home 
-        cardLayout.show(dashboard, "listarStakeholder");     
+        cardLayout.show(dashboard, "dashboardpanel");
 
         setLocationRelativeTo(null);
 
@@ -122,7 +116,7 @@ public class DashBoardAdso extends JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItemDasboard = new javax.swing.JMenuItem();
+        jMenuItemLogout = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -223,13 +217,13 @@ public class DashBoardAdso extends JFrame {
 
         jMenu2.setText("Salir");
 
-        jMenuItemDasboard.setText("Dashboard");
-        jMenuItemDasboard.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLogout.setText("Logout");
+        jMenuItemLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemDasboardActionPerformed(evt);
+                jMenuItemLogoutActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItemDasboard);
+        jMenu2.add(jMenuItemLogout);
 
         jMenuBar1.add(jMenu2);
 
@@ -284,13 +278,21 @@ public class DashBoardAdso extends JFrame {
         cardLayout.show(dashboard, "updateCliente");
     }//GEN-LAST:event_jMenuItemUpdateClienteActionPerformed
 
-    private void jMenuItemDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDasboardActionPerformed
+    private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
         // TODO add your handling code here:
 
-        cambiarPanel("dashboardpanel");
-//        cardLayout.show(dashboard, "dashboardpanel");
+        try {
 
-    }//GEN-LAST:event_jMenuItemDasboardActionPerformed
+            dispose();
+            
+            Login login = new Login();
+            login.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoardAdso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jMenuItemLogoutActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
@@ -301,7 +303,7 @@ public class DashBoardAdso extends JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         cardLayout.show(dashboard, "listarStakeholder");
-        
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
@@ -347,7 +349,6 @@ public class DashBoardAdso extends JFrame {
     }
 
     public static void cambiarPanel(String panel) {
-
         cardLayout.show(dashboard, panel);
         dashboard.revalidate();
         dashboard.repaint();
@@ -371,7 +372,7 @@ public class DashBoardAdso extends JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JMenuItem jMenuItemDasboard;
+    private javax.swing.JMenuItem jMenuItemLogout;
     private javax.swing.JMenuItem jMenuItemUpdateCliente;
     private javax.swing.JMenuItem listarCLientesJMenuItem;
     private javax.swing.JMenuItem listarEquiposJMenuItem;

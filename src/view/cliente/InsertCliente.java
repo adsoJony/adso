@@ -144,7 +144,7 @@ public class InsertCliente extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.NORTH);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(800, 800));
-        jPanel2.setPreferredSize(new java.awt.Dimension(500, 400));
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 300));
 
         UsuarioFormjPanel.setAutoscrolls(true);
         UsuarioFormjPanel.setPreferredSize(new java.awt.Dimension(720, 200));

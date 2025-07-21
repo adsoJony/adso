@@ -29,11 +29,13 @@ public class Ups extends Equipo {
     protected int cant_bancoBat;
     //Ojbjetos para GUI
     public Topologia topologia;
+    public Equipo equipo;
 
     private final UpsModel upsModel = new UpsModel();
 
     public Ups() {
         this.topologia = new Topologia();
+        this.equipo = new Equipo();
     }
 
     public int getId_ups() {
@@ -257,4 +259,10 @@ public class Ups extends Equipo {
     public boolean inputUps(Ups ups, Equipo equipo) throws SQLException {
         return upsModel.inputUps(ups, equipo);
     }
+    
+    public boolean update(Ups ups) throws SQLException{
+        return upsModel.update(ups);
+           
+    }
+    
 }

@@ -7,7 +7,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import view.cliente.DashboardApp;
+import view.pruebas.DashboardApp;
 import view.cliente.InsertCliente;
 import java.sql.SQLException;
 import java.util.logging.Level;
