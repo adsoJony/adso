@@ -24,9 +24,9 @@ public class InsertCliente extends javax.swing.JPanel {
     Rol rol = new Rol();
     TipoDocumento tipoDocumento = new TipoDocumento();
     //TipoUsuario tipoUsuario = new TipoUsuario();
-    
+
     public Cliente cliente = new Cliente();
-    
+
     public HashMap<String, Integer> cargoHas = new HashMap<>();
     public HashMap<String, Integer> tipoDocumentoHas = new HashMap<>();
     public HashMap<String, Integer> rolHas = new HashMap<>();
@@ -90,9 +90,6 @@ public class InsertCliente extends javax.swing.JPanel {
         jPanel11 = new javax.swing.JPanel();
         passAJLabel = new javax.swing.JLabel();
         jPasswordFieldA = new javax.swing.JPasswordField();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPasswordFieldB = new javax.swing.JPasswordField();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxRol = new javax.swing.JComboBox<>();
@@ -332,32 +329,6 @@ public class InsertCliente extends javax.swing.JPanel {
 
         jPasswordFieldA.setText("jPasswordField1");
 
-        jPanel12.setPreferredSize(new java.awt.Dimension(320, 25));
-
-        jLabel11.setText("ConfirmarPasswod");
-
-        jPasswordFieldB.setText("jPasswordField2");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jPasswordFieldB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -367,18 +338,15 @@ public class InsertCliente extends javax.swing.JPanel {
                 .addComponent(passAJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(passAJLabel)))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordFieldA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passAJLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -603,51 +571,58 @@ public class InsertCliente extends javax.swing.JPanel {
 
     private void jButtonIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarClienteActionPerformed
         // TODO add your handling code here:
-        int id_cliente;
-        var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
-        var rolSeleccionado = jComboBoxRol.getSelectedItem();
-        int id_rol = rolHas.get(rolSeleccionado);             //el id_rol_usuario
-        var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
-        var id_cargo = cargoHas.get(cargoSeleccionado);
-        // var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
-        var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
 
         try {
-            //Datos de Usuario
-            cliente.setNickName_usuario(jTextFieldNickname.getText());
-            cliente.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
-            cliente.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
-            cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
-            cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
-            cliente.setEmail_usuario(jTextFieldEmail.getText());
-            /*  Conversión de pass de Usuario*/
-            char[] passChars = jPasswordFieldA.getPassword();
-            String psw_usuario = new String(passChars);
-            cliente.setPsw_usuario(psw_usuario);
-            /*      ****        */
-            cliente.setId_rol_usuario(id_rol);
 
-            //  Datos de Cliente
-            cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
-            cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
-            cliente.cargo.setId_cargo(id_cargo);
-            cliente.setDireccion_cliente(jTextFieldDireccion.getText());
-            int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
-            cliente.setTelefono_cliente(telefonoCliente);
-            int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
-            cliente.setDocumento_cliente(documentoCliente);
-            id_cliente = cliente.inputCliente(cliente, cliente);
+            int id_cliente;
+            var cargoSeleccionado = jComboBoxCargo.getSelectedItem();
+            var rolSeleccionado = jComboBoxRol.getSelectedItem();
+            int id_rol = rolHas.get(rolSeleccionado);             //el id_rol_usuario
+            var tipoDocumentoSeleccionado = jComboBoxTipoDocumento.getSelectedItem();
+            var id_cargo = cargoHas.get(cargoSeleccionado);
+            // var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
+            var id_tipoDocumento = tipoDocumentoHas.get(tipoDocumentoSeleccionado);
 
-            if (id_cliente >= 0) {
-                System.out.println("Cliente registrado" + id_cliente);
-                JOptionPane.showMessageDialog(null, "Cliente: " + cliente.getRazonSocial_cliente() + " a sido ingresado exitosamente");
+            if (!cliente.checkEmail(jTextFieldEmail.getText())) {
+                //Datos de Usuario
+                cliente.setNickName_usuario(jTextFieldNickname.getText());
+                cliente.setPrimerNombre_usuario(jTextFieldPrimerNombreCliente.getText());
+                cliente.setSegundoNombre_usuario(jTextFieldSegundoNombre.getText());
+                cliente.setPrimerApellido_usuario(jTextFieldPrimerApellido.getText());
+                cliente.setSegundoApellido_usuario(jTextFieldSegundoApellido.getText());
+                cliente.setEmail_usuario(jTextFieldEmail.getText());
+                /*  Conversión de pass de Usuario*/
+                char[] passChars = jPasswordFieldA.getPassword();
+                String psw_usuario = new String(passChars);
+                cliente.setPsw_usuario(psw_usuario);
+                /*      ****        */
+                cliente.setId_rol_usuario(id_rol);
 
+                //  Datos de Cliente
+                cliente.setRazonSocial_cliente(jTextFieldRazonSocial.getText());
+                cliente.tipoDocumento.setId_tipoDocumento(id_tipoDocumento);
+                cliente.cargo.setId_cargo(id_cargo);
+                cliente.setDireccion_cliente(jTextFieldDireccion.getText());
+                int telefonoCliente = Integer.parseInt(jTextFieldTelefono.getText());
+                cliente.setTelefono_cliente(telefonoCliente);
+                int documentoCliente = Integer.parseInt(jTextFieldIdentificacion.getText().trim());
+                cliente.setDocumento_cliente(documentoCliente);
+                id_cliente = cliente.inputCliente(cliente, cliente);
+
+                if (id_cliente >= 0) {
+
+                    JOptionPane.showMessageDialog(null, "Cliente: " + cliente.getRazonSocial_cliente() + " a sido ingresado exitosamente");
+
+                } else {
+                    System.err.println("No se pudo ingresar CLiente");
+                }
             } else {
-                System.err.println("No se pudo ingresar CLiente");
+                JOptionPane.showMessageDialog(null, "El correo ya se encuentra registrado, intente con otro");
             }
+
         } catch (Exception e) {
             System.err.println("Errot: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Se deben lletar todos los campos correctamente.");
+            JOptionPane.showMessageDialog(null, "Se deben llenar todos los campos correctamente.");
         }
 
 
@@ -715,11 +690,10 @@ public class InsertCliente extends javax.swing.JPanel {
         jTextFieldSegundoNombre.setText("");;
         jTextFieldTelefono.setText("");
         jPasswordFieldA.setText("");
-        jPasswordFieldB.setText("");
+        
         cargarCargos();
         cargarRol();
         cargarTipoDocumento();
-                
 
     }
 
@@ -732,7 +706,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JComboBox<String> jComboBoxTipoDocumento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -749,7 +722,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -765,7 +737,6 @@ public class InsertCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelNickname;
     private javax.swing.JPasswordField jPasswordFieldA;
-    private javax.swing.JPasswordField jPasswordFieldB;
     private javax.swing.JTextField jTextFieldDireccion;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIdentificacion;

@@ -344,5 +344,10 @@ public class Stakeholder extends Usuario {
         
         return stakeholderModel.findStakeholderByEmail(eMail);
     }
+    
+    public boolean deleteUserById(int id_usuario) throws SQLException{
+        Usuario u = new Usuario();
+        return u.deleteUserById(id_usuario);
+    }
 
 }

@@ -4,8 +4,6 @@
  */
 package view;
 
-import controller.Cliente;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -104,17 +102,13 @@ public class DashBoardAdso extends JFrame {
         jMenu3 = new javax.swing.JMenu();
         ingresarClienteJMenuItem = new javax.swing.JMenuItem();
         listarCLientesJMenuItem = new javax.swing.JMenuItem();
-        jMenuItemUpdateCliente = new javax.swing.JMenuItem();
         buscarClienteByIdJMenuItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         ingresarEquipoJMenuItem = new javax.swing.JMenuItem();
         listarEquiposJMenuItem = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemLogout = new javax.swing.JMenuItem();
 
@@ -146,14 +140,6 @@ public class DashBoardAdso extends JFrame {
         });
         jMenu3.add(listarCLientesJMenuItem);
 
-        jMenuItemUpdateCliente.setText("UpdateCliente");
-        jMenuItemUpdateCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemUpdateClienteActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItemUpdateCliente);
-
         buscarClienteByIdJMenuItem.setText("Buscar Clitente por Documento");
         buscarClienteByIdJMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,9 +147,6 @@ public class DashBoardAdso extends JFrame {
             }
         });
         jMenu3.add(buscarClienteByIdJMenuItem);
-
-        jMenuItem1.setText("Eliminar Cliente");
-        jMenu3.add(jMenuItem1);
 
         jMenu1.add(jMenu3);
 
@@ -185,9 +168,6 @@ public class DashBoardAdso extends JFrame {
         });
         jMenu4.add(listarEquiposJMenuItem);
 
-        jMenuItem5.setText("Eliminar Equipo");
-        jMenu4.add(jMenuItem5);
-
         jMenu1.add(jMenu4);
 
         jMenu5.setText("Colaboradores");
@@ -207,9 +187,6 @@ public class DashBoardAdso extends JFrame {
             }
         });
         jMenu5.add(jMenuItem8);
-
-        jMenuItem9.setText("Eliminar colaborador");
-        jMenu5.add(jMenuItem9);
 
         jMenu1.add(jMenu5);
 
@@ -266,18 +243,6 @@ public class DashBoardAdso extends JFrame {
         cardLayout.show(dashboard, "listarClientes");
     }//GEN-LAST:event_listarCLientesJMenuItemActionPerformed
 
-    private void listarEquiposJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarEquiposJMenuItemActionPerformed
-        // TODO add your handling code here:
-        cardLayout.show(dashboard, "listarEquipos");
-
-    }//GEN-LAST:event_listarEquiposJMenuItemActionPerformed
-
-    private void jMenuItemUpdateClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUpdateClienteActionPerformed
-        // TODO add your handling code here:
-
-        cardLayout.show(dashboard, "updateCliente");
-    }//GEN-LAST:event_jMenuItemUpdateClienteActionPerformed
-
     private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
         // TODO add your handling code here:
 
@@ -305,6 +270,11 @@ public class DashBoardAdso extends JFrame {
         cardLayout.show(dashboard, "listarStakeholder");
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void listarEquiposJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarEquiposJMenuItemActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(dashboard, "listarEquipos");
+    }//GEN-LAST:event_listarEquiposJMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,15 +335,11 @@ public class DashBoardAdso extends JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemLogout;
-    private javax.swing.JMenuItem jMenuItemUpdateCliente;
     private javax.swing.JMenuItem listarCLientesJMenuItem;
     private javax.swing.JMenuItem listarEquiposJMenuItem;
     // End of variables declaration//GEN-END:variables

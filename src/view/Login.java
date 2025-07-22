@@ -178,7 +178,7 @@ public class Login extends javax.swing.JFrame {
         String email = jTextFieldEmail.getText();
         char[] passChars = jPasswordFieldPsw_usuario.getPassword();
         String psw_usuario = new String(passChars);
-        JOptionPane.showMessageDialog(null, "Datos recogidos del lgoin: "+psw_usuario+" - "+email);
+        
         try {
             var logged = logger.checkUser(email, psw_usuario);
 

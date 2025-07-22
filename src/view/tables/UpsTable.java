@@ -33,8 +33,9 @@ public class UpsTable extends javax.swing.JPanel {
     //CardLayout cardLayout = new CardLayout();
     //JPanel dashboard = new JPanel();
     // UpdateCliente updateCliente;
-    UpdateUps updateUps;
+    
     Ups upsTable;
+    UpdateUps updateEquipo ;
     public static int id_cliente;
 
     /**
@@ -43,7 +44,7 @@ public class UpsTable extends javax.swing.JPanel {
      * @throws java.sql.SQLException
      */
     public UpsTable() throws SQLException /*throws SQLException */ {
-        this.updateUps = new UpdateUps();
+        this.updateEquipo= new UpdateUps();
         this.id_cliente = 0;
         this.upsTable = new Ups();
 
@@ -178,16 +179,22 @@ public class UpsTable extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(null, "El ide seleccionado tiene el id; " + Integer.parseInt(id.toString()));
 
             try {
+                //UpdateUps updateUps = new UpdateUps();
+                Ups u = new Ups();
+                u = u.findUpsById(Integer.parseInt(id.toString()));
+                
+                
+                updateEquipo.setEquipoUpdateFrm(u);
+                updateEquipo.limpiarCampos();
+                DashBoardAdso.dashboard.add(updateEquipo, "updateEquipo");
+                updateEquipo.cargarFrm();             //setamos los campos del formulario 
+                
+                DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateEquipo");    //Se puede cambiar por 
+                
 
-                //update.setearCamposClienteFrm(c);
-                //JOptionPane.showMessageDialog(null, "Cliente: " + c.toString());
-                DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateUps");    //Se puede cambiar por 
-                //cardLayout.show(dashboard, "updateCliente");
-                //DashBoardAdso.dashboard.revalidate();
-                //DashBoardAdso.dashboard.repaint();
 
-//updateC.cargarMemoria(c);
             } catch (Exception e) {
+                System.err.println("Error Actualizando Ups: "+e);
             }
 
         } else {

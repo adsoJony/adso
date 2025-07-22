@@ -174,24 +174,25 @@ public class EquipoModel {
     public boolean updateEquipo(Equipo equipo) throws SQLException {
         boolean update = false;
         String sql = "UPDATE equipo "
-                + "SET serie_equipo=?, ubicacion_equipo=?, id_marca_equipo=?, id_modelo_equipo=?, fechaInstalacion_equipo=?, ultimoMantenimiento_equipo=?, id_tipoEquipo_equipo=? "
+                + "SET serie_equipo=?, ubicacion_equipo=?, id_marca_equipo=?, id_modelo_equipo=? "
                 + "WHERE id_equipo=?";
-        ps = Conexion.prepararConsulta(sql);
+        
         try {
+            ps = Conexion.prepararConsulta(sql);
             ps.setString(1, equipo.getSerie_equipo());
             ps.setString(2, equipo.getUbicacion_equipo());
             ps.setInt(3, equipo.getId_marca_equipo());
             ps.setInt(4, equipo.getId_modelo_equipo());
-            ps.setDate(5, (equipo.getFechaInstalacion_equipo() != null) ? Date.valueOf(equipo.getFechaInstalacion_equipo()) : null);
-            ps.setDate(6, (equipo.getUltimoMantenimiento_equipo() != null) ? Date.valueOf(equipo.getUltimoMantenimiento_equipo()) : null);
-            ps.setInt(7, equipo.getId_tipoEquipo_equipo());
-            ps.setInt(8, equipo.getId_equipo());
+            //ps.setDate(5, (equipo.getFechaInstalacion_equipo() != null) ? Date.valueOf(equipo.getFechaInstalacion_equipo()) : null);
+            //ps.setDate(6, (equipo.getUltimoMantenimiento_equipo() != null) ? Date.valueOf(equipo.getUltimoMantenimiento_equipo()) : null);
+            //ps.setInt(7, equipo.getId_tipoEquipo_equipo());
+            ps.setInt(5, equipo.getId_equipo());
 
             if (ps.executeUpdate() != 0) {
                 update = true;
                 System.out.println("Equipo actualizado correctamente.");
             } else {
-                System.err.println("El Equipo no se pudo actualizar");
+                System.err.println("El Equipo no se pudo actualizar..");
             }
             ps.close();
         } catch (SQLException e) {

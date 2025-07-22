@@ -152,7 +152,7 @@ public class ClienteTable extends javax.swing.JPanel {
                 .addComponent(jButtonInicio)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonListarUps)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonIngresarUps)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -162,8 +162,8 @@ public class ClienteTable extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -180,7 +180,7 @@ public class ClienteTable extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,14 +205,11 @@ public class ClienteTable extends javax.swing.JPanel {
                 c = c.findClienteById(Integer.parseInt(id.toString()));
                 //DashBoardAdso updateCliente = new DashBoardAdso();
                 updateCliente.setClienteUpdateFrm(c);
-                
+
                 DashBoardAdso.dashboard.add(updateCliente, "updateCliente");
                 updateCliente.setFrm();
-                
+
                 //updateCliente.setearCamposClienteFrm(c);        //  Establecemos los campos en el panel de Update Cliente
-                
-                
-                
                 //update.setearCamposClienteFrm(c);
                 //JOptionPane.showMessageDialog(null, "Cliente: " + c.toString());
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "updateCliente");    //Se puede cambiar por 
@@ -231,6 +228,33 @@ public class ClienteTable extends javax.swing.JPanel {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+
+        int filaSeleccionada = jTableClientes.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            Object id = jTableClientes.getValueAt(filaSeleccionada, 0);
+            //int id_usuario
+
+            try {
+                Cliente cliente = new Cliente();
+                cliente = cliente.findClienteById(Integer.parseInt(id.toString()));
+                int idU = cliente.getId_usuario();
+                if (cliente.deleteUserById(idU)) {
+                    
+                    cargarTabla();
+                    
+                    JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado con exito.");
+                } else {
+                    JOptionPane.showMessageDialog(null,"No se pudo eliminar el Cliente de forma exitosa");
+
+                }
+
+            } catch (Exception e) {
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente para borrar");
+        }
+
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioActionPerformed
@@ -250,17 +274,15 @@ public class ClienteTable extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "el id es: " + id.toString());
 
                 UpsTable upsTable = new UpsTable();
-                
+
                 DashBoardAdso.dashboard.add(upsTable, "upsTable");
-                
+
                 upsTable.cargarTablaById(Integer.parseInt(id.toString()));
-                
-                
+
                 DashBoardAdso.cardLayout.show(DashBoardAdso.dashboard, "upsTable");
-               
+
                 //int id_cliente = Integer.parseInt(id.toString());
                 //upsTable.setId_cliente();
-
             } catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
@@ -272,9 +294,8 @@ public class ClienteTable extends javax.swing.JPanel {
 
     private void jButtonIngresarUpsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarUpsActionPerformed
         // TODO add your handling code here:
-        
-        
-         int filaSeleccionada = jTableClientes.getSelectedRow();
+
+        int filaSeleccionada = jTableClientes.getSelectedRow();
         if (filaSeleccionada >= 0) {
             Object id = jTableClientes.getValueAt(filaSeleccionada, 0);
 
@@ -283,17 +304,19 @@ public class ClienteTable extends javax.swing.JPanel {
                 
                 InsertUps insertEquipo = new InsertUps();
                 insertEquipo.setId_cliente(Integer.parseInt(id.toString()));
-                
-                dashboard.add(insertEquipo,"insertequipo");
+                Cliente c = new Cliente();
+                c = c.findClienteById(Integer.parseInt(id.toString()));
+                insertEquipo.setCliente(c);
+                insertEquipo.insertText();
+                dashboard.add(insertEquipo, "insertequipo");
                 cardLayout.show(dashboard, "insertequipo");
-               
-                
+
             } catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
 
         }
-        
+
     }//GEN-LAST:event_jButtonIngresarUpsActionPerformed
 
     //  Métodos de la tabla
@@ -337,6 +360,7 @@ public class ClienteTable extends javax.swing.JPanel {
         if (filaSeleccionada >= 0) {
             Object id_object = jTableClientes.getValueAt(filaSeleccionada, 0);
             id = Integer.parseInt(id_object.toString());
+
         }
         return id;
     }

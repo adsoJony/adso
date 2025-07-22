@@ -354,9 +354,9 @@ public class Usuario {
         return usuarioModel.updateUsuario(usuario);
     }
 
-    public boolean deleteUsuario(int idUsuario) throws SQLException {
+    public boolean deleteUserById(int idUsuario) throws SQLException {
 
-        return usuarioModel.deleteUsuario(idUsuario);
+        return usuarioModel.deleteUserById(idUsuario);
     }
 
     public boolean checkEmail(String eMail) throws SQLException {

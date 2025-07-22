@@ -22,6 +22,7 @@ import java.sql.ResultSet;
  */
 public class UpsModel {
 
+    Equipo equipo = new Equipo();
     Conexion con;
     private PreparedStatement ps;
     //private Ups ups;
@@ -37,7 +38,10 @@ public class UpsModel {
 
         String sql = "SELECT * from ups "
                 + "join equipo on id_equipo=id_equipo_ups "
+                + "join topologia on id_topologia=id_topologia_ups "
                 + "join cliente on id_cliente=id_cliente_equipo "
+                + "join marca on id_marca=id_marca_equipo "
+                + "join modelo on id_modelo=id_modelo_equipo "
                 + "where id_cliente=?";
 
         //PreparedStatement ps;
@@ -56,6 +60,11 @@ public class UpsModel {
                 ups.setSerie_equipo(rs.getString("serie_equipo"));
                 ups.setSerie_equipo(rs.getString("serie_equipo"));
                 ups.setUbicacion_equipo(rs.getString("ubicacion_equipo"));
+                ups.marca.setDetalle_marca(rs.getString("detalle_marca"));
+                ups.modelo.setDetalle_modelo(rs.getString("detalle_modelo"));
+                ups.topologia.setDetalle_topologia(rs.getString("detalle_topologia"));
+                ups.modelo.setDetalleEquipo_modelo(rs.getString("detalleEquipo_modelo"));
+                
 
                 upsClienteList.add(ups);
             }
@@ -110,6 +119,9 @@ public class UpsModel {
         Ups ups = new Ups();
         String sql = "select * from ups "
                 + "join equipo on id_equipo=id_equipo_ups "
+                + "join topologia on id_topologia=id_topologia_ups "
+                + "join marca on id_marca=id_marca_equipo "
+                + "join modelo on id_modelo=id_modelo_equipo "
                 + "where id_ups=?";
         try {
             ps = con.prepararConsulta(sql);
@@ -119,16 +131,17 @@ public class UpsModel {
                 //  Ups
                 ups.setId_ups(rs.getInt("id_ups"));
                 ups.setId_equipo_ups(rs.getInt("id_equipo_ups"));
+                ups.setId_equipo(rs.getInt("id_equipo"));
                 ups.equipo.setId_equipo(rs.getInt("id_equipo"));
                 ups.setPotencia_va(rs.getInt("potencia_va"));
-                ups.setVoltajebanco_ups(rs.getInt("voltajebancoups"));
+                ups.setVoltajebanco_ups(rs.getInt("voltajeBanco_ups"));
                 ups.setTransformadorAislamiento(rs.getBoolean("transformadorAislamiento"));
                 ups.setId_topologia_ups(rs.getInt("id_topologia_ups"));
                 ups.topologia.setDetalle_topologia("detalle_topologia");
                 ups.setCant_batNom(rs.getInt("cant_batNom"));
                 ups.setCant_batTotal(rs.getInt("cant_batTotal"));
-                ups.setCant_bancoBat(rs.getInt("cant_banco"));
-                ups.setTiempoAutonomia_ups(rs.getInt("tiempoAutinomia_ups"));
+                ups.setCant_bancoBat(rs.getInt("cant_bancoBat"));
+                ups.setTiempoAutonomia_ups(rs.getInt("tiempoAutonomia_ups"));
 
                 //  Equipo
                 ups.setId_tipoEquipo_equipo(rs.getInt("id_equipo"));
@@ -156,38 +169,44 @@ public class UpsModel {
         boolean update = false;
         PreparedStatement ps;
 
-        String sqlE = "";
+        //String sqlE = "";
 
-        String sqlU = "update ups set potencia_va=?, voltajeBanco_ups=?, id_topologia_ups=?, cant_batNom, cant_batTotal, id_ultimoComprobanteServicio, cant_bancoBat, tiempoAutonomia_ups) ";
+        String sqlU = "update ups set potencia_va=?, voltajeBanco_ups=?, id_topologia_ups=?, cant_batNom=?, cant_batTotal=?, cant_bancoBat=?, tiempoAutonomia_ups=? "
+                + "where id_ups=?";
 
         try {
             //  Ingresar Equipo
-            ps = con.prepararConsulta(sqlE);
+            //ps = con.prepararConsulta(sqlE);
+            var updateE = equipo.updateEquipo(ups);
 
             //int equipo = ;
             //  Ingresar Ups
-            if (ps.executeUpdate() != 0) {
+            if (updateE) {
                 System.out.println("Equipo Actualizado desde UpsModel con éxito.");
                 ps = con.prepararConsulta(sqlU);
                 ps.setInt(1, ups.getPotencia_va());
 
-                ps.setInt(1, ups.getPotencia_va());
                 ps.setInt(2, ups.getVoltajebanco_ups());
                 ps.setInt(3, ups.getId_topologia_ups());
 
-                ps.setInt(6, ups.getCant_batNom());
-                ps.setInt(7, ups.getCant_batTotal());
-                ps.setInt(8, ups.getId_ultimoComprobanteServicio());
-                ps.setInt(9, ups.getCant_bancoBat());
-                ps.setInt(10, ups.getTiempoAutonomia_ups());
+                ps.setInt(4, ups.getCant_batNom());
+                ps.setInt(5, ups.getCant_batTotal());
+                
+                ps.setInt(6, ups.getCant_bancoBat());
+                ps.setInt(7, ups.getTiempoAutonomia_ups());
+                ps.setInt(8, ups.getId_ups());
+                
                 if (ps.executeUpdate() != 0) {
                     System.out.println("Ups Actualizada exitosamente desde UpsModel");
                     update = true;
                 }
 
+            }else{
+                System.err.println("No se pudo Actualizar la up...");
             }
 
         } catch (Exception e) {
+            System.out.println("Error UpsUpdate: "+e);
         }
         con.close();
         return update;

@@ -7,24 +7,13 @@ package view.equipos;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import controller.Cliente;
-import controller.Equipo;
 import controller.Marca;
 import controller.Modelo;
-import controller.TipoDocumento;
 import controller.Topologia;
 import controller.Ups;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.sql.Date;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.text.DateFormatter;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -72,6 +61,8 @@ public class InsertUps extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jLabelDetalleUsuario = new javax.swing.JLabel();
         EquipoFormjPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jTextFieldSerieEquipo = new javax.swing.JTextField();
@@ -85,17 +76,6 @@ public class InsertUps extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jTextFieldUbicacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextFieldDiaInstalacion = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextFieldMesinstalacion = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextFieldAnioInstalacion = new javax.swing.JTextField();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jTextFieldId_cliente = new javax.swing.JTextField();
         UpsFormjPanel1 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -135,6 +115,29 @@ public class InsertUps extends javax.swing.JPanel {
         jPanel4.setMaximumSize(new java.awt.Dimension(800, 600));
         jPanel4.setMinimumSize(new java.awt.Dimension(600, 110));
         jPanel4.setPreferredSize(new java.awt.Dimension(700, 500));
+
+        jPanel13.setPreferredSize(new java.awt.Dimension(600, 60));
+
+        jLabelDetalleUsuario.setText("Cliente ");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabelDetalleUsuario)
+                .addContainerGap(544, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelDetalleUsuario)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel13);
 
         EquipoFormjPanel.setAutoscrolls(true);
         EquipoFormjPanel.setPreferredSize(new java.awt.Dimension(700, 150));
@@ -242,82 +245,6 @@ public class InsertUps extends javax.swing.JPanel {
         );
 
         EquipoFormjPanel.add(jPanel7);
-
-        jLabel4.setText("Dia de instalación: ");
-
-        jLabel7.setText("Dia");
-
-        jLabel8.setText("Mes");
-
-        jLabel9.setText("Año");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldDiaInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldMesinstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldAnioInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldDiaInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldMesinstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextFieldAnioInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 8, Short.MAX_VALUE))
-        );
-
-        EquipoFormjPanel.add(jPanel6);
-
-        jLabel13.setText("IdCliente");
-
-        jTextFieldId_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldId_clienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        EquipoFormjPanel.add(jPanel13);
 
         jPanel4.add(EquipoFormjPanel);
 
@@ -576,13 +503,15 @@ public class InsertUps extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(286, 286, 286)
+                .addGap(141, 141, 141)
                 .addComponent(jLabel2)
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -591,17 +520,19 @@ public class InsertUps extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -609,6 +540,9 @@ public class InsertUps extends javax.swing.JPanel {
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         try {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -619,7 +553,7 @@ public class InsertUps extends javax.swing.JPanel {
             var id_modelo = modeloHas.get(modeloSeleccionado);
             var topologiaSeleccionada = jComboBoxTopologia.getSelectedItem();
             var id_topologia = topologiaHas.get(topologiaSeleccionada);
-            int id_cliente = Integer.parseInt(jTextFieldId_cliente.getText()); //Ingresamos el idCLiente en un txtField   
+            int id_cliente = this.id_cliente; //Ingresamos el idCLiente en un txtField   
             //String fechaInstalacion = "-"+jTextFieldMesinstalacion+"-"+jTextFieldDiaInstalacion.getText();
 
             //Datos del Equipo
@@ -640,9 +574,9 @@ public class InsertUps extends javax.swing.JPanel {
             equipoFrm.setCant_batTotal(Integer.parseInt(jTextFieldCantBancosBateria.getText()));
             equipoFrm.setCant_bancoBat(Integer.parseInt(jTextFieldCantBancosBateria.getText()));
 
-            boolean id_equipoFrm = equipoFrm.inputUps(equipoFrm, equipoFrm);
+            boolean saved_equipoFrm = equipoFrm.inputUps(equipoFrm, equipoFrm);
 
-            if (id_equipoFrm) {
+            if (saved_equipoFrm) {
                 JOptionPane.showMessageDialog(null, "Ups agregado con exito.");
 
             }
@@ -655,11 +589,8 @@ public class InsertUps extends javax.swing.JPanel {
         } catch (SQLException e) {
             System.err.println("error: " + e + " en Evento:" + evt);
         }
+        
     }//GEN-LAST:event_jButtonIngresarActionPerformed
-
-    private void jTextFieldId_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldId_clienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldId_clienteActionPerformed
 
     private void jButtonLimpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarFormularioActionPerformed
         // TODO add your handling code here:
@@ -673,10 +604,14 @@ public class InsertUps extends javax.swing.JPanel {
         this.id_cliente = id_cliente;
     }
 
-    
-    
-    
-    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     final void cargarModelo() throws SQLException {
         jComboBoxModelo.removeAllItems();
         for (Modelo type : modelo.listarModelo()) {
@@ -704,6 +639,10 @@ public class InsertUps extends javax.swing.JPanel {
         }
     }
 
+    public void insertText() {
+        jLabelDetalleUsuario.setText("Ingreso de ups para Cliente " + cliente.getRazonSocial_cliente());
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EquipoFormjPanel;
@@ -717,7 +656,6 @@ public class InsertUps extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -725,12 +663,9 @@ public class InsertUps extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDetalleUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -744,18 +679,13 @@ public class InsertUps extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextFieldAnioInstalacion;
     private javax.swing.JTextField jTextFieldBatNom;
     private javax.swing.JTextField jTextFieldCantBancosBateria;
-    private javax.swing.JTextField jTextFieldDiaInstalacion;
-    private javax.swing.JTextField jTextFieldId_cliente;
-    private javax.swing.JTextField jTextFieldMesinstalacion;
     private javax.swing.JTextField jTextFieldPotencia;
     private javax.swing.JTextField jTextFieldSerieEquipo;
     private javax.swing.JTextField jTextFieldTiempoAutonomia;

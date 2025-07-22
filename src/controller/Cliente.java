@@ -412,6 +412,13 @@ public class Cliente extends Usuario {
     public String toString() {
         return "Cliente{" + "id_cliente=" + id_cliente + ", id_usuario_cliente=" + id_usuario_cliente + ", id_cargo_cliente=" + id_cargo_cliente + ", direccion_cliente=" + direccion_cliente + ", telefono_cliente=" + telefono_cliente + ", id_tipoDocumento_cliente=" + id_tipoDocumento_cliente + ", documento_cliente=" + documento_cliente + ", razonSocial_cliente=" + razonSocial_cliente + ", cargo=" + cargo + ", tipoDocumento=" + tipoDocumento + '}';
     }
+    
+    @Override
+    public boolean checkEmail(String email_usuario) throws SQLException{
+        
+      return  super.checkEmail(email_usuario);
+      
+    }
 
     public int inputCliente(Cliente cliente, Usuario usuario) throws SQLException {     //Manejar las excepciones desde un paquete de excepciones
 
@@ -434,5 +441,11 @@ public class Cliente extends Usuario {
         return clienteModel.findClienteById(idCliente);
 
     }
+    
+    public boolean deleteClienteById(int idCliente) throws SQLException{
+        
+        return clienteModel.delete(idCliente);
+    }
+    
 
 }

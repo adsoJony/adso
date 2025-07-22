@@ -214,7 +214,14 @@ public class UsuarioModel {
         return update;
     }
 
-    public boolean deleteUsuario(int idUsuario) throws SQLException {
+    /**
+     * Método para eliminar Usuario
+     * 
+     * @param idUsuario int
+     * @return boolean
+     * @throws SQLException 
+     */
+    public boolean deleteUserById(int idUsuario) throws SQLException {
         var deleted = false;
         String sql = "update usuarios "
                 + "set deleted=1 "

@@ -4,6 +4,10 @@
  */
 package view.equipos;
 
+import controller.Cliente;
+import controller.Marca;
+import controller.Modelo;
+import controller.Topologia;
 import controller.Ups;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -21,14 +25,22 @@ public class UpdateUps extends javax.swing.JPanel {
     public HashMap<String, Integer> topologiaHas = new HashMap<>();
     public HashMap<String, Integer> marcaHas = new HashMap<>();
     public static Ups equipoUpdateFrm;
+    Cliente cliente = new Cliente();
+    
+    Modelo modelo = new Modelo();
+    Marca marca = new Marca();
+    Topologia topologia = new Topologia();
 
     /**
      * Creates new form InsertCliente
      */
-    public UpdateUps() {
-        this.equipoUpdateFrm= new Ups();
+    public UpdateUps() throws SQLException {
+        this.equipoUpdateFrm = new Ups();
         
-        
+        modeloHas = modelo.hashMap();
+        topologiaHas = topologia.hashMap();
+        marcaHas = marca.hashMap();
+
         initComponents();
     }
 
@@ -57,9 +69,6 @@ public class UpdateUps extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jTextFieldUbicacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jTextFieldId_cliente = new javax.swing.JTextField();
         UpsFormjPanel1 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -70,10 +79,6 @@ public class UpdateUps extends javax.swing.JPanel {
         jPanel14 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jComboBoxTopologia = new javax.swing.JComboBox<>();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jTextFieldTiempoAutonomia = new javax.swing.JTextField();
@@ -87,6 +92,7 @@ public class UpdateUps extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jButtonActualizar = new javax.swing.JButton();
         jButtonLimpiarFormulario = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -221,37 +227,6 @@ public class UpdateUps extends javax.swing.JPanel {
 
         EquipoFormjPanel.add(jPanel7);
 
-        jLabel13.setText("IdCliente");
-
-        jTextFieldId_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldId_clienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        EquipoFormjPanel.add(jPanel13);
-
         jPanel4.add(EquipoFormjPanel);
 
         UpsFormjPanel1.setAutoscrolls(true);
@@ -341,38 +316,6 @@ public class UpdateUps extends javax.swing.JPanel {
         );
 
         UpsFormjPanel1.add(jPanel26);
-
-        jLabel10.setText("Transformador de aislamiento");
-
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton2.setText("jRadioButton2");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jRadioButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        UpsFormjPanel1.add(jPanel10);
 
         jLabel17.setText("Tiempo de Autonomia");
 
@@ -473,12 +416,21 @@ public class UpdateUps extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButtonLimpiarFormulario)
                 .addGap(28, 28, 28)
                 .addComponent(jButtonActualizar)
@@ -490,7 +442,8 @@ public class UpdateUps extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonActualizar)
-                    .addComponent(jButtonLimpiarFormulario))
+                    .addComponent(jButtonLimpiarFormulario)
+                    .addComponent(jButton1))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -498,10 +451,6 @@ public class UpdateUps extends javax.swing.JPanel {
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldId_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldId_clienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldId_clienteActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         // TODO add your handling code here:
@@ -514,11 +463,11 @@ public class UpdateUps extends javax.swing.JPanel {
             var id_modelo = modeloHas.get(modeloSeleccionado);
             var topologiaSeleccionada = jComboBoxTopologia.getSelectedItem();
             var id_topologia = topologiaHas.get(topologiaSeleccionada);
-            int id_cliente = Integer.parseInt(jTextFieldId_cliente.getText()); //Ingresamos el idCLiente en un txtField
+            //int id_cliente = Integer.parseInt(jTextFieldId_cliente.getText()); //Ingresamos el idCLiente en un txtField
             //String fechaInstalacion = "-"+jTextFieldMesinstalacion+"-"+jTextFieldDiaInstalacion.getText();
 
             //Datos del Equipo
-            equipoUpdateFrm.setId_cliente_equipo(id_cliente);
+            equipoUpdateFrm.setId_cliente_equipo(equipoUpdateFrm.getId_cliente_equipo());
             equipoUpdateFrm.setSerie_equipo(jTextFieldSerieEquipo.getText());
             equipoUpdateFrm.setUbicacion_equipo(jTextFieldUbicacion.getText());
             equipoUpdateFrm.setId_marca_equipo(id_marca);
@@ -554,6 +503,12 @@ public class UpdateUps extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLimpiarFormularioActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        JOptionPane.showMessageDialog(null, this.equipoUpdateFrm.toString()+ "id: "+equipoUpdateFrm.getId_equipo());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void cargarFrm() {
 
         jComboBoxMarca.setSelectedItem(equipoUpdateFrm.marca.getDetalle_marca());
@@ -568,22 +523,75 @@ public class UpdateUps extends javax.swing.JPanel {
         jTextFieldUbicacion.setText(equipoUpdateFrm.getUbicacion_equipo());
         jTextFieldVoltajeBanco.setText(Integer.toString(equipoUpdateFrm.getVoltajebanco_ups()));
 
+        String marca = equipoUpdateFrm.marca.getDetalle_marca();
+        jComboBoxMarca.setSelectedItem(marca);
+        String modelo = equipoUpdateFrm.modelo.getDetalle_modelo();
+        jComboBoxModelo.setSelectedItem(modelo);
+        String topologia = equipoUpdateFrm.topologia.getDetalle_topologia();
+        jComboBoxTopologia.setSelectedItem(topologia);
+
+    }
+    
+    public void limpiarCampos() throws SQLException{
+        
+        
+        cargarMarca();
+        cargarModelo();
+        cargarTopologia();
+        
+    }
+    
+    
+    final void cargarModelo() throws SQLException {
+        jComboBoxModelo.removeAllItems();
+        for (Modelo type : modelo.listarModelo()) {
+            jComboBoxModelo.addItem(type.getDetalle_modelo());                        //Para trabajar con String                      
+            //jComboBoxTipoDocumento.addItem(Integer.toString(type.getId_tipoDocumento())); //Solo recibe un Integer no recigbe Integer
+            //identificacionJTextField.add(type);                                           //No funciona agregandole el objeto
+        }
+    }
+
+    final void cargarMarca() throws SQLException {
+        jComboBoxMarca.removeAllItems();
+        for (Marca type : marca.listarMarca()) {
+            jComboBoxMarca.addItem(type.getDetalle_marca());                        //Para trabajar con String                      
+            //jComboBoxTipoDocumento.addItem(Integer.toString(type.getId_tipoDocumento())); //Solo recibe un Integer no recigbe Integer
+            //identificacionJTextField.add(type);                                           //No funciona agregandole el objeto
+        }
+    }
+
+    final void cargarTopologia() throws SQLException {
+        jComboBoxTopologia.removeAllItems();
+        for (Topologia type : topologia.listar()) {
+            jComboBoxTopologia.addItem(type.getDetalle_topologia());                        //Para trabajar con String                      
+            //jComboBoxTipoDocumento.addItem(Integer.toString(type.getId_tipoDocumento())); //Solo recibe un Integer no recigbe Integer
+            //identificacionJTextField.add(type);                                           //No funciona agregandole el objeto
+        }
+    }
+    
+    
+
+    public Ups getEquipoUpdateFrm() {
+        return equipoUpdateFrm;
+    }
+
+    public void setEquipoUpdateFrm(Ups equipoUpdateFrm) {
+        this.equipoUpdateFrm = equipoUpdateFrm;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EquipoFormjPanel;
     private javax.swing.JPanel UpsFormjPanel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonLimpiarFormulario;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JComboBox<String> jComboBoxModelo;
     private javax.swing.JComboBox<String> jComboBoxTopologia;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -594,10 +602,8 @@ public class UpdateUps extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel18;
@@ -608,11 +614,8 @@ public class UpdateUps extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextFieldBatNom;
     private javax.swing.JTextField jTextFieldCantBancosBateria;
-    private javax.swing.JTextField jTextFieldId_cliente;
     private javax.swing.JTextField jTextFieldPotencia;
     private javax.swing.JTextField jTextFieldSerieEquipo;
     private javax.swing.JTextField jTextFieldTiempoAutonomia;

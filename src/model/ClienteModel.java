@@ -6,8 +6,6 @@ package model;
 
 import conexion.Conexion;
 import controller.Cliente;
-import controller.TipoDocumento;
-import controller.TipoUsuario;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import controller.Usuario;
@@ -15,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -266,8 +263,8 @@ public class ClienteModel {
         
         return deleted;
     }*/
-    public int delete(int id_usuario_cliente) throws SQLException {
-        int deleted = 0;
+    public boolean delete(int id_usuario_cliente) throws SQLException {
+        boolean deleted = false;
         String sql = "UPDATE usuarios "
                 + "SET deleted=1, active=0 "
                 + "WHERE=id_usuario=?";
@@ -276,9 +273,14 @@ public class ClienteModel {
             ps.setInt(1, id_usuario_cliente);
 
             if (ps.executeUpdate() != 0) {
+                deleted = true;
+                
+                /**
+                 * Ejecutamos para verificar el id del eliminado
+                 */
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    deleted = rs.getInt(1);
+                    //id_deleted = rs.getInt(1);
                 }
             }
             rs.close();

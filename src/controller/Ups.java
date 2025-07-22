@@ -242,14 +242,11 @@ public class Ups extends Equipo {
 
     @Override
     public String toString() {
-        return "Ups{" + "id_ups=" + id_ups + ", id_equipo_ups=" + id_equipo_ups + ", potencia_va=" + potencia_va + ", voltajebanco_ups=" + voltajebanco_ups + ", transformadorAislamiento=" + transformadorAislamiento + ", tiempoAutonomia=" + tiempoAutonomia_ups + ", id_topologia_ups=" + id_topologia_ups + ", cant_batNom=" + cant_batNom + ", cant_batTotal=" + cant_batTotal + ", id_ultimoComprobanteServicio=" + id_ultimoComprobanteServicio + ", cant_bancoBat=" + cant_bancoBat + '}';
+        return "Ups{" + "id_ups=" + id_ups + ", id_equipo_ups=" + id_equipo_ups + ", potencia_va=" + potencia_va + ", voltajebanco_ups=" + voltajebanco_ups + ", transformadorAislamiento=" + transformadorAislamiento + ", tiempoAutonomia=" + tiempoAutonomia_ups + ", id_topologia_ups=" + id_topologia_ups + ", cant_batNom=" + cant_batNom + ", cant_batTotal=" + cant_batTotal + ", id_ultimoComprobanteServicio=" + id_ultimoComprobanteServicio + ", cant_bancoBat=" + cant_bancoBat + '}'+super.toString();
+    
     }
 
-    public String toString(Ups ups) {
-        return "Ups";
-    }
-    
-    
+     
 
     public List<Ups> listarUpsByCliente(int id_cliente) throws SQLException {
 
@@ -263,6 +260,11 @@ public class Ups extends Equipo {
     public boolean update(Ups ups) throws SQLException{
         return upsModel.update(ups);
            
+    }
+    
+    public Ups findUpsById(int idUps){
+               
+        return upsModel.findUpsById(idUps);
     }
     
 }
