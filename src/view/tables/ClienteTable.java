@@ -329,7 +329,7 @@ public class ClienteTable extends javax.swing.JPanel {
             Cliente cliente = new Cliente();
             listaClientes = cliente.listarClientes();       //  Listamos a los clientes en un objeto tipo  lista
 
-            //   Aqui tomamos el objeto de tipo Cliente por ejemplo y lo convertimos a objeto bidimencional o array bidimencional
+            //   Aqui tomamos el objeto de tipo Cliente y lo convertimos a objeto bidimencional o array bidimencional
             Object[][] data = new Object[listaClientes.size()][6];
             //   Recorremos un bucle for con la dimención del objeto
             for (int i = 0; i < listaClientes.size(); i++) {
@@ -348,6 +348,7 @@ public class ClienteTable extends javax.swing.JPanel {
             //   Creamos una DefaultTableMode
             DefaultTableModel modelo = new DefaultTableModel(data, columnas);
             jTableClientes.setModel(modelo);
+            jTableClientes.setAutoCreateRowSorter(true);
 
         } catch (SQLException e) {
             System.err.print("Error Jtable: " + e.getMessage());
